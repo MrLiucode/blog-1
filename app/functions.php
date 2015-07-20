@@ -14,6 +14,11 @@
 /**
  * ģ�渳ֵ
  */
+
+function get_theme(){
+    return env('THEME');
+}
+
 function assign(){
 
     $args = func_get_arg();
@@ -37,7 +42,15 @@ function assign(){
  */
 function display($view = null, $data = [], $mergeData = []){
 
-    return view(env('THEME') . '.' . $view, $data, $mergeData);
+    return view(get_theme() . '.' . $view, $data, $mergeData);
+}
+
+function _asset($path, $secure = null){
+    return asset(get_theme() . '/' . $path, $secure);
+}
+
+function _package($path, $secure = null){
+    return asset('package/' . $path, $secure);
 }
 
 
