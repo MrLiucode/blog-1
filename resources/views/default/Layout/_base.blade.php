@@ -57,7 +57,7 @@
                             <h4><a href="{:U('/article-'.$v['a_id'])}">{$v.a_title}</a></h4>
                             <div class="post-summary">
                                 <div class="clearfix" >
-                                    <p class="remark"> <a href="{:U('/article-'.$v['a_id'])}"><img src="__PUBLIC__/Img/s2.jpg" class="thumbnail img-180" alt="S" title="{$v.a_title}"  /></a>{$v.a_remark}<a href="{:U('/article-'.$v['a_id'])}" class="btn btn-primary look-all" role="button">查看全部</a>
+                                    <p class="remark"> <a href="{:U('/article-'.$v['a_id'])}"><img src="{{_asset('img/s2.jpg')}}" class="thumbnail img-180" alt="S" title="{$v.a_title}"  /></a>{$v.a_remark}<a href="{:U('/article-'.$v['a_id'])}" class="btn btn-primary look-all" role="button">查看全部</a>
                                     </p>
                                     <p class="write hidden-sm">
                                         <a><span class="glyphicon glyphicon-time"></span></a>&nbsp;{$v.a_time|date="m/d H:i",###}&nbsp;&nbsp;作者：&nbsp;&nbsp;{$v.a_writer}&nbsp;&nbsp;分类：&nbsp;&nbsp;[&nbsp;{$v.t_name}&nbsp;]
@@ -97,12 +97,12 @@
                     <ul class="rand-ul">
                         <volist name="s_article" id="vo" empty="暂时没有文章">
                             <li><a>
-                                    <img src="__PUBLIC__/Img/s2.jpg" class="thumbnail  img-80" alt="" title="" /></a>
+                                    <img src="{{_asset('img/s2.jpg')}}" class="thumbnail  img-80" alt="" title="" /></a>
                                 <div class="rand-title">
-                                    <a href="{:U('/article-'.$vo['a_id'])}">{$vo.a_title|strip_tags|mb_substr=0,18,'utf-8'}..</a>
+                                    <a href="{:U('/article-'.$vo['a_id'])}">嘻嘻嘻</a>
                                 </div>
                                 <div class="rand-remark">
-                                    {$vo.a_remark|strip_tags|mb_substr=0,35,'utf-8'}..
+                                    。。。
                                 </div>
                             </li>
                         </volist>
@@ -125,12 +125,12 @@
                                             <if condition="$vo.a_c_url neq '' ">
                                                 <a href="{$vo.a_c_url}" target="_blank" rel="nofollow" title="浏览 {$vo.a_c_name} 的网站？"></a>
                                             </if>
-                                            <img src="/Public/Img/Portrait/{$vo.a_c_img}.jpg" class="img-circle img-45"/>
+                                            <img src="{{_asset('img/s2.jpg')}}" class="img-circle img-45"/>
                                             <div class="content-name">
                                                 <a><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</a>{$vo.a_c_name}
                                             </div>
                                             <div class="content-remark">
-                                                <span class="label label-success ">文章</span>&nbsp;&nbsp;<a href="{:U('/article-'.$vo['a_id'])}" title="{$vo.a_c_content|delFace|strip_tags|mb_substr=0,20,'utf-8'}.." >{$vo.a_c_content|delFace|strip_tags|mb_substr=0,20,'utf-8'}..</a>
+                                                <span class="label label-success ">文章</span>&nbsp;&nbsp;<a href="{:U('/article-'.$vo['a_id'])}" title="{$vo.a_c_content|delFace|strip_tags|mb_substr=0,20,'utf-8'}.." >{嘻嘻嘻..</a>
                                             </div>
                                         </li>
                                         <elseif condition="$vo.al_c_id neq 0"/>
@@ -138,11 +138,11 @@
                                             <if condition="$vo.al_c_url neq '' ">
                                                 <a href="{$vo.al_c_url}" target="_blank" rel="nofollow" title="浏览 {$vo.al_c_name} 的网站？"></a>
                                             </if>
-                                            <img src="/Public/Img/Portrait/{$vo.al_c_img}.jpg" class="img-circle img-45"/>
+                                            <img src="{{_asset('img/s2.jpg')}}" class="img-circle img-45"/>
                                             <div class="content-name">
                                                 <a><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</a>{$vo.al_c_name}</div>
                                             <div class="content-remark">
-                                                <span class="label label-primary ">相册</span>&nbsp;&nbsp;<a href="{:U('/album-'.$vo['al_id'])}" title="{$vo.al_c_content|delFace|strip_tags|mb_substr=0,20,'utf-8'}.." >{$vo.al_c_content|delFace|strip_tags|mb_substr=0,20,'utf-8'}..</a>
+                                                <span class="label label-primary ">相册</span>&nbsp;&nbsp;<a href="{:U('/album-'.$vo['al_id'])}" title="{$vo.al_c_content|delFace|strip_tags|mb_substr=0,20,'utf-8'}.." >嘻嘻嘻..</a>
                                             </div>
                                         </li>
                                         <elseif condition="$vo.s_c_id neq 0"/>
@@ -150,7 +150,7 @@
                                             <if condition="$vo.s_c_url neq '' ">
                                                 <a href="{$vo.s_c_url}" target="_blank" rel="nofollow" title="浏览 {$vo.s_c_name} 的网站？"></a>
                                             </if>
-                                            <img src="/Public/Img/Portrait/{$vo.s_c_img}.jpg" class="img-circle img-45"/>
+                                            <img src="{{_asset('img/s2.jpg')}}" class="img-circle img-45"/>
                                             <div class="content-name">
                                                 <a><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;</a>{$vo.s_c_name}</div>
                                             <div class="content-remark">
@@ -169,7 +169,7 @@
                                         <if condition="$v.c_url neq '' ">
                                             <a href="{$v.c_url}" target="_blank" rel="nofollow" title="浏览 {$v.c_name} 的网站？"></a>
                                         </if>
-                                        <img src="/Public/Img/Portrait/{$v.c_img}.jpg" class="img-circle img-45"/>
+                                        <img src="{{_asset('img/s2.jpg')}}" class="img-circle img-45"/>
                                         <div class="content-name">
                                             <a><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;</a>{$v.c_name}
                                         </div>
@@ -205,33 +205,33 @@
                     <div class="col-md-3 hidden-xs">
                         <h4>程序统计</h4>
                         <p class="foot-box1">
-                            <a><span class="glyphicon glyphicon-comment"></span></a>&nbsp;&nbsp;微说：&nbsp;{$box1.saids} 条
+                            <a><span class="glyphicon glyphicon-comment"></span></a>&nbsp;&nbsp;微说：&nbsp;0 条
                                     <span class="foot-box1-r">
-                                    <a><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;文章：&nbsp;{$box1.articles} 篇
+                                    <a><span class="glyphicon glyphicon-pencil"></span></a>&nbsp;&nbsp;文章：&nbsp;0 篇
                                     </span>
                         </p>
                         <p class="foot-box1">
-                            <a><span class="glyphicon glyphicon-envelope"></span></a>&nbsp;&nbsp;评论：&nbsp;{$box1.num} 条
+                            <a><span class="glyphicon glyphicon-envelope"></span></a>&nbsp;&nbsp;评论：&nbsp;{0 条
                                     <span class="foot-box1-r">
-                                    <a><span class="glyphicon glyphicon-send"></span></a>&nbsp;&nbsp;留言：&nbsp;{$box1.content} 条
+                                    <a><span class="glyphicon glyphicon-send"></span></a>&nbsp;&nbsp;留言：&nbsp;0 条
                                     </span>
                         </p>
                         <p class="foot-box1">
-                            <a><span class="glyphicon glyphicon-home"></span></a>&nbsp;&nbsp;建站：&nbsp;{$box1.time} 天
+                            <a><span class="glyphicon glyphicon-home"></span></a>&nbsp;&nbsp;建站：&nbsp;0 天
                                     <span class="foot-box1-r">
-                                    <a><span class="glyphicon glyphicon-camera"></span></a>&nbsp;&nbsp;相册：&nbsp;{$box1.albums} 个
+                                    <a><span class="glyphicon glyphicon-camera"></span></a>&nbsp;&nbsp;相册：&nbsp;0 个
                                     </span>
                         </p>
                         <p class="foot-box1">
-                            <a><span class="glyphicon glyphicon-picture"></span></a>&nbsp;&nbsp;图片：&nbsp;{$box1.picture} 天
+                            <a><span class="glyphicon glyphicon-picture"></span></a>&nbsp;&nbsp;图片：&nbsp;0 天
                                     <span class="foot-box1-r">
-                                    <a><span class="glyphicon glyphicon-link"></span></a>&nbsp;&nbsp;链接：&nbsp;{$box1.link} 条
+                                    <a><span class="glyphicon glyphicon-link"></span></a>&nbsp;&nbsp;链接：&nbsp;0 条
                                     </span>
                         </p>
                         <p class="foot-box1">
-                            <a><span class="glyphicon glyphicon-usd"></span></a>&nbsp;&nbsp;收入：&nbsp;￥{$box1.pay}RMB
+                            <a><span class="glyphicon glyphicon-usd"></span></a>&nbsp;&nbsp;收入：&nbsp;￥0RMB
                                     <span class="foot-box1-r">
-                                    <a><span class="glyphicon glyphicon-tree-conifer"></span></a>&nbsp;&nbsp;访问：&nbsp;{$box1.hit} 次
+                                    <a><span class="glyphicon glyphicon-tree-conifer"></span></a>&nbsp;&nbsp;访问：&nbsp;0 次
                                     </span>
                         </p>
                     </div>
@@ -248,19 +248,19 @@
                         <p class="foot-box1">
                             程序：&nbsp;{$foot.name}
                                     <span class="foot-box1-r">
-                                    版本：&nbsp;{$foot.version}
+                                    版本：&nbsp;5.1.7
                                     </span>
                         </p>
                         <p class="foot-box1">
                             框架：&nbsp;{$foot.frame}
                                     <span class="foot-box1-r">
-                                    语言：&nbsp;{$foot.lang}
+                                    语言：&nbsp;PHP
                                     </span>
                         </p>
                         <p class="foot-box1">
                             编码：&nbsp;{$foot.charset}
                                     <span class="foot-box1-r">
-                                    作者：&nbsp;{$foot.author}
+                                    作者：&nbsp;Fakeronline
                                     </span>
                         </p>
                         <p class="foot-box1">
@@ -278,7 +278,7 @@
                         <ul class="picture-ul">
                             <volist name="album" id="vo">
                                 <li>
-                                    <a href="{:U('/album-'.$vo['al_id'])}" target="_blank"><img class="img-rounded img-50" src=".{$vo.al_url}" alt="{$vo.al_name}"></a>
+                                    <a href="{:U('/album-'.$vo['al_id'])}" target="_blank"><img class="img-rounded img-50" src="{{_asset('img/s2.jpg')}}" alt="{$vo.al_name}"></a>
                                 </li>
                             </volist>
                         </ul>
@@ -295,6 +295,10 @@
             </div>
         </div>
     </body>
+
     @section('bodyAfter')
         @show
+<script src="{{_package('jquery/dist/jquery.min.js')}}"></script>
+<script src="{{_package('bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{_package('bootstrap/js/carousel.js')}}" ></script>
 </html>
