@@ -48,11 +48,22 @@
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://builtwithbootstrap.com/" target="_blank">登录</a></li>
-                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">注册</a></li>
-            </ul>
+            <form class="navbar-form navbar-left nav-form " role="search">
+                <div class="input-group w350">
+                    <input type="text" class="form-control text-sm" placeholder="关键字">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default btn-sm" type="button">搜索</button>
+                    </span>
+                </div>
+            </form>
+
+            <form class="navbar-form navbar-right " role="user">
+                <button class="btn btn-success btn-sm">登录</button>
+                <button class="btn btn-primary btn-sm">注册</button>
+                <button class="btn btn-danger btn-sm">喜欢的文章</button>
+            </form>
 
         </div>
+
     </div>
 </div>
