@@ -1,8 +1,19 @@
-@extends('default.layout._base')
+@extends('default.layout.base')
+
 @section('bodyBefore')
     @include('default.widgets.header')
-    @include('default.widgets.nav')
 @stop
 
- 
+@section('main')
+<div class="row">
+    <div class="container">
+        <div class="col-lg-8">
+            @include('default.widgets.left')
+        </div>
+    </div>
+
+</div>
+@stop
+
+
 
