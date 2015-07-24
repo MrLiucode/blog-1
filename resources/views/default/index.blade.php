@@ -1,8 +1,4 @@
-@extends('default.layout.base')
-
-@section('bodyBefore')
-    @include('default.widgets.header')
-@stop
+@extends('default.layouts.base')
 
 @section('main')
 <div class="row">
@@ -11,9 +7,7 @@
             @include('default.widgets.left')
         </div>
         @include('default.widgets.right')
-
     </div>
-
 </div>
 @stop
 
