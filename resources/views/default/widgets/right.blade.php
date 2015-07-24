@@ -1,6 +1,39 @@
+<div class="col-lg-4 pdr0 tag">
+    <div class="well bs-component">
+        <legend>热门标签</legend>
+        <p>
+            <a href=""><span class="label label-default">Default</span></a>
+            <a href=""><span class="label label-primary">Primary</span></a>
+            <a href=""><span class="label label-success">Success</span></a>
+            <a href=""><span class="label label-info">Info</span></a>
+            <a href=""><span class="label label-warning">Warning</span></a>
+            <a href=""><span class="label label-danger">Danger</span></a>
+            <a href=""><span class="label label-default">Default</span></a>
+            <a href=""><span class="label label-primary">Primary</span></a>
+            <a href=""><span class="label label-success">Success</span></a>
+            <a href=""><span class="label label-info">Info</span></a>
+            <a href=""><span class="label label-warning">Warning</span></a>
+            <a href=""><span class="label label-danger">Danger</span></a>
+            <a href=""><span class="label label-default">Default</span></a>
+            <a href=""><span class="label label-primary">Primary</span></a>
+            <a href=""><span class="label label-success">Success</span></a>
+            <a href=""><span class="label label-info">Info</span></a>
+            <a href=""><span class="label label-warning">Warning</span></a>
+            <a href=""><span class="label label-danger">Danger</span></a>
+            <a href=""><span class="label label-default">Default</span></a>
+            <a href=""><span class="label label-primary">Primary</span></a>
+            <a href=""><span class="label label-success">Success</span></a>
+            <a href=""><span class="label label-info">Info</span></a>
+            <a href=""><span class="label label-warning">Warning</span></a>
+            <a href=""><span class="label label-danger">Danger</span></a>
+        </p>
+
+    </div>
+</div>
+
 <div class="col-lg-4 pdr0 tuijian">
     <div class="well bs-component">
-        <h4>热门文章</h4>
+        <legend>热门文章</legend>
         <ol>
             <li><span> <strong>1</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
             <li><span> <strong>2</strong></span><a href="#">励志人生-要做一个潇洒的女人</a></li>
@@ -10,24 +43,12 @@
             <li><span> <strong>6</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
             <li><span> <strong>7</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
         </ol>
-        <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
-    </div>
-</div>
-
-<div class="col-lg-4 pdr0 toppic">
-    <div class="well bs-component">
-        <h4>图文</h4>
-        <ul>
-            <li><a href="#"><img src="images/k01.jpg">腐女不可怕，就怕腐女会画画！<p>伤不起</p></a> </li>
-            <li><a href="#"><img src="images/k01.jpg">问前任，你还爱我吗？无限戳中泪点~<p>感兴趣</p></a> </li>
-            <li><a href="#"><img src="images/k01.jpg">世上所谓幸福，就是一个笨蛋遇到一个傻瓜。<p>喜欢</p></a> </li>
-        </ul>
     </div>
 </div>
 
 <div class="col-lg-4 pdr0 clicks">
     <div class="well bs-component">
-        <h4>热门点击</h4>
+        <legend>热门点击</legend>
         <ol>
             <li><span><a href="#">慢生活</a></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
             <li><span><a href="#">爱情美文</a></span><a href="#">励志人生-要做一个潇洒的女人</a></li>
@@ -37,5 +58,16 @@
             <li><span><a href="#">wedding</a></span><a href="#">Wedding-婚礼主题、情人节网站模板</a></li>
             <li><span><a href="#">古典风格</a></span><a href="#">花气袭人是酒香—个人网站模板</a></li>
         </ol>
+    </div>
+</div>
+
+<div class="col-lg-4 pdr0 tuijian">
+    <div class="well bs-component">
+        <legend>站点统计</legend>
+        <p>文章总数：<span class="badge">42</span> 篇</p>
+        <p>浏览总数：<span class="badge">42</span> 次</p>
+        <p>总计评论：<span class="badge">42</span> 次</p>
+        <p>总用户数：<span class="badge">100</span> 人</p>
+        <p>当前时间：<code>2015-07-24 23:18:30</code></p>
     </div>
 </div>

@@ -266,6 +266,16 @@
         /*博客列表部分结束*/
 
         /*侧边部分开始*/
+        .tag{
+            padding-top: 5px;
+        }
+        .tag p{
+            line-height:2;
+        }
+        .tag span{
+            margin: 0px 5px;
+        }
+
         .tuijian{
             padding-right: 0px;
         }
@@ -326,19 +336,9 @@
             clear:both;
         }
         .toppic li p{
-            padding-left:110px;
+            padding-left:100px;
             margin-top:5px;
             color:#F63;
-            background:url({{_asset('images/icons.png')}}) no-repeat;
-        }
-        .toppic li:first-child p{
-            background-position:90px -263px;
-        }
-        .toppic li:nth-child(2) p{
-            background-position:90px -284px;
-        }
-        .toppic li:last-child p{
-            background-position:90px -302px;
         }
         /*===========================*/
         .clicks li{
@@ -358,57 +358,24 @@
             text-decoration:underline;
         }
 
-
-        .viny dl dd{
-            color:#666;
-            line-height:24px;
-        }
-        .art{
-            background:url({{_asset('images/vinyl.png')}}) no-repeat left;
-            width:130px;
-            float:left;
-            background-size:120px;
-
-        }
-        .viny .art img{
-            width:90px;
-            height:90px;
-            margin-left:11px;
-        }
-        .viny dd span{
-            width:12px;
-            height:24px;
-            margin-right:7px;
-            display:block;
-            float:left;
-        }
-        .icon_song span, .icon_artist span, .icon_album span, .icon_like span{
-            background:url({{_asset('images/icons.png')}});
-        }
-        .icon_song span{
-            background-position:-33px -344px;
-        }
-        .icon_artist span{
-            background-position:-16px -345px;
-        }
-        .icon_album span{
-            background-position:0px -344px;
-        }
-        .icon_like span{
-            background-position:-1px -299px;
-        }
-        .icon_like a{
-            color:#F63;
-        }
-        .icon_like a:hover{
-            color:#D8D8D8;
-        }
-        .music audio{
-            width:100%;
-            padding-top:15px;
-        }
-
         /*侧边部分结束*/
+
+        /*底部部分开始*/
+        .footer{
+            background-color:rgba(0,0,0,0.4);
+            box-shadow:0px 1px 0px rgba(255,255,255,0.1), insert 0px 1px 1px rgba(0,0,0,0.55);
+            border-top:2px solid #2A2A2A;
+        }
+        .footer .mid{
+            padding:20px 0px;
+            overflow:hidden;
+            text-align: center;
+        }
+        /*底部部分结束*/
+
+        .page-div{
+            margin: 10px;
+        }
 
 
     </style>
@@ -418,12 +385,10 @@
     @show
 </head>
 <body>
-@section('bodyBefore')
-@show
+@include('default.widgets.header')
 @section('main')
 @show
-@section('bodyAfter')
-@show
+@include('default.widgets.footer')
 </body>
 <script src="{{_package('jquery/dist/jquery.min.js')}}"></script>
 <script src="{{_package('bootstrap/dist/js/bootstrap.min.js')}}"></script>
