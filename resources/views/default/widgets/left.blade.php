@@ -1,6 +1,6 @@
 <ul class="bloglist">
     <li>
-        <div class="ci"></div><!--圆形-->
+        <div class="ci" data-toggle="tooltip" data-placement="left" title="2015-07-25"></div><!--圆形-->
         <div class="row_box">
             <div class="ti"></div><!--三角形-->
 
@@ -18,7 +18,7 @@
     </li>
 
     <li>
-        <div class="ci"></div><!--圆形-->
+        <span class="ci" data-toggle="tooltip" data-placement="left" title="2015-07-25"></span><!--圆形-->
         <div class="row_box">
             <div class="ti"></div><!--三角形-->
 
@@ -36,7 +36,7 @@
     </li>
 
     <li>
-        <div class="ci"></div><!--圆形-->
+        <span class="ci" data-toggle="tooltip" data-placement="left" title="2015-07-25"></span><!--圆形-->
         <div class="row_box">
             <div class="ti"></div><!--三角形-->
 
@@ -54,7 +54,7 @@
     </li>
 
     <li>
-        <div class="ci"></div><!--圆形-->
+        <span class="ci" data-toggle="tooltip" data-placement="left" title="2015-07-25"></span><!--圆形-->
         <div class="row_box">
             <div class="ti"></div><!--三角形-->
 
@@ -72,7 +72,7 @@
     </li>
 
     <li>
-        <div class="ci"></div><!--圆形-->
+        <div class="ci" data-toggle="tooltip" data-placement="left" title="2015-07-25"></div><!--圆形-->
         <div class="row_box">
             <div class="ti"></div><!--三角形-->
 
