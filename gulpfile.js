@@ -30,10 +30,23 @@ gulp.task('css', function () {
         .pipe(gulp.dest(cssDst));
 });
 
-// js处理
+//前台js处理
 gulp.task('js', function () {
     var jsSrc = './resources/assets/js/*.js',
         jsDst ='./public/default/js';
+
+    gulp.src(jsSrc)
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('default'))
+        .pipe(uglify())
+        .pipe(livereload(server))
+        .pipe(gulp.dest(jsDst));
+});
+
+//后台js处理
+gulp.task('adminJs', function () {
+    var jsSrc = './resources/assets/js/admin/*.js',
+        jsDst ='./public/admin/js';
 
     gulp.src(jsSrc)
         .pipe(jshint('.jshintrc'))
@@ -54,7 +67,7 @@ gulp.task('img', function(){
 
 // 清空图片、样式、js
 gulp.task('clean', function() {
-    gulp.src(['./public/default/css/*', './public/default/js/*', './public/default/images/*'], {read: false})
+    gulp.src(['./public/default/css/*', './public/default/js/*', './public/default/images/*', './public/admin/js/*'], {read: false})
         .pipe(clean());
 });
 
@@ -63,6 +76,7 @@ gulp.task('default', ['clean'], function(){
     gulp.start('css');
     gulp.start('js');
     gulp.start('img');
+    gulp.start('adminJs');
 });
 
 // 监听任务 运行语句 gulp watch
@@ -81,6 +95,10 @@ gulp.task('watch',function(){
         // 监听js
         gulp.watch('resources/assets/js/*.js', function(){
             gulp.start('js');
+        });
+
+        gulp.watch('resources/assets/js/admin/*.js', function(){
+            gulp.start('adminJs');
         });
 
         gulp.watch('resources/assets/images/*.*', function(){
