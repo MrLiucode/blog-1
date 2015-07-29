@@ -18,11 +18,11 @@ class SystemOptions extends BaseModel{
     protected $table = 'system_option';
 
     private $attribute = [
-        'website_title', 'website_keyword', 'website_description', 'website_author', 'website_icp', 'website_copy',
+        'website_title', 'website_keyword', 'website_description', 'website_author', 'website_icp', 'website_copy', 'website_footer',
         'mail_drive', 'mail_host', 'mail_port', 'mail_username', 'mail_password', 'mail_encryption'
     ];
 
-    public function update(array $arr){
+    public function updateOption(array $arr){
 
         DB::beginTransaction();
         foreach($arr as $key => $value){
@@ -45,6 +45,11 @@ class SystemOptions extends BaseModel{
 
         return true;
 
+    }
+
+    public function scopeKeyPrefix($query, $prefix){
+
+        return $query->where('name', 'like', "%$prefix%");
     }
 
 }
