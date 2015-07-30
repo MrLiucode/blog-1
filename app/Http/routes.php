@@ -11,41 +11,65 @@
 |
 */
 
-Route::get('/', function () {
-    return display('index');
-//    return display('article');
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return display('index');
+////    return display('article');
+//    return view('welcome');
+//});
 
 Route::get('article', function(){
     return display('article');
 });
 
-Route::get('admin/login',function(){
-    return view('admin.login');
-});
-Route::get('admin/index',function(){
-    return view('admin.index');
+
+Route::group(['prefix' => 'home'], function(){
+
+    /*
+    |--------------------------------------------------------------------------
+    | 前台基本模块
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/', 'HomeController@index');
 });
 
-//Route::get('admin/option', function(){ return '11111';});
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
+
+    /*
+    |--------------------------------------------------------------------------
+    | 后台基本模块
+    |--------------------------------------------------------------------------
+    */
+    Route::get('login', function(){
+
+        return view('admin.login');
+    });
+
+    Route::get('index', function(){
+
+        return view('admin.base');
+    });
+
 
     /*
     |--------------------------------------------------------------------------
     | 系统配置模块
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'option', 'namespace' => 'Admin'], function(){
+    Route::group(['prefix' => 'option'], function(){
 
         $optionController = 'OptionController@';
-        Route::get('/', $optionController . 'index');
+        Route::get('/', ['as' => 'system.base.option.index', 'uses' => $optionController . 'index']);   //系统设置首页
+        Route::post('base', ['as' => 'system.base.option.update', 'uses' => $optionController . 'updateBaseOption']);   //更新系统基本设置
+
     });
 
 
 
 });
 
+
+Route::any('test', 'TestController@index');
+Route::any('clean', 'TestController@cleanCache');
 //Route::grop(['prefix' => 'admin'], function(){
 //
 //    Route::get('/', function(){
