@@ -23,6 +23,12 @@ class BaseModel extends  Model{
         return 'U'; //转为int型
     }
 
+    /**
+     * 批量插入
+     * @param array $dataArr    要插入的数组
+     * @param bool|false $asymmetry 参数列表是否对齐
+     * @return bool 插入结果
+     */
     public function batchInsert(array $dataArr, $asymmetry = false){
 
         if($asymmetry){

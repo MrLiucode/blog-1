@@ -18,7 +18,7 @@ class SystemOptions extends BaseModel{
     protected $table = 'system_option';
 
     private $attribute = [
-        'website_title', 'website_keyword', 'website_description', 'website_author', 'website_icp', 'website_copy', 'website_footer',
+        'website_title', 'website_keyword', 'website_description', 'website_author', 'website_icp', 'website_copy', 'website_footer', 'website_motto',
         'mail_drive', 'mail_host', 'mail_port', 'mail_username', 'mail_password', 'mail_encryption'
     ];
 
