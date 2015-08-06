@@ -3,12 +3,15 @@
 @section('main')
 
     <div id="content-header">
-        <h1>系统基本设置</h1>
+        <h1>文章分类</h1>
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="增加新分类" href="{{route('admin.category.create')}}"><i class="icon-file"></i></a>
+        </div>
     </div>
     <div id="breadcrumb">
-        <a href="{:U('User/Index/index')}" title="回到后台首页" class="tip-bottom"><i class="icon-home"></i> Home</a>
-        <a href="#" class="tip-bottom">系统设置</a>
-        <a href="#" class="current">基本设置</a>
+        <a href="{{url('admin/index')}}" title="回到后台首页" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="tip-bottom">分类管理</a>
+        <a href="#" class="current">分类列表</a>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
@@ -21,69 +24,61 @@
                         </div>
                     @endforeach
                 @endif
-
-                @if(Session::has('success'))
-                    <div class="alert alert-info">
-                        <span class="icon-hand-right"></span> 更新成功!
-                        <a href="#" data-dismiss="alert" class="close">×</a>
-                    </div>
+                @if(Session::has('message'))
+                        <div class="alert alert-info">
+                            {{Session::pull('message')}}
+                        </div>
                 @endif
                 <div class="widget-box">
                     <div class="widget-title">
-                        <span class="icon"><i class=" icon-pencil"></i></span>
-                        <h5>系统基本设置</h5>
+                        <h5>分类详情</h5>
+                        <span class="label label-important">已有{{$list->total()}}个分类</span>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="{{route('system.base.option.update')}}" method="post" class="form-horizontal" />
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="control-group">
-                            <label class="control-label">网站标题：</label>
-                            <div class="controls">
-                                <input type="text" name="website_title" value="{{array_get($optionList, 'website_title', '')}}"/>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">网站关键字：</label>
-                            <div class="controls">
-                                <input type="text" name="website_keyword" value="{{array_get($optionList, 'website_keyword', '')}}" />
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">网站描述：</label>
-                            <div class="controls">
-                                <textArea name="website_description">{{array_get($optionList, 'website_description', '')}}</textArea>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">网站作者：</label>
-                            <div class="controls">
-                                <input type="text" name="website_author" value="{{array_get($optionList, 'website_author', '')}}">
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label">ICP：</label>
-                            <div class="controls">
-                                <input type="text" name="website_icp" value="{{array_get($optionList, 'website_icp', '')}}" />
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">版权：</label>
-                            <div class="controls">
-                                <input type="text" name="website_copy" value="{{array_get($optionList, 'website_copy', '')}}"/>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">底部代码：</label>
-                            <div class="controls">
-                                <textArea name="website_footer">{{array_get($optionList, 'website_footer', '')}}</textArea>
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">确认修改</button>
-                        </div>
-                        </form>
+                        <table class="table table-bordered data-table">
+                            <thead>
+                            <tr>
+                                <th width="4%">编号</th>
+                                <th width="15%">分类名称</th>
+                                <th width="15%">分类描述</th>
+                                <th width="15%"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($list as $index => $item)
+                            <tr class="gradeX">
+                                <td text-align="center"><span class="badge">{{$index + 1}}</span></td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->remark}}</td>
+                                <td class="center">
+                                    <form action="{{route('admin.category.destroy', ['id' => $item->id])}}" method="POST" onsubmit="return confirm('是否删除此条记录')">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                    <a href="{{action('Admin\CategoryController@edit', ['id' => $item->id])}}">
+                                        <button type="button" class="btn btn-primary"><i class="icon-pencil icon-white"></i> 编辑</button>
+                                    </a>
+                                        <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> 删除</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @if(empty($list))
+                            <tr class="gradeX">
+                                <td colspan="30">
+                                    <div class="alert alert-info">
+                                        暂无任何分类
+                                    </div>
+                                </td>
+                            </tr>
+                            @endif
+                            </tbody>
+                        </table>
                     </div>
+                    <div class="pull-right">
+                        {!! $list->render() !!}
+                    </div>
+
+                    {{--{$page}--}}
                 </div>
             </div>
         </div>

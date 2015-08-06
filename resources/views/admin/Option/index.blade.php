@@ -62,6 +62,13 @@
                         </div>
 
                         <div class="control-group">
+                            <label class="control-label">座右铭：</label>
+                            <div class="controls">
+                                <textArea name="website_motto">{{array_get($optionList, 'website_motto', '')}}</textArea>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
                             <label class="control-label">ICP：</label>
                             <div class="controls">
                                 <input type="text" name="website_icp" value="{{array_get($optionList, 'website_icp', '')}}" />
