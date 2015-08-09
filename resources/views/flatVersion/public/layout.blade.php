@@ -6,7 +6,10 @@
     <meta charset="UTF-8" />
     @section('meta')
     @show
-    <title>Fakeronline blog</title>
+    <title>{{array_get($optionList, 'website_title', '')}}@section('title')@show</title>
+    <meta name="keywords" content="{{array_get($optionList, 'website_keyword', '')}}" />
+    <meta name="description" content="{{array_get($optionList, 'website_description', '')}}" />
+    <meta name="author" content="{{array_get($optionList, 'website_author', '')}}" />
     <link rel="stylesheet" href="{{_package('Bootflat/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{_package('Bootflat/bootflat/css/bootflat.min.css')}}">
     <link rel="stylesheet" href="{{_package('Bootflat/css/site.min.css')}}">
