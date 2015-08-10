@@ -7,11 +7,10 @@
     <meta name="description" content="{{array_get($optionList, 'website_description', '')}}" />
     <meta name="author" content="{{array_get($optionList, 'website_author', '')}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="{{_package('bootswatch/cyborg/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{_asset('css/common.css')}}">
-
     @section('meta')
     @show
+    <link rel="stylesheet" href="{{_package('bootswatch/cyborg/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{_asset('css/common.css')}}">
     @section('headLink')
     @show
 </head>
