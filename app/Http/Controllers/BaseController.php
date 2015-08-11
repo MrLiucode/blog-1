@@ -11,15 +11,16 @@
  */
 namespace App\Http\Controllers;
 
+use App\Repositories\CategoryRepo;
 use App\Repositories\OptionRepository;
 
 class BaseController extends Controller{
 
-    public function __construct(OptionRepository $optionRepository){
+    public function __construct(OptionRepository $optionRepository, CategoryRepo $categoryRepo){
 
-        $optionList = $optionRepository->optionList();
-
-        view()->share(compact('optionList'));
+        $optionList = $optionRepository->optionList();  //网站参数
+        $category = $categoryRepo->getAll();    //文章所有分类
+        view()->share(compact('optionList', 'category'));
     }
 }
 

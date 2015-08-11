@@ -21,7 +21,7 @@ class OptionController extends BaseController{
     public function index(OptionRepository $optionRepository){
 
         $optionList = $optionRepository->optionList();
-        return view('admin.option', compact('optionList'));
+        return view('admin.option.index', compact('optionList'));
     }
 
     public function updateBaseOption(OptionRequest $optionRequest, OptionRepository $optionRepository){
