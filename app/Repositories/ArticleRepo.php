@@ -142,5 +142,30 @@ class ArticleRepo extends BaseRepo{
         return $tagArr;
     }
 
+    public function update($aid, $data){
+
+        $tagArr = $this->getArticleTag($aid);    //获取该文章标签
+        $tagIdArr = array_get_value($tagArr, 'id');    //获取该文章的所有标签ID
+        $tagIdArr = array_values($tagIdArr);  //只获取数组值
+
+        $articleTags = new ArticleTags();
+        $result = $articleTags->where('aid', $aid)->delete();
+
+        if($result){
+
+            if((!$articleTags->whereIn('tid', $tagIdArr)->get())){
+                //如果该标签已经没有文章引用了，则删除
+                $tagModel = new Tags();
+                $tagModel->whereIn('id', $tagIdArr)->delete();
+                $this->forgetTags();    //清除标签缓存
+            }
+
+            $articleModel = new Article();
+            $result = $articleModel->where('id', $aid)->update($data);
+        }
+
+        return $result;
+    }
+
 }
 
