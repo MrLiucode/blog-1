@@ -19,12 +19,19 @@ class TagRepo{
 
     private $cache_prefix = 'blog_tags';
 
-    private function str2arr($str){
-        return is_string($str) ? [$str] : (array)$str;
+    /**
+     * 去除标签空格
+     * @param string $str
+     * @return mixed
+     */
+    private function _trim($str){
+        if(!is_string($str) || empty($str)) return $str;
+        str_replace(' ', '', $str);
+        return $str;
     }
 
-    public function add($tag){
-        $tagArr = $this->str2arr($tag);
+    public function tag($tag){
+        $tagArr = is_string($tag) ? explode(',', $this->_trim($tag)) : (array)$tag;
         $tagModel = new Tags();
         $tagRes = $tagModel->tagName($tagArr)->get()->toArray();
         $tagRes = array_get_value($tagRes, 'name');
