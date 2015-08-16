@@ -44,7 +44,8 @@ class ArticleTagRepo{
      */
     public function deleteRelation($aid){
         $articleTag = new ArticleTags();
-        return $articleTag->where('aid', $aid)->delete();
+        $articleTag->where('aid', $aid)->delete();
+        return true;
     }
 
 

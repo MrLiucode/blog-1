@@ -31,21 +31,16 @@ class BaseModel extends  Model{
      */
     public function batchInsert(array $dataArr, $asymmetry = false){
 
-        if($asymmetry){
-
-            return DB::table($this->table)->insert($dataArr);
+        if(empty($dataArr)){
+            return true;
+        }
+        $time = time();
+        foreach($dataArr as &$list){
+            $list['created_at'] = $time;
+            $list['updated_at'] = $time;
         }
 
-        DB::beginTransaction();
-        foreach($dataArr as $arr){
-
-            if(!self::create($arr)){
-                DB::rollback();
-            }
-        }
-        DB::commit();
-
-        return true;
+        return DB::table($this->table)->insert($dataArr);
     }
 
 }

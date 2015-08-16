@@ -17,4 +17,14 @@ class Tags extends BaseModel{
     protected $table = 'tags';
     protected $guarded = [];    //支持所有批量更新
 
+    public function scopeTagName($query, array $tagArr){
+
+        return $query->whereIn('name', $tagArr);
+    }
+
+    public function scopeTagId($query, array $tagId){
+
+        return $query->whereIn('id', $tagId);
+    }
+
 }

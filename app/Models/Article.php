@@ -16,4 +16,8 @@ class Article extends BaseModel{
 
     protected $table = 'articles';
     protected $guarded = [];    //支持所有批量更新
+
+    public function categoryName(){
+        return $this->hasOne('App\Models\Categories', 'id', 'type');
+    }
 }
