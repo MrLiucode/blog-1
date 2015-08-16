@@ -44,7 +44,7 @@ class ArticleRepo extends BaseRepo{
 
         $articleModel = new Article();
 
-        return $articleModel->where('id', $aid)->update($data);
+        return $articleModel->findOrFail($aid)->update($data);
 
         $tagArr = $this->getArticleTag($aid);    //获取该文章标签
         $tagIdArr = array_get_value($tagArr, 'id');    //获取该文章的所有标签ID

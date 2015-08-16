@@ -48,11 +48,19 @@ class TagRepo{
     public function refreshCache(){
         Cache::forget($this->cache_prefix);
         $list = Tags::all()->toArray();
-        Cache::forever($this->cache_prefix, $list);
+        Cache::add($this->cache_prefix, $list, 30);
     }
 
+    /**
+     * 获取所有标签
+     * @return mixed
+     */
     public function getList(){
-        return Cache::get($this->cache_prefix, []);
+        if(Cache::has($this->cache_prefix)){
+            return Cache::get($this->cache_prefix);
+        }
+        $this->refreshCache();
+        return $this->getList();
     }
 
 }
