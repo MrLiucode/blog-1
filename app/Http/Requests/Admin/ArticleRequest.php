@@ -23,6 +23,8 @@ class ArticleRequest extends Request{
      */
     public function authorize()
     {
+        $description = $this->description ? $this->description : mb_substr(htmlspecialchars_decode(strip_tags($this->content_html)), 0, 200) . '...';
+        $this->getInputSource()->set('description', $description);
         return true;
     }
 

@@ -34,11 +34,9 @@
             </div>
             <div class="panel-body rounded-list">
                 <ol>
-                    <li><a href="###">PHP类的继承与多态</a></li>
-                    <li><a href="###">PHP类的继承与多态</a></li>
-                    <li><a href="###">PHP类的继承与多态</a></li>
-                    <li><a href="###">PHP类的继承与多态</a></li>
-                    <li><a href="###">PHP类的继承与多态</a></li>
+                    @foreach($hotArticle as $item)
+                    <li><a href="###">{{$item->title}}</a></li>
+                    @endforeach
                 </ol>
             </div>
             <div class="panel-footer">
@@ -54,30 +52,13 @@
             </div>
             <div class="panel-body">
                 <div class="tag">
-                    <a  href="####"><span class="label">PHP</span></a>
-                    <a href="#####"><span class="label">PHP</span></a>
-                    <a href="#####"><span class="label label-default">ASP.NET</span></a>
-                    <a href="#####"><span class="label label-primary">JAVA</span></a>
-                    <a href="#####"><span class="label label-success">javascript</span></a>
-                    <a href="#####"><span class="label label-info">HTML</span></a>
-                    <a href="#####"><span class="label label-warning">CSS</span></a>
-                    <a href="#####"><span class="label label-danger">Jquery</span></a>
-                    <a  href="####"><span class="label">PHP</span></a>
-                    <a href="#####"><span class="label">PHP</span></a>
-                    <a href="#####"><span class="label label-default">ASP.NET</span></a>
-                    <a href="#####"><span class="label label-primary">JAVA</span></a>
-                    <a href="#####"><span class="label label-success">javascript</span></a>
-                    <a href="#####"><span class="label label-info">HTML</span></a>
-                    <a href="#####"><span class="label label-warning">CSS</span></a>
-                    <a href="#####"><span class="label label-danger">Jquery</span></a>
-                    <a  href="####"><span class="label">PHP</span></a>
-                    <a href="#####"><span class="label">PHP</span></a>
-                    <a href="#####"><span class="label label-default">ASP.NET</span></a>
-                    <a href="#####"><span class="label label-primary">JAVA</span></a>
-                    <a href="#####"><span class="label label-success">javascript</span></a>
-                    <a href="#####"><span class="label label-info">HTML</span></a>
-                    <a href="#####"><span class="label label-warning">CSS</span></a>
-                    <a href="#####"><span class="label label-danger">Jquery</span></a>
+                    @foreach($hotTagList as $item)
+                        <a  href="####"><span class="label {{tagColor()}}">{{$item['name']}}</span></a>
+                    @endforeach
+                    @if(empty($hotTagList))
+                        暂没有任何标签
+                    @endif
+                     &nbsp;
                 </div>
             </div>
         </div>
@@ -89,11 +70,9 @@
             </div>
             <div class="panel-body rounded-list">
                 <ol>
-                    <li><a href="###">PHP类的继承与多态</a></li>
-                    <li><a href="###">PHP类的继承与多态</a></li>
-                    <li><a href="###">PHP类的继承与多态</a></li>
-                    <li><a href="###">PHP类的继承与多态</a></li>
-                    <li><a href="###">PHP类的继承与多态</a></li>
+                    @foreach($goodArticle as $item)
+                        <li><a href="###">{{$item->title}}</a></li>
+                    @endforeach
                 </ol>
             </div>
             <div class="panel-footer">
