@@ -57,7 +57,7 @@ class CategoryController extends BaseController{
             return redirect()->route('admin.category.index')->with('message', '删除成功!');
         }
 
-        return redirect()->route()->withErrors('删除失败!');
+        return redirect()->route('admin.category.index')->withErrors('删除失败!');
     }
 
     public function update($id, CategoryRequest $request){

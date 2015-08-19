@@ -11,11 +11,16 @@
  */
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Repositories\ArticleRepo;
+
 class HomeController extends BaseController{
 
-    public function index(){
+    public function index(Article $articleModel){
 
-        return display('index');
+        $articleList = $articleModel->orderBy('created_at')->paginate(10);
+
+        return display('index', compact('articleList'));
     }
 
 }

@@ -85,6 +85,12 @@ function array_get_all(array $key_array, array $value_array){
     return $result;
 }
 
+/**
+ * 获取数组中某个键的值，以一位数组的方式返回
+ * @param array $array
+ * @param $key
+ * @return array
+ */
 function array_get_value(array $array, $key){
     $result = [];
     if($array && $key){
@@ -97,11 +103,41 @@ function array_get_value(array $array, $key){
     return $result;
 }
 
+/**
+ * 成功返回
+ * @param string $url
+ * @param string $message
+ * @return \Illuminate\Http\RedirectResponse
+ */
 function success($url, $message = ''){
     return redirect($url)->with('message', $message);
 }
 
-function error($url, $message, $status = 422){
-    return $url ? redirect($url, $status)->withErrors($message) : redirect()->back()->withErrors($message);
+/**
+ * 返回错误
+ * @param string $message
+ * @param string $url
+ * @param int $status
+ * @return $this
+ */
+function error($message, $url = '',  $status = 422){
+    return $url ? redirect($url, $status)->withErrors($message) : redirect()->back()->withErrors($message)->withInput(Input::all());
+}
+
+/**
+ * 获取标签颜色
+ * @return mixed
+ */
+function tagColor(){
+    $color = ['', 'label-default', 'label-primary', 'label-success', 'label-info', 'label-warning', 'label-danger'];
+    return $color[array_rand($color)];
+}
+
+function _trim($str){
+    str_replace(' ', '', $str);
+    str_replace('\r', '', $str);
+    str_replace('\n', '', $str);
+    str_replace('\r\n', '', $str);
+    return $str;
 }
 
