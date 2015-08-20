@@ -11,26 +11,9 @@
 |
 */
 
-//Route::get('/', function () {
-//    return display('index');
-////    return display('article');
-//    return view('welcome');
-//});
+Route::get('/', ['as' => 'home', 'uses' => 'ArticleController@index']);
 
-Route::get('article', function(){
-    return display('article');
-});
-
-
-Route::group(['prefix' => 'home'], function(){
-
-    /*
-    |--------------------------------------------------------------------------
-    | 前台基本模块
-    |--------------------------------------------------------------------------
-    */
-    Route::get('/', 'HomeController@index');
-});
+Route::resource('article', 'ArticleController');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
@@ -63,19 +46,24 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | 文章分类模块
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('category', 'CategoryController', ['except' => ['show']]);
 
+    /*
+    |--------------------------------------------------------------------------
+    | 文章模块
+    |--------------------------------------------------------------------------
+    */
+    Route::resource('article', 'ArticleController');
 
 });
 
-
+Route::get('view', 'TestController@view');
 Route::any('test', 'TestController@index');
 Route::any('clean', 'TestController@cleanCache');
-//Route::grop(['prefix' => 'admin'], function(){
-//
-//    Route::get('/', function(){
-//        return view('admin.index');
-//        //    return display('admin.index');
-//    });
-//});
 
 
