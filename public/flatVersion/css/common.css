@@ -141,6 +141,45 @@ ol ol{
 }
 
 /*********************************** 标签后的页面 *********************************************/
-.article-list{
-
+/*文章内容开始*/
+.breadcrumb{
+    margin-top: 50px;
 }
+.articles{
+    background: rgba(255, 255, 255, 0.7) none repeat scroll 0px 0px !important;
+    margin-top: 10px;
+    color: #444;
+}
+.articles h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    /*padding-top: 30px;*/
+    font-size: 24px;
+}
+.a-write {
+    width: 100%;
+    height: 25px;
+    font-size: 13px;
+    text-align: center;
+    border: 1px dashed #999999;
+    line-height: 25px;
+    color: #999999;
+    margin: 5px 5px;
+}
+.a-content {
+    margin-top: 20px;
+    padding: 10px;
+}
+.a-up{
+    margin-top: 20px;
+}
+.a-up{
+    margin-top: 20px;
+}
+/*文章内容结束*/
+
+/* 分享层开始 */
+.share{
+    margin-top: 30px;
+}
+/* 分享层结束 */
