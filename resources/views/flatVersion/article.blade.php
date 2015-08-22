@@ -15,6 +15,6 @@
             {!! htmlspecialchars_decode($article->content_html) !!}
         </div>
         <div class="a-write hidden-xs">发表自：&nbsp;Win 8.1&nbsp;&nbsp;地址：北京市北京市&nbsp;&nbsp;评论：&nbsp;1&nbsp;&nbsp;关键词：&nbsp;ThinkPHP&nbsp;&nbsp;</div>
+        <br /><br />
     </div>
-
 @stop

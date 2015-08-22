@@ -24,7 +24,7 @@ class ArticleController extends BaseController{
     }
 
     public function show($id, Article $article){
-        $article =  $article->find($id);
+        $article =  $article->findOrFail($id);
         empty($article) && abort(404);
         return display('article', compact('article'));
     }

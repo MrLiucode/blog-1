@@ -16,19 +16,8 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
-                @if (count($errors) > 0)
-                    @foreach ($errors->all() as $error)
-                        <div class="alert alert-error">
-                            <span class="icon-hand-right"></span> {{ $error }}
-                            <a href="#" data-dismiss="alert" class="close">×</a>
-                        </div>
-                    @endforeach
-                @endif
-                @if(Session::has('message'))
-                        <div class="alert alert-info">
-                            {{Session::pull('message')}}
-                        </div>
-                @endif
+                @include('admin.widgets.error')
+                @include('admin.widgets.success')
                 <div class="widget-box">
                     <div class="widget-title">
                         <h5>分类详情</h5>

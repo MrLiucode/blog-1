@@ -48,13 +48,12 @@
                         <form class="form-horizontal" action="{{isset($data) ? route('admin.article.update', ['id' => array_get($data, 'id')]) : route('admin.article.store')}}" method="post" onsubmit="return form_submit();">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             @if(isset($data))
-                                <input type="hidden" name="id" value="{{array_get($data, 'id', 0)}}">
                                 <input type="hidden" name="_method" value="put">
                             @endif
                             <div class="control-group">
                                 <label class="control-label">文章标题</label>
                                 <div class="controls">
-                                    <input type="text" placeholder="文章标题" name="title" value="{{isset($data) ? array_get($data, 'title', '') : ''}}"/>
+                                    <input type="text" placeholder="文章标题" name="title" value="{{isset($data) ? array_get($data, 'title', '') : ''}}{{Input::old('title')}}" required="required"/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -70,13 +69,13 @@
                             <div class="control-group">
                                 <label class="control-label">标签</label>
                                 <div class="controls">
-                                    <input type="text" id="tokenfield" name="tag" value="{{isset($articleTags) ? $articleTags : ''}}"/>
+                                    <input type="text" id="tokenfield" name="tag" value="{{isset($articleTags) ? $articleTags : ''}}{{Input::old('tag')}}"/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">文章正文</label>
                                 <div id="test-editormd"></div>
-                                <textArea name="content" style="display: none;"></textArea>
+                                <textArea name="content" style="display: none;">\r\n<br />\ta sdfasdf</textArea>
                                 <textArea name="content_html" style="display: none;"></textArea>
                             </div>
                             <div class="control-group">
@@ -108,7 +107,7 @@
             </div>
         </div>
     </div>
-<div id="markdown-content" style="display: none;">{{isset($data) ? array_get($data, 'content', '') : ''}}</div>
+<div id="markdown-content" style="display: none;">{{isset($data) ? htmlentities(array_get($data, 'content', '')) : ''}}</div>
 @stop
 
 @section('bodyAfter')
@@ -116,17 +115,14 @@
     <script src="{{_package('bootstrap-tokenfield/dist/bootstrap-tokenfield.js')}}"></script>
     <script src="{{_package('editor.md/editormd.min.js')}}"></script>
     <script>
-        alert('123123');
         $('select').select2();
-//        $('#tokenfield').tokenfield({
-//            showAutocompleteOnFocus: true
-//        });
+        $('#tokenfield').tokenfield({
+            showAutocompleteOnFocus: true
+        });
         var editor = editormd("test-editormd", {
+            name : "content",
             width   : "90%",
             height  : 640,
-//            theme : "dark",
-//            previewTheme : "dark",
-//            editorTheme : "pastel-on-dark",
             codeFold : true,
             syncScrolling : "single",
             path : "{{_package('editor.md/lib')}}/",
@@ -138,17 +134,7 @@
             flowChart : true,             // 开启流程图支持，默认关闭
             sequenceDiagram : true,
             markdown : $("#markdown-content").text(),
-            onload : function() {
-                console.log('onload', this);
-                //this.fullscreen();
-                //this.unwatch();
-                //this.watch().fullscreen();
-
-                //this.setMarkdown("#PHP");
-                //this.width("100%");
-                //this.height(480);
-                //this.resize("100%", 640);
-            }
+            markdownSourceCode : true   //保留源码
         });
         function form_submit(){
             $("textArea[name='content_html']").val(editor.getPreviewedHTML());

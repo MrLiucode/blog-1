@@ -1,1 +1,0 @@
-function aaaa(){alert("asdas")}aaaa();

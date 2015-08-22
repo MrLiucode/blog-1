@@ -1,8 +1,7 @@
 @extends('admin.base')
 
 @section('main')
-    @include('admin.widgets.error')
-    @include('admin.widgets.success')
+
 <div id="content-header">
     <h1>文章列表</h1>
     <div class="btn-group">
@@ -17,6 +16,8 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
+            @include('admin.widgets.error')
+            @include('admin.widgets.success')
             <div class="widget-box">
                 <div class="widget-title">
                     <h5>文章详情</h5>

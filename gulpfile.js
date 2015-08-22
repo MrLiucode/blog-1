@@ -45,7 +45,7 @@ gulp.task('js', function () {
 
 //后台js处理
 gulp.task('adminJs', function () {
-    var jsSrc = './resources/assets/js/admin/*.js',
+    var jsSrc = './resources/assets/js/admin/common.js',
         jsDst ='./public/admin/js';
 
     gulp.src(jsSrc)
@@ -56,18 +56,18 @@ gulp.task('adminJs', function () {
         .pipe(gulp.dest(jsDst));
 });
 
-gulp.task('img', function(){
-
-    var imgSrc = './resources/assets/images/*';
-    var imgDst = './public/default/images';
-
-    gulp.src(imgSrc).pipe(gulp.dest(imgDst));
-
-});
+//gulp.task('img', function(){
+//
+//    var imgSrc = './resources/assets/images/*';
+//    var imgDst = './public/default/images';
+//
+//    gulp.src(imgSrc).pipe(gulp.dest(imgDst));
+//
+//});
 
 // 清空图片、样式、js
 gulp.task('clean', function() {
-    gulp.src(['./public/default/css/*', './public/default/js/*', './public/default/images/*', './public/admin/js/*'], {read: false})
+    gulp.src(['./public/default/css/*', './public/default/js/*', /*'./public/default/images/*', */'./public/admin/js/common.js'], {read: false})
         .pipe(clean());
 });
 
@@ -75,7 +75,7 @@ gulp.task('clean', function() {
 gulp.task('default', ['clean'], function(){
     gulp.start('css');
     gulp.start('js');
-    gulp.start('img');
+    //gulp.start('img');
     gulp.start('adminJs');
 });
 
@@ -101,9 +101,9 @@ gulp.task('watch',function(){
             gulp.start('adminJs');
         });
 
-        gulp.watch('resources/assets/images/*.*', function(){
-            gulp.start('img');
-        });
+        //gulp.watch('resources/assets/images/*.*', function(){
+        //    gulp.start('img');
+        //});
 
     });
 });
