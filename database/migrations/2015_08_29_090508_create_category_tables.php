@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
-class CreateSystemOptionsTable extends Migration
+class CreateCategoryTables extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +13,14 @@ class CreateSystemOptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('system_option', function(Blueprint $table){
+        Schema::create('categories', function(Blueprint $table){
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->default(0);
-            $table->string('name', 50);
-            $table->text('value', 100);
+            $table->string('name', 20)->unique(); //分类名称
+            $table->string('description');  //描述
+            $table->integer('order')->unsigned();   //排序
             $table->integer('created_at');
             $table->integer('updated_at');
-            $table->engine = 'InnoDB';
         });
     }
 
@@ -30,6 +31,6 @@ class CreateSystemOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('system_option');
+        Schema::drop('categories');
     }
 }
