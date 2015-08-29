@@ -16,4 +16,21 @@ class Article extends BaseModel{
 
     protected $table = 'articles';
 
+    protected $with = ['user', 'tags'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
 }

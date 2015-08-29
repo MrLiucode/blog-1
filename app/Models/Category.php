@@ -15,4 +15,9 @@ namespace App\Models;
 class Category extends BaseModel{
 
     protected $table = 'categories';
+
+    public function article()
+    {
+        return $this->belongsToMany(Article::class);
+    }
 }

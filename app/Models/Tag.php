@@ -15,4 +15,10 @@ namespace App\Models;
 class Tag extends BaseModel{
 
     protected $table = 'tags';
+
+    public function article()
+    {
+        return $this->belongsToMany(Article::class);
+    }
+
 }
