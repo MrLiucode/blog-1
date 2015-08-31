@@ -11,6 +11,14 @@
 |
 */
 
-$app->get('/', function() use ($app) {
-    return $app->welcome();
+$app->get('/a', function() use ($app) {
+    return 'Hello World!';
+});
+
+
+
+$app->group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'system'], function($app) {
+    $app->get('/', 'HomeController@index');
+//    $app->get('admin', '');
+    // Controllers Within The "App\Http\Controllers\Admin" Namespace
 });
