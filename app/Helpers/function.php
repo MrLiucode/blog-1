@@ -65,10 +65,6 @@ function error($message, $url = '',  $status = 422){
     return $url ? redirect($url, $status)->withErrors($message) : redirect()->back()->withErrors($message)->withInput(\Illuminate\Support\Facades\Input::all());
 }
 
-function asset($path){
-    return url() . '/' . $path;
-}
-
-function _package($fileName){
-    return asset('package/' . $fileName);
+function _package($path){
+    return asset('package/' . $path);
 }

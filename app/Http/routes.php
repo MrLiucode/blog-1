@@ -11,14 +11,10 @@
 |
 */
 
-$app->get('/a', function() use ($app) {
-    return 'Hello World!';
+Route::get('/', function () {
+    return view('welcome');
 });
 
-
-
-$app->group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'system'], function($app) {
-    $app->get('/', 'HomeController@index');
-//    $app->get('admin', '');
-    // Controllers Within The "App\Http\Controllers\Admin" Namespace
+Route::group(['prefix' => 'system', 'namespace' => 'Admin'], function(){
+    Route::get('/', 'HomeController@index');
 });
