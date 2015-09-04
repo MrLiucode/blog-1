@@ -238,52 +238,23 @@
         </a>
 
         <ul class="dropdown-menu arrow settings">
-
             <li>
 
-                <h3>Backgrounds:</h3>
-                <ul id="color-schemes">
-                    <li><a href="#" class="bg-1"></a></li>
-                    <li><a href="#" class="bg-2"></a></li>
-                    <li><a href="#" class="bg-3"></a></li>
-                    <li><a href="#" class="bg-4"></a></li>
-                    <li><a href="#" class="bg-5"></a></li>
-                    <li><a href="#" class="bg-6"></a></li>
-                </ul>
+                <a href="#"><i class="fa fa-user"></i> 个人设置</a>
+            </li>
 
-                <div class="form-group videobg-check">
-                    <label class="col-xs-8 control-label">Video BG</label>
-                    <div class="col-xs-4 control-label">
-                        <div class="onoffswitch greensea small">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="videobg-check">
-                            <label class="onoffswitch-label" for="videobg-check">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+            <li>
+                <a href="#"><i class="fa fa-calendar"></i> 我的资料</a>
+            </li>
 
+            <li>
+                <a href="#"><i class="fa fa-envelope"></i> 我的任务 <span class="badge badge-red" id="user-inbox">3</span></a>
             </li>
 
             <li class="divider"></li>
 
             <li>
-                <a href="#"><i class="fa fa-user"></i> Profile</a>
-            </li>
-
-            <li>
-                <a href="#"><i class="fa fa-calendar"></i> Calendar</a>
-            </li>
-
-            <li>
-                <a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge badge-red" id="user-inbox">3</span></a>
-            </li>
-
-            <li class="divider"></li>
-
-            <li>
-                <a href="#"><i class="fa fa-power-off"></i> Logout</a>
+                <a href="#"><i class="fa fa-power-off"></i> 退出</a>
             </li>
         </ul>
     </li>
