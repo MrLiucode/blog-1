@@ -3,6 +3,7 @@
  */
 $(function(){
 
+
     // Initialize card flip
     $('.card.hover').hover(function(){
         $(this).addClass('flip');
@@ -39,85 +40,6 @@ $(function(){
     ];
     var months = ["January", "February", "March", "April", "May", "Juny", "July", "August", "September", "October", "November", "December"];
 
-    // flot chart generate
-    var plot = $.plotAnimator($("#statistics-chart"),
-        [
-            {
-                label: 'Sales',
-                data: d1,
-                lines: {lineWidth:3},
-                shadowSize:0,
-                color: '#ffffff'
-            },
-            { label: "Visits",
-                data: d2,
-                animator: {steps: 99, duration: 500, start:200, direction: "right"},
-                lines: {
-                    fill: .15,
-                    lineWidth: 0
-                },
-                color:['#ffffff']
-            },{
-            label: 'Sales',
-            data: d1,
-            points: { show: true, fill: true, radius:6,fillColor:"rgba(0,0,0,.5)",lineWidth:2 },
-            color: '#fff',
-            shadowSize:0
-        },
-            { label: "Visits",
-                data: d2,
-                points: { show: true, fill: true, radius:6,fillColor:"rgba(255,255,255,.2)",lineWidth:2 },
-                color: '#fff',
-                shadowSize:0
-            }
-        ],{
-
-            xaxis: {
-
-                tickLength: 0,
-                tickDecimals: 0,
-                min:1,
-                ticks: [[1,"JAN"], [2, "FEB"], [3, "MAR"], [4, "APR"], [5, "MAY"], [6, "JUN"], [7, "JUL"], [8, "AUG"], [9, "SEP"], [10, "OCT"], [11, "NOV"], [12, "DEC"]],
-
-                font :{
-                    lineHeight: 24,
-                    weight: "300",
-                    color: "#ffffff",
-                    size: 14
-                }
-            },
-
-            yaxis: {
-                ticks: 4,
-                tickDecimals: 0,
-                tickColor: "rgba(255,255,255,.3)",
-
-                font :{
-                    lineHeight: 13,
-                    weight: "300",
-                    color: "#ffffff"
-                }
-            },
-
-            grid: {
-                borderWidth: {
-                    top: 0,
-                    right: 0,
-                    bottom: 1,
-                    left: 1
-                },
-                borderColor: 'rgba(255,255,255,.3)',
-                margin:0,
-                minBorderMargin:0,
-                labelMargin:20,
-                hoverable: true,
-                clickable: true,
-                mouseActiveRadius:6
-            },
-
-            legend: { show: false}
-        });
-
     $(window).resize(function() {
         // redraw the graph in the correctly sized div
         plot.resize();
@@ -147,6 +69,7 @@ $(function(){
         }
     );
 
+
     // tooltips showing
     $("#statistics-chart").bind("plothover", function (event, pos, item) {
         if (item) {
@@ -162,6 +85,7 @@ $(function(){
     });
 
 
+
     //tooltips options
     $("<div id='tooltip'></div>").css({
         position: "absolute",
@@ -171,71 +95,7 @@ $(function(){
         "z-index":"99999"
     }).appendTo("body");
 
-    //generate actual pie charts
-    $('.pie-chart').easyPieChart();
 
-
-    //server load rickshaw chart
-    var graph;
-
-    var seriesData = [ [], []];
-    var random = new Rickshaw.Fixtures.RandomData(50);
-
-    for (var i = 0; i < 50; i++) {
-        random.addData(seriesData);
-    }
-
-    graph = new Rickshaw.Graph( {
-        element: document.querySelector("#serverload-chart"),
-        height: 150,
-        renderer: 'area',
-        series: [
-            {
-                data: seriesData[0],
-                color: '#6e6e6e',
-                name:'File Server'
-            },{
-                data: seriesData[1],
-                color: '#fff',
-                name:'Mail Server'
-            }
-        ]
-    } );
-
-    var hoverDetail = new Rickshaw.Graph.HoverDetail( {
-        graph: graph,
-    });
-
-    setInterval( function() {
-        random.removeData(seriesData);
-        random.addData(seriesData);
-        graph.update();
-
-    },1000);
-
-    // Morris donut chart
-    Morris.Donut({
-        element: 'browser-usage',
-        data: [
-            {label: "Chrome", value: 25},
-            {label: "Safari", value: 20},
-            {label: "Firefox", value: 15},
-            {label: "Opera", value: 5},
-            {label: "Internet Explorer", value: 10},
-            {label: "Other", value: 25}
-        ],
-        colors: ['#00a3d8', '#2fbbe8', '#72cae7', '#d9544f', '#ffc100', '#1693A5']
-    });
-
-    $('#browser-usage').find("path[stroke='#ffffff']").attr('stroke', 'rgba(0,0,0,0)');
-
-    //sparkline charts
-    $('#projectbar1').sparkline('html', {type: 'bar', barColor: '#22beef', barWidth: 4, height: 20});
-    $('#projectbar2').sparkline('html', {type: 'bar', barColor: '#cd97eb', barWidth: 4, height: 20});
-    $('#projectbar3').sparkline('html', {type: 'bar', barColor: '#a2d200', barWidth: 4, height: 20});
-    $('#projectbar4').sparkline('html', {type: 'bar', barColor: '#ffc100', barWidth: 4, height: 20});
-    $('#projectbar5').sparkline('html', {type: 'bar', barColor: '#ff4a43', barWidth: 4, height: 20});
-    $('#projectbar6').sparkline('html', {type: 'bar', barColor: '#a2d200', barWidth: 4, height: 20});
 
     // sortable table
     $('.table.table-sortable th.sortable').click(function() {
@@ -270,5 +130,25 @@ $(function(){
 
     //multiselect input
     $(".chosen-select").chosen({disable_search_threshold: 10});
+
+    //check all checkboxes
+    $('table thead input[type="checkbox"]').change(function () {
+        $(this).parents('table').find('tbody input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+    });
+
+    // sortable table
+    $('.table.table-sortable th.sortable').click(function() {
+        var o = $(this).hasClass('sort-asc') ? 'sort-desc' : 'sort-asc';
+        $(this).parents('table').find('th.sortable').removeClass('sort-asc').removeClass('sort-desc');
+        $(this).addClass(o);
+    });
+
+    //chosen select input
+    $(".chosen-select").chosen({disable_search_threshold: 10});
+
+    //check toggling
+    $('.check-toggler').on('click', function(){
+        $(this).toggleClass('checked');
+    });
 
 });

@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'system', 'namespace' => 'Admin'], function(){
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
     Route::get('/', 'HomeController@index');
+
+    /**
+     * 文章模块
+     */
+    Route::resource('article', 'ArticleController');
+
 });
