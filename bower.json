@@ -1,0 +1,22 @@
+{
+  "name": "blog",
+  "version": "1.0.2",
+  "homepage": "https://github.com/Fakeronline/blog",
+  "authors": [
+    "Fackeronline <1077341744@qq.com>"
+  ],
+  "description": "Fakeronline的博客",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ace-builds": "~1.2.0",
+    "font-awesome": "~4.4.0",
+    "marked": "~0.3.5"
+  }
+}

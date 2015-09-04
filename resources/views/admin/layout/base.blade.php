@@ -74,16 +74,17 @@
 <script type="text/javascript" src="{{asset('admin/js/vendor/videobackground/jquery.videobackground.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/js/vendor/blockui/jquery.blockUI.js')}}"></script>
 <script src="{{asset('admin/js/vendor/flot/jquery.flot.selection.min.js')}}"></script>
-<script src="{{asset('admin/js/vendor/flot/jquery.flot.min.js')}}"></script>
-<script src="{{asset('admin/js/vendor/flot/jquery.flot.time.min.js')}}"></script>
 
-<script src="{{asset('admin/js/vendor/flot/jquery.flot.animator.min.js')}}"></script>
-<script src="{{asset('admin/js/vendor/flot/jquery.flot.orderBars.js')}}"></script>
-<script src="{{asset('admin/js/vendor/easypiechart/jquery.easypiechart.min.js')}}"></script>
+{{--<script src="{{asset('admin/js/vendor/flot/jquery.flot.min.js')}}"></script>--}}
+{{--<script src="{{asset('admin/js/vendor/flot/jquery.flot.time.min.js')}}"></script>--}}
 
-<script src="{{asset('admin/js/vendor/rickshaw/raphael-min.js')}}"></script>
+{{--<script src="{{asset('admin/js/vendor/flot/jquery.flot.animator.min.js')}}"></script>--}}
+{{--<script src="{{asset('admin/js/vendor/flot/jquery.flot.orderBars.js')}}"></script>--}}
+{{--<script src="{{asset('admin/js/vendor/easypiechart/jquery.easypiechart.min.js')}}"></script>--}}
+
+{{--<script src="{{asset('admin/js/vendor/rickshaw/raphael-min.js')}}"></script>--}}
 {{--<script src="{{asset('admin/js/vendor/rickshaw/d3.v2.js')}}"></script>--}}
-<script src="{{asset('admin/js/vendor/rickshaw/rickshaw.min.js')}}"></script>
+{{--<script src="{{asset('admin/js/vendor/rickshaw/rickshaw.min.js')}}"></script>--}}
 <script src="{{asset('admin/js/vendor/morris/morris.min.js')}}"></script>
 <script src="{{asset('admin/js/vendor/tabdrop/bootstrap-tabdrop.min.js')}}"></script>
 <script src="{{asset('admin/js/vendor/summernote/summernote.min.js')}}"></script>
