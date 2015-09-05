@@ -1,6 +1,6 @@
 <?php
 /**
- * HomeController.php
+ * ArticleController.php
  *
  * Part of newblog.
  *
@@ -9,14 +9,17 @@
  * @author    Fackeronline <1077341744@qq.com>
  * @link      https://github.com/Fakeronline
  */
-
+ 
 namespace App\Http\Controllers\Admin;
 
-class HomeController extends Controller{
+class ArticleController extends Controller{
 
     public function index(){
+        return adminView('article.index');
+    }
+
+    public function create(){
         return adminView('article.edit');
     }
 
 }
-

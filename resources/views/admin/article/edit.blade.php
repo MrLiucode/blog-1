@@ -50,7 +50,7 @@
                     <div class="form-group">
                         <label for="category" class="col-sm-2 control-label">文章分类 *</label>
                         <div class="col-sm-10" id="selectbox">
-                            <select name="category" class="chosen-select chosen-transparent form-control" id="category" parsley-trigger="change" parsley-required="true" parsley-error-container="#selectbox">
+                            <select name="category" class="chosen-select chosen-transparent form-control" id="category" parsley-trigger="change" parsley-required="true" parsley-error-container="#selectbox3">
                                 <option value="">请选择文章分类</option>
                                 <option value="11">Laravel</option>
                                 <option value="222">PHP</option>
@@ -71,10 +71,12 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active" id="input-wrapper">
                                             <div id="content" style="height:400px"></div>
-                                            <textArea name="content" placeholder="请用Markdown语法">阿萨德发送到分</textArea>
+                                            <textArea name="content" class="hide" placeholder="请用Markdown语法"></textArea>
                                         </div>
                                         <div role="tabpanel" class="tab-pane" id="output-wrapper">
-                                            <div id="output"></div>
+                                            <div id="output">var x = "All this is syntax highlighted";
+                                                return x;
+                                                }</div>
                                         </div>
                                     </div>
                                 </div>
@@ -208,9 +210,11 @@
             font-family: 'Monaco', courier, monospace;
 
         }
+
         #output {
             overflow: auto;
         }
+
         textarea {
             resize: none;
             outline: none;
@@ -220,6 +224,7 @@
             padding: 20px;
             border:1px solid #eee;
         }
+
         .tab-pane {
             padding:10px;
         }
@@ -253,8 +258,19 @@
         {{--});--}}
     {{--</script>--}}
     <script>
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/twilight");
-        editor.getSession().setMode("ace/mode/javascript");
+        ace.require("ace/ext/language_tools");
+        var editor = ace.edit("content");
+        var textarea = $('#input').hide();
+        var preview = $('#output');
+        var phpMode = ace.require("ace/mode/php").Mode;
+
+        editor.setTheme("ace/theme/github");
+        editor.getSession().setMode(new phpMode());
+        editor.getSession().setValue(textarea.val());
+        editor.setOptions({
+            enableBasicAutocompletion: true,
+            enableSnippets: true,
+            enableLiveAutocompletion: false
+        });
     </script>
 @stop
