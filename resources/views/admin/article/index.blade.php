@@ -129,3 +129,24 @@
 <!-- /content container -->
 
 @stop
+
+@section('css')
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/rickshaw/css/rickshaw.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/morris/css/morris.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/tabdrop/css/tabdrop.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/summernote/css/summernote.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/summernote/css/summernote-bs3.css')}}">
+@stop
+
+@section('js')
+    <script src="{{asset('admin/js/vendor/flot/jquery.flot.min.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/flot/jquery.flot.time.min.js')}}"></script>
+
+    <script src="{{asset('admin/js/vendor/flot/jquery.flot.animator.min.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/flot/jquery.flot.orderBars.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/easypiechart/jquery.easypiechart.min.js')}}"></script>
+
+    <script src="{{asset('admin/js/vendor/rickshaw/raphael-min.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/rickshaw/d3.v2.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/rickshaw/rickshaw.min.js')}}"></script>
+@stop

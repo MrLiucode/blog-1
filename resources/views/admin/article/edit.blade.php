@@ -241,22 +241,6 @@
     <script src="{{ _package('ace-builds//src-min/snippets/php.js') }}"></script>
     <script type="text/javascript" src="{{ _package('marked/marked.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/trick-new-edit.min.js') }}"></script>
-    {{--<script>--}}
-        {{--ace.require("ace/ext/language_tools");--}}
-        {{--var editor = ace.edit("content");--}}
-        {{--var textarea = $('#input').hide();--}}
-        {{--var preview = $('#output');--}}
-        {{--var phpMode = ace.require("ace/mode/php").Mode;--}}
-
-        {{--editor.setTheme("ace/theme/github");--}}
-        {{--editor.getSession().setMode(new phpMode());--}}
-        {{--editor.getSession().setValue(textarea.val());--}}
-        {{--editor.setOptions({--}}
-            {{--enableBasicAutocompletion: true,--}}
-            {{--enableSnippets: true,--}}
-            {{--enableLiveAutocompletion: false--}}
-        {{--});--}}
-    {{--</script>--}}
     <script>
         ace.require("ace/ext/language_tools");
         var editor = ace.edit("content");
