@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('admin/js/vendor/chosen/css/chosen-bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/minimal.css')}}">
 
-    @section('css') @stop
+    @section('css') @show
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

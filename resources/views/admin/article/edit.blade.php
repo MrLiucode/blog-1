@@ -67,17 +67,14 @@
                                     <li role="presentation" class="active"><a href="#input-wrapper" aria-controls="home" role="tab" data-toggle="tab">内容</a></li>
                                     <li role="presentation"><a href="#output-wrapper" aria-controls="home" role="tab" data-toggle="tab">预览</a></li>
                                 </ul>
-                                <div id="editor">
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane active" id="input-wrapper">
-                                            <div id="content" style="height:400px"></div>
-                                            <textArea name="content" class="hide" placeholder="请用Markdown语法"></textArea>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane" id="output-wrapper">
-                                            <div id="output">var x = "All this is syntax highlighted";
-                                                return x;
-                                                }</div>
-                                        </div>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="input-wrapper" >
+                                        <pre id="editor" style="margin: 10px; padding: 5px; width: 95%; height: 600px;"></pre>
+                                        <textArea id="input" name="content"></textArea>
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="output-wrapper">
+                                        <pre id="output"></pre>
                                     </div>
                                 </div>
                             </div>
@@ -196,33 +193,7 @@
     <link rel="stylesheet" href="{{asset('admin/css/prism.css')}}">
     <style type="text/css">
         #editor {
-            border:1px solid #ddd;
-            border-top:0;
-        }
-        textarea, #editor #input, #editor #output {
-            height: 400px;
-            width: 100%;
-            vertical-align: top;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 8px 10px;
-            font-family: 'Monaco', courier, monospace;
-
-        }
-
-        #output {
-            overflow: auto;
-        }
-
-        textarea {
-            resize: none;
-            outline: none;
-            background-color: #fff;
-            font-size: 14px;
-            font-family: 'Monaco', courier, monospace;
-            padding: 20px;
-            border:1px solid #eee;
+            margin: 0;
         }
 
         .tab-pane {
@@ -234,27 +205,53 @@
     <script src="{{asset('admin/js/prism.js')}}"></script>
     <script src="{{asset('admin/js/vendor/parsley/parsley.min.js')}}"></script>
 
-    <script src="{{ _package('ace-builds//src-min/ace.js') }}"></script>
+    <script src="{{ _package('ace-builds/src-min/ace.js') }}"></script>
     <script src="{{ _package('ace-builds//src-min/theme-github.js') }}"></script>
     <script src="{{ _package('ace-builds//src-min/mode-php.js') }}"></script>
     <script src="{{ _package('ace-builds//src-min/ext-language_tools.js') }}"></script>
-    <script src="{{ _package('ace-builds//src-min/snippets/php.js') }}"></script>
+    {{--<script src="{{ _package('ace-builds//src-min/snippets/php.js') }}"></script>--}}
     <script type="text/javascript" src="{{ _package('marked/marked.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/trick-new-edit.min.js') }}"></script>
+    {{--<script type="text/javascript" src="{{ asset('js/trick-new-edit.min.js') }}"></script>--}}
     <script>
+        var editor = ace.edit("editor");
+        editor.setOptions({
+            autoScrollEditorIntoView: true,
+            enableBasicAutocompletion: true,
+            enableSnippets: true,
+            enableLiveAutocompletion: false,
+            maxLines: 8
+        });
+        editor.renderer.setScrollMargin(10, 10, 10, 10);
+
+
         ace.require("ace/ext/language_tools");
-        var editor = ace.edit("content");
         var textarea = $('#input').hide();
         var preview = $('#output');
         var phpMode = ace.require("ace/mode/php").Mode;
-
         editor.setTheme("ace/theme/github");
         editor.getSession().setMode(new phpMode());
         editor.getSession().setValue(textarea.val());
-        editor.setOptions({
-            enableBasicAutocompletion: true,
-            enableSnippets: true,
-            enableLiveAutocompletion: false
+        editor.getSession().on('change', function(){
+            var content = editor.getSession().getValue();
+            textarea.val(content);
+            textarea.change();
+            preview.html(marked(content));
+            localStorage.content=content;
         });
+
+//        ace.require("ace/ext/language_tools");
+//        var editor = ace.edit("content");
+//        var textarea = $('#input').hide();
+//        var preview = $('#output');
+//        var phpMode = ace.require("ace/mode/php").Mode;
+//
+//        editor.setTheme("ace/theme/github");
+//        editor.getSession().setMode(new phpMode());
+//        editor.getSession().setValue(textarea.val());
+//        editor.setOptions({
+//            enableBasicAutocompletion: true,
+//            enableSnippets: true,
+//            enableLiveAutocompletion: false
+//        });
     </script>
 @stop
