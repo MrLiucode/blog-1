@@ -40,12 +40,6 @@ $(function(){
     ];
     var months = ["January", "February", "March", "April", "May", "Juny", "July", "August", "September", "October", "November", "December"];
 
-    $(window).resize(function() {
-        // redraw the graph in the correctly sized div
-        plot.resize();
-        plot.setupGrid();
-        plot.draw();
-    });
 
     $('#mmenu').on(
         "opened.mm",
