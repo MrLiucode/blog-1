@@ -119,7 +119,7 @@ function success($url, $message = ''){
  * @param string $url
  * @param int $status
  * @return $this
- */
+*/
 function error($message, $url = '',  $status = 422){
     return $url ? redirect($url, $status)->withErrors($message) : redirect()->back()->withErrors($message)->withInput(Input::all());
 }

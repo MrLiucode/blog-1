@@ -146,6 +146,7 @@ return [
 
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        'YuanChao\Editor\EndaEditorServiceProvider',
 
     ],
 
@@ -195,6 +196,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'EndaEditor' => 'YuanChao\Editor\Facade\EndaEditorFacade'
 
     ],
 

@@ -12,7 +12,7 @@ return array(
      |
      */
 
-    'enabled' => env('APP_DEBUG'),
+    'enabled' => null,
 
     /*
      |--------------------------------------------------------------------------
@@ -63,6 +63,17 @@ return array(
 
     /*
      |--------------------------------------------------------------------------
+     | Clockwork integration
+     |--------------------------------------------------------------------------
+     |
+     | The Debugbar can emulate the Clockwork headers, so you can use the Chrome
+     | Extension, without the server-side code. It uses Debugbar collectors instead.
+     |
+     */
+    'clockwork' => false,
+
+    /*
+     |--------------------------------------------------------------------------
      | DataCollectors
      |--------------------------------------------------------------------------
      |
@@ -81,14 +92,14 @@ return array(
         'views'           => true,  // Views with their data
         'route'           => true,  // Current route information
         'laravel'         => false, // Laravel version and environment
-        'events'          => true, // All events fired
-        'default_request' => true, // Regular or special Symfony request logger
+        'events'          => false, // All events fired
+        'default_request' => false, // Regular or special Symfony request logger
         'symfony_request' => true,  // Only one can be enabled..
         'mail'            => true,  // Catch mail messages
         'logs'            => false, // Add the latest log messages
         'files'           => false, // Show the included files
-        'config'          => true, // Display config settings
-        'auth'            => true, // Display Laravel authentication status
+        'config'          => false, // Display config settings
+        'auth'            => false, // Display Laravel authentication status
         'session'         => true,  // Display session data
     ),
 
