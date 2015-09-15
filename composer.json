@@ -7,8 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "barryvdh/laravel-ide-helper": "^2.0",
-        "barryvdh/laravel-debugbar": "^2.0"
+        "barryvdh/laravel-ide-helper": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -24,7 +23,7 @@
         "psr-4": {
             "App\\": "app/"
         },
-        "files": ["app/functions.php"]
+        "files": ["app/Helpers/function.php"]
     },
     "autoload-dev": {
         "classmap": [
@@ -40,6 +39,8 @@
             "php artisan clear-compiled"
         ],
         "post-update-cmd": [
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
             "php artisan optimize"
         ],
         "post-root-package-install": [

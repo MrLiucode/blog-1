@@ -1,66 +1,152 @@
-@extends('admin.base')
+@extends('admin.layout.base')
+@section('title')文章列表@stop
+@section('page-header')
+<!-- page header -->
+<div class="pageheader">
+    <h2><i class="fa fa-tachometer"></i> 文章列表 </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="{{url()}}">首页</a></li>
+            <li class="active">文章列表</li>
+        </ol>
+    </div>
+
+
+</div>
+<!-- /page header -->
+@stop
 
 @section('main')
+        <!-- content main container -->
+<div class="main">
+    <div class="row">
 
-<div id="content-header">
-    <h1>文章列表</h1>
-    <div class="btn-group">
-        <a class="btn btn-large tip-bottom" title="发布新文章" href="{{route('admin.article.create')}}"><i class="icon-file"></i></a>
-    </div>
-</div>
-<div id="breadcrumb">
-    <a href="{{url('/')}}" title="回到后台首页" class="tip-bottom"><i class="icon-home"></i> Home</a>
-    <a href="#" class="tip-bottom">内容管理</a>
-    <a href="#" class="current">文章列表</a>
-</div>
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span12">
-            @include('admin.widgets.error')
-            @include('admin.widgets.success')
-            <div class="widget-box">
-                <div class="widget-title">
-                    <h5>文章详情</h5>
-                    <span class="label label-important">已有{{$articleList->total()}}篇文章</span>
+        <div class="col-md-12">
+
+            <!-- tile -->
+            <section class="tile color transparent-black">
+
+
+
+                <!-- tile header -->
+                <div class="tile-header">
+                    <h1><strong>Advanced</strong> Table</h1>
+                    <div class="search">
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="controls">
+                        <a href="#" class="refresh"><i class="fa fa-refresh"></i></a>
+                        <a href="#" class="remove"><i class="fa fa-times"></i></a>
+                    </div>
                 </div>
-                <div class="widget-content nopadding">
-                    <table class="table table-bordered data-table">
+                <!-- /tile header -->
+
+
+
+                <!-- tile body -->
+                <div class="tile-body nopadding">
+
+                    <table class="table table-bordered table-sortable">
                         <thead>
                         <tr>
-                            <th width="5%" >编号</th>
-                            <th width="50%">标题</th>
-                            <th width="15%">发表时间</th>
-                            <th width="20%">操作</th>
+                            <th>
+                                <div class="checkbox check-transparent">
+                                    <input type="checkbox" value="1" id="allchck">
+                                    <label for="allchck"></label>
+                                </div>
+                            </th>
+                            <th class="sortable sort-alpha sort-desc">文章标题</th>
+                            <th class="sortable sort-alpha">点击量</th>
+                            <th class="sortable sort-alpha">是否置顶</th>
+                            <th class="sortable sort-alpha">状态</th>
+                            <th class="sortable sort-alpha">作者</th>
+                            <th width="150px;"></th>
                         </tr>
                         </thead>
-                        @foreach($articleList as $index => $item )
-                            <tbody>
-                            <tr class="gradeX">
-                                <td><span class="badge">{{$index + 1}}</span></td>
+                        <tbody>
+                            <tr>
                                 <td>
-                                    {{$item->title}}
+                                    <div class="checkbox check-transparent">
+                                        <input type="checkbox" value="1" id="chck01">
+                                        <label for="chck01"></label>
+                                    </div>
                                 </td>
-                                <td>
-                                    {!! $item->created_at !!}
-                                </td>
-                                <td class="center">
-                                    <form action="{{route('admin.article.destroy', ['id' => $item->id])}}" method="POST" onsubmit="return confirm('是否删除此条记录')">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    <a href="{{route('admin.article.edit', ['id' => $item->id])}}"><button type="button" class="btn btn-primary"><i class="icon-pencil icon-white"></i> 编辑</button></a>
-                                    <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> 删除</button>
-                                        </form>
+                                <td>Laravel 十大技巧</td>
+                                <td>1000</td>
+                                <td><span class="check-toggler checked"></span></td>
+                                <td><span class="check-toggler checked"></span></td>
+                                <td>Fakeronline</td>
+                                <td style=" text-align: center;">
+                                    <button type="button" class="btn btn-success btn-sm">
+                                        <span class="fa fa-edit"></span> 编辑
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm">
+                                        <span class="fa fa-trash-o"></span> 删除
+                                    </button>
                                 </td>
                             </tr>
-                            </tbody>
-                        @endforeach
+                        </tbody>
                     </table>
+
                 </div>
-                <div class="pull-right">
-                    {!! $articleList->render() !!}
+                <!-- /tile body -->
+
+
+                <!-- tile footer -->
+                <div class="tile-footer bg-transparent-black-2 rounded-bottom-corners">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-danger btn-sm"><span class="fa fa-trash-o"></span> 删除选中</button>
+                        </div>
+
+                        <div class="col-sm-4 text-center">
+                            <small class="inline table-options paging-info">当前文章数量：100篇，筛选量15篇/页</small>
+                        </div>
+
+                        <div class="col-sm-4 text-right sm-center">
+                            <ul class="pagination pagination-xs nomargin pagination-custom">
+                                <li class="disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+                <!-- /tile footer -->
+
+            </section>
+            <!-- /tile -->
         </div>
+
     </div>
 </div>
+<!-- /content container -->
+
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/rickshaw/css/rickshaw.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/morris/css/morris.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/tabdrop/css/tabdrop.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/summernote/css/summernote.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/js/vendor/summernote/css/summernote-bs3.css')}}">
+@stop
+
+@section('js')
+    <script src="{{asset('admin/js/vendor/flot/jquery.flot.min.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/flot/jquery.flot.time.min.js')}}"></script>
+
+    <script src="{{asset('admin/js/vendor/flot/jquery.flot.animator.min.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/flot/jquery.flot.orderBars.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/easypiechart/jquery.easypiechart.min.js')}}"></script>
+
+    <script src="{{asset('admin/js/vendor/rickshaw/raphael-min.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/rickshaw/d3.v2.js')}}"></script>
+    <script src="{{asset('admin/js/vendor/rickshaw/rickshaw.min.js')}}"></script>
 @stop

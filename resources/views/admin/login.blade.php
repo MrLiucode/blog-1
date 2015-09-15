@@ -1,47 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Fakeronline">
-    <title>飞客后台登录</title>
-    <link rel="stylesheet" href="{{_package('sb-admin-2/css/bootstrap.min.css')}}">
-    <style>
-        body{background-color: rgba(236, 236, 236, 0.24);}
-        .login-panel{margin-top: 25%;}
-    </style>
+    <title>Fakeronline - 后台登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <!-- Bootstrap -->
+    <link href="{{asset('admin/css/vendor/bootstrap/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{_package('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('admin/css/vendor/bootstrap-checkbox.css')}}">
+
+    <link href="{{asset('admin/css/minimal.css')}}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-<div class="container">
+<body class="bg-1">
+
+
+<!-- Wrap all page content here -->
+<div id="wrap">
+    <!-- Make page fluid -->
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Fakeronline</h3>
-                </div>
-                <div class="panel-body">
-                    <form role="form">
-                        <fieldset>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="用户名" name="email" type="email" autofocus>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="密码" name="password" type="password" value="">
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">一周内免登录
-                                </label>
-                            </div>
-                            <a href="index.html" class="btn btn-lg btn-success btn-block">登录</a>
-                        </fieldset>
-                    </form>
-                </div>
+        <!-- Page content -->
+        <div id="content" class="col-md-12 full-page login">
+            <div class="inside-block">
+                <img src="{{asset('logo.ico')}}" alt="logo" class="logo">
+
+                <h1><strong>Fakeronline</strong> 管理系统</h1>
+                <h5>后台登录</h5>
+
+                <form id="form-signin" class="form-signin">
+                    <section>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="username" placeholder="用户名">
+
+                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password" placeholder="密码">
+
+                            <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                        </div>
+                    </section>
+                    <section class="controls">
+                        <div class="checkbox check-transparent">
+                            <input type="checkbox" value="1" id="remember" checked>
+                            <label for="remember">记住我</label>
+                        </div>
+                        {{--<a href="#">Forget password?</a>--}}
+                    </section>
+                    <section class="log-in">
+                        <button class="btn btn-greensea">直接登录</button>
+                        <span>OR</span>
+                        <button class="btn btn-slategray" disabled>扫描登录</button>
+                    </section>
+                </form>
             </div>
         </div>
+        <!-- /Page content -->
     </div>
 </div>
+<!-- Wrap all page content end -->
 </body>
 </html>

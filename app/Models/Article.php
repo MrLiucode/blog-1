@@ -2,7 +2,7 @@
 /**
  * Article.php
  *
- * Part of blog.
+ * Part of newblog.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,9 +15,22 @@ namespace App\Models;
 class Article extends BaseModel{
 
     protected $table = 'articles';
-    protected $guarded = [];    //支持所有批量更新
 
-    public function categoryName(){
-        return $this->hasOne('App\Models\Categories', 'id', 'type');
+    protected $with = ['user', 'tags'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
 }
