@@ -62,21 +62,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">文章内容 *</label>
                         <div class="col-sm-10">
-                            <div class="form-group">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#input-wrapper" aria-controls="home" role="tab" data-toggle="tab">内容</a></li>
-                                    <li role="presentation"><a href="#output-wrapper" aria-controls="home" role="tab" data-toggle="tab">预览</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="input-wrapper" >
-                                        <pre id="editor" style="margin: 10px; padding: 5px; width: 95%; height: 600px;"></pre>
-                                        <textArea id="input" name="content"></textArea>
-
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane" id="output-wrapper">
-                                        <pre id="output"></pre>
-                                    </div>
-                                </div>
+                            <div class="editor">
+                                <textarea id='myEditor'></textarea>
                             </div>
                         </div>
                     </div>
@@ -205,35 +192,4 @@
     <script src="{{asset('admin/js/prism.js')}}"></script>
     <script src="{{asset('admin/js/vendor/parsley/parsley.min.js')}}"></script>
 
-    <script src="{{ _package('ace-builds/src-min/ace.js') }}"></script>
-    <script src="{{ _package('ace-builds//src-min/theme-github.js') }}"></script>
-    <script src="{{ _package('ace-builds//src-min/mode-php.js') }}"></script>
-    <script src="{{ _package('ace-builds//src-min/ext-language_tools.js') }}"></script>
-    <script src="{{ _package('ace-builds//src-min/snippets/php.js') }}"></script>
-    <script type="text/javascript" src="{{ _package('marked/marked.min.js') }}"></script>
-    <script>
-        var editor = ace.edit("editor");
-        editor.setOptions({
-            autoScrollEditorIntoView: true,
-            enableBasicAutocompletion: true,
-            enableSnippets: true,
-            enableLiveAutocompletion: false,
-            maxLines: 8
-        });
-        editor.renderer.setScrollMargin(10, 10, 10, 10);
-        ace.require("ace/ext/language_tools");
-        var textarea = $('#input').hide();
-        var preview = $('#output');
-        var phpMode = ace.require("ace/mode/php").Mode;
-        editor.setTheme("ace/theme/github");
-        editor.getSession().setMode(new phpMode());
-        editor.getSession().setValue(textarea.val());
-        editor.getSession().on('change', function(){
-            var content = editor.getSession().getValue();
-            textarea.val(content);
-            textarea.change();
-            preview.html(marked(content));
-            localStorage.content=content;
-        });
-    </script>
 @stop
