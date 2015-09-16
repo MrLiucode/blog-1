@@ -59,6 +59,7 @@
                         </div>
                     </div>
 
+                    @include('editor::head')
                     <div class="form-group">
                         <label class="col-sm-2 control-label">文章内容 *</label>
                         <div class="col-sm-10">

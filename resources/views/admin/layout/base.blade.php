@@ -17,6 +17,9 @@
 
     @section('css') @show
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{_package('jquery/dist/jquery.min.js')}}"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,8 +61,6 @@
 <section class="videocontent" id="video"></section>
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="{{_package('jquery/dist/jquery.min.js')}}"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{asset('admin/js/vendor/bootstrap/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/js/vendor/mmenu/js/jquery.mmenu.min.js')}}"></script>
