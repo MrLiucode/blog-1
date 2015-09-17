@@ -64,15 +64,15 @@
                         <label class="col-sm-2 control-label">文章内容 *</label>
                         <div class="col-sm-10">
                             <div class="editor">
-                                <textarea id='myEditor'></textarea>
+                                <textarea id='myEditor' name="content"></textarea>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="col-sm-2 control-label">Email *</label>
+                        <label for="email" class="col-sm-2 control-label">标签 *</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" parsley-trigger="change" parsley-required="true" parsley-minlength="4" parsley-type="email" parsley-validation-minlength="1">
+                            <input type="text" class="form-control" id="tags" name="tags">
                         </div>
                     </div>
 
@@ -179,6 +179,7 @@
 @stop
 @section('css')
     <link rel="stylesheet" href="{{asset('admin/css/prism.css')}}">
+    <link rel="stylesheet" href="{{_package('bootstrap-tokenfield/dist/css/bootstrap-tokenfield.min.css')}}">
     <style type="text/css">
         #editor {
             margin: 0;
@@ -192,5 +193,8 @@
 @section('js')
     <script src="{{asset('admin/js/prism.js')}}"></script>
     <script src="{{asset('admin/js/vendor/parsley/parsley.min.js')}}"></script>
-
+    <script src="{{_package('bootstrap-tokenfield/dist/bootstrap-tokenfield.min.js')}}"></script>
+    <script>
+        $('#tags').tokenfield();
+    </script>
 @stop
