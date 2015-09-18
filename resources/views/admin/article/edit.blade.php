@@ -125,37 +125,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="input08" class="col-sm-2 control-label">Multiple select box *</label>
-                        <div class="col-sm-10" id="selectbox2">
-                            <select multiple class="chosen-select chosen-transparent form-control" id="input08" parsley-trigger="change" parsley-required="true" parsley-error-container="#selectbox2">
-                                <option value="11">1</option>
-                                <option value="222">2</option>
-                                <option value="33">3</option>
-                                <option value="44">4</option>
-                                <option value="55">5</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Check at least 2 checkboxes *</label>
-                        <div class="col-sm-10" id="myproperlabel">
-                            <div class="checkbox check-transparent">
-                                <input type="checkbox" value="1" id="opt01" parsley-group="mygroup" parsley-trigger="change" parsley-required="true" parsley-mincheck="2" parsley-error-container="#myproperlabel .last">
-                                <label for="opt01">Option 1</label>
-                            </div>
-                            <div class="checkbox check-transparent">
-                                <input type="checkbox" value="1" id="opt02" parsley-group="mygroup" parsley-trigger="change" parsley-required="true" parsley-mincheck="2" parsley-error-container="#myproperlabel .last">
-                                <label for="opt02">Option 2</label>
-                            </div>
-                            <div class="checkbox check-transparent last">
-                                <input type="checkbox" value="1" id="opt03" parsley-group="mygroup" parsley-trigger="change" parsley-required="true" parsley-mincheck="2" parsley-error-container="#myproperlabel .last">
-                                <label for="opt03">Option 3</label>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group form-footer">
                         <div class="col-sm-offset-4 col-sm-10">
                             <button type="submit" class="btn btn-primary">Submit</button>
