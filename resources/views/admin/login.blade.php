@@ -1,69 +1,108 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
 <head>
-    <title>Fakeronline - 后台登录</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8"/>
-    <!-- Bootstrap -->
-    <link href="{{asset('admin/css/vendor/bootstrap/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{_package('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('admin/css/vendor/bootstrap-checkbox.css')}}">
+    <meta charset="utf-8" />
+    <title>Fakeronline | Login Page</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="Fakeronline" name="description" />
+    <meta content="Fakeronline" name="author" />
 
-    <link href="{{asset('admin/css/minimal.css')}}" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    {!! createConcat('admin/plugins', [
+        'jquery-ui/themes/base/minified/jquery-ui.min.css',
+        'bootstrap/css/bootstrap.min.css',
+        'font-awesome/css/font-awesome.min.css'
+    ]) !!}
+    {!! createConcat('admin/css', [
+        'animate.min.css',  'style.min.css', 'style-responsive.min.css', 'theme/default.css',
+    ]) !!}
 </head>
-<body class="bg-1">
+<body>
+<!-- begin #page-loader -->
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+<!-- end #page-loader -->
 
-
-<!-- Wrap all page content here -->
-<div id="wrap">
-    <!-- Make page fluid -->
-    <div class="row">
-        <!-- Page content -->
-        <div id="content" class="col-md-12 full-page login">
-            <div class="inside-block">
-                <img src="{{asset('logo.ico')}}" alt="logo" class="logo">
-
-                <h1><strong>Fakeronline</strong> 管理系统</h1>
-                <h5>后台登录</h5>
-
-                <form id="form-signin" class="form-signin">
-                    <section>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="username" placeholder="用户名">
-
-                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                        </div>
-                        <div class="input-group">
-                            <input type="password" class="form-control" name="password" placeholder="密码">
-
-                            <div class="input-group-addon"><i class="fa fa-key"></i></div>
-                        </div>
-                    </section>
-                    <section class="controls">
-                        <div class="checkbox check-transparent">
-                            <input type="checkbox" value="1" id="remember" checked>
-                            <label for="remember">记住我</label>
-                        </div>
-                        {{--<a href="#">Forget password?</a>--}}
-                    </section>
-                    <section class="log-in">
-                        <button class="btn btn-greensea">直接登录</button>
-                        <span>OR</span>
-                        <button class="btn btn-slategray" disabled>扫描登录</button>
-                    </section>
-                </form>
+<div class="login-cover">
+    <div class="login-cover-image"><img src="{{asset('admin/img/login-bg/bg-1.jpg')}}" data-id="login-cover-image" alt="" /></div>
+    <div class="login-cover-bg"></div>
+</div>
+<!-- begin #page-container -->
+<div id="page-container" class="fade">
+    <!-- begin login -->
+    <div class="login login-v2" data-pageload-addclass="animated flipInX">
+        <!-- begin brand -->
+        <div class="login-header">
+            <div class="brand">
+                <span><img class="img-circle" src="{{asset('logo.ico')}}" alt=""></span> Fakeronline Admin
+                <small>后台管理系统</small>
+            </div>
+            <div class="icon">
+                <i class="fa fa-sign-in"></i>
             </div>
         </div>
-        <!-- /Page content -->
+        <!-- end brand -->
+        <div class="login-content">
+            <form action="index.html" method="POST" class="margin-bottom-0">
+                <div class="form-group m-b-20">
+                    <input type="text" class="form-control input-lg" placeholder="用户名" />
+                </div>
+                <div class="form-group m-b-20">
+                    <input type="password" class="form-control input-lg" placeholder="密码" />
+                </div>
+                <div class="checkbox m-b-20">
+                    <label>
+                        <input type="checkbox" /> 记住我
+                    </label>
+                </div>
+                <div class="login-buttons">
+                    <button type="submit" class="btn btn-success btn-block btn-lg">确认登录</button>
+                </div>
+            </form>
+        </div>
     </div>
+    <!-- end login -->
+
+    <ul class="login-bg-list">
+        <li class="active"><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-1.jpg')}}" alt="" /></a></li>
+        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-2.jpg')}}" alt="" /></a></li>
+        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-3.jpg')}}" alt="" /></a></li>
+        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-4.jpg')}}" alt="" /></a></li>
+        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-5.jpg')}}" alt="" /></a></li>
+        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-6.jpg')}}" alt="" /></a></li>
+    </ul>
 </div>
-<!-- Wrap all page content end -->
+<!-- end page container -->
+
+<!-- ================== BEGIN BASE JS ================== -->
+{!! createConcat('admin/plugins/', [
+    'jquery/jquery-1.9.1.min.js',
+    'jquery/jquery-migrate-1.1.0.min.js',
+    'jquery-ui/ui/minified/jquery-ui.min.js',
+    'bootstrap/js/bootstrap.min.js'
+]) !!}
+<!--[if lt IE 9]>
+{!! createConcat('admin/crossbrowserjs/', [
+    'html5shiv.js', 'respond.min.js', 'excanvas.min.js'
+]) !!}
+<![endif]-->
+
+{!! createConcat('admin', [
+    'plugins/slimscroll/jquery.slimscroll.min.js',
+    'plugins/jquery-cookie/jquery.cookie.js',
+    'js/login-v2.demo.min.js',
+    'js/apps.min.js'
+]) !!}
+
+<script>
+    $(document).ready(function() {
+        App.init();
+        LoginV2.init();
+    });
+</script>
+
 </body>
 </html>

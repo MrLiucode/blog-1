@@ -68,3 +68,31 @@ function error($message, $url = '',  $status = 422){
 function _package($path){
     return asset('package/' . $path);
 }
+
+function createConcat($basePath, array $fileList){
+    $htmlMap = [
+        'js' => '<script type="text/javascript" src="%s"></script>',
+        'css' => '<link rel="stylesheet" href="%s">'
+    ];
+    $extension = pathinfo(head($fileList))['extension'];
+    $htmlTpl = array_get($htmlMap, $extension);
+    $basePath = rtrim(asset($basePath), '/');
+    if(is_null($htmlTpl)){
+        return '';
+    }
+    if(env('TENGINE')){
+        return sprintf($htmlTpl, $basePath . '/??' . implode(',', $fileList));
+    }
+    $htmlStr = '';
+    foreach($fileList as $fileName){
+        $htmlStr .= sprintf($htmlTpl, $basePath . '/' . $fileName);
+    }
+    return $htmlStr;
+}
+
+function getRandClass(){
+    $classMap = [
+        'default', 'danger', 'warning', 'success', 'info', 'primary', 'inverse'
+    ];
+    return $classMap[array_rand($classMap, 1)];
+}

@@ -1,84 +1,128 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
 <head>
-    <title>Fakeronline - @section('title') @show</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8"/>
-    <!-- Bootstrap -->
-    <link href="{{asset('admin/css/vendor/bootstrap/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{_package('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('admin/css/vendor/animate/animate.min.css')}}">
-    <link type="text/css" rel="stylesheet" media="all" href="{{asset('admin/js/vendor/mmenu/css/jquery.mmenu.all.css')}}"/>
-    <link rel="stylesheet" href="{{asset('admin/js/vendor/videobackground/css/jquery.videobackground.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/css/vendor/bootstrap-checkbox.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/js/vendor/chosen/css/chosen.min.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/js/vendor/chosen/css/chosen-bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/css/minimal.css')}}">
+    <meta charset="utf-8"/>
+    <title>Fakeronline Admin | @section('title')后台管理系统@show</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          name="viewport"/>
+    <meta content="Fakeronline" name="description"/>
+    <meta content="Fakeronline" name="author"/>
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    {!! createConcat('admin/plugins', [
+        'jquery-ui/themes/base/minified/jquery-ui.min.css',
+        'bootstrap/css/bootstrap.min.css',
+        'font-awesome/css/font-awesome.min.css'
+    ]) !!}
+    {!! createConcat('admin/css', [
+        'animate.min.css',  'style.min.css', 'style-responsive.min.css', 'theme/black.css',
+    ]) !!}
+            <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
+    @section('css')
+    {{--{!! createConcat('admin/plugins/', [--}}
+    {{--'jquery-jvectormap/jquery-jvectormap-1.2.2.css',--}}
+    {{--'bootstrap-calendar/css/bootstrap_calendar.css',--}}
+    {{--'assets/plugins/gritter/css/jquery.gritter.css',--}}
+    {{--'morris/morris.css'--}}
+    {{--]) !!}--}}
+    @show
+            <!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="{{asset('admin/plugins/pace/pace.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/jquery/jquery-1.9.1.min.js')}}"></script>
 
-    @section('css') @show
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{_package('jquery/dist/jquery.min.js')}}"></script>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+    <!-- ================== END BASE JS ================== -->
 </head>
-<body class="bg-3">
-
-
-<!-- Preloader -->
-<div class="mask">
-    <div id="loader"></div>
+<body>
+<!-- begin #page-loader -->
+<div id="page-loader" class="fade in">
+    <span class="spinner"></span>
 </div>
-<!--/Preloader -->
-
-<!-- Wrap all page content here -->
-<div id="wrap">
-    <!-- Make page fluid -->
-    <div class="row">
-        @include('admin.widget.header')
-                <!-- Page content -->
-        <div id="content" class="col-md-12">
-
+<!-- end #page-loader -->
+<!-- begin #page-container -->
+<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+    <!-- begin #header -->
+    @include('admin.widget.header')
+    <!-- end #header -->
+    <!-- begin #sidebar -->
+    @include('admin.widget.sidebar')
+            <!-- end #sidebar -->
+    <!-- begin #content -->
+    <div id="content" class="content">
+        <!-- begin breadcrumb -->
+        @section('breadcrumb') @show
+        <!-- end breadcrumb -->
+        <!-- begin page-header -->
+        <h1 class="page-header">
             @section('page-header') @show
-            @section('main') @show
-
-        </div>
-        <!-- Page content end -->
-
-
-        {{--//panel--}}
-        @include('admin.widget.panel')
-
+        </h1>
+        <!-- end page-header -->
+        <!-- begin row -->
+        @section('content') @show
     </div>
-    <!-- Make page fluid-->
+    <!-- end #content -->
+    <!-- begin theme-panel -->
+    @include('admin.widget.panel')
+    <!-- end theme-panel -->
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade"
+       data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
 </div>
-<!-- Wrap all page content end -->
-<section class="videocontent" id="video"></section>
+<!-- end page container -->
+<!-- ================== BEGIN BASE JS ================== -->
+{!! createConcat('admin/plugins/', [
+    'jquery/jquery-migrate-1.1.0.min.js',
+    'jquery-ui/ui/minified/jquery-ui.min.js',
+    'bootstrap/js/bootstrap.min.js'
+]) !!}
+<!--[if lt IE 9]>
+{!! createConcat('admin/crossbrowserjs/', [
+'html5shiv.js', 'respond.min.js', 'excanvas.min.js'
+]) !!}
+<![endif]-->
+{!! createConcat('admin', [
+    'plugins/slimscroll/jquery.slimscroll.min.js',
+    'plugins/jquery-cookie/jquery.cookie.js'
+]) !!}
+<!-- ================== END BASE JS ================== -->
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+{!! createConcat('admin', [
+    'js/apps.min.js',
+    'js/dashboard-v2.min.js'
+]) !!}
 
-
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{{asset('admin/js/vendor/bootstrap/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/js/vendor/mmenu/js/jquery.mmenu.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/js/vendor/sparkline/jquery.sparkline.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/js/vendor/nicescroll/jquery.nicescroll.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/js/vendor/animate-numbers/jquery.animateNumbers.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/js/vendor/videobackground/jquery.videobackground.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/js/vendor/blockui/jquery.blockUI.js')}}"></script>
-<script src="{{asset('admin/js/vendor/flot/jquery.flot.selection.min.js')}}"></script>
-
-
-<script src="{{asset('admin/js/vendor/morris/morris.min.js')}}"></script>
-<script src="{{asset('admin/js/vendor/tabdrop/bootstrap-tabdrop.min.js')}}"></script>
-<script src="{{asset('admin/js/vendor/summernote/summernote.min.js')}}"></script>
-<script src="{{asset('admin/js/vendor/chosen/chosen.jquery.min.js')}}"></script>
-<script src="{{asset('admin/js/minimal.min.js')}}"></script>
-<script src="{{asset('admin/js/common.js')}}"></script>
 @section('js')
+    <script>
+        $(document).ready(function () {
+            App.init();
+            DashboardV2.init();
+        });
+    </script>
 @show
+
+{{--<script src="assets/plugins/morris/raphael.min.js"></script>--}}
+
+{{--<script src="assets/plugins/morris/morris.js"></script>--}}
+
+{{--<script src="assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>--}}
+
+{{--<script src="assets/plugins/jquery-jvectormap/jquery-jvectormap-world-merc-en.js"></script>--}}
+
+{{--<script src="assets/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js"></script>--}}
+
+{{--<script src="assets/plugins/gritter/js/jquery.gritter.js"></script>--}}
+
+{{--<script src="assets/js/dashboard-v2.min.js"></script>--}}
+
+{{--<script src="assets/js/apps.min.js"></script>--}}
+
+ <!-- ================== END PAGE LEVEL JS ================== -->
+
 </body>
 </html>
