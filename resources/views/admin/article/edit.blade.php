@@ -51,7 +51,7 @@
                     <h4 class="panel-title">文章表单</h4>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" data-parsley-validate="true" action="/" method="POST">
+                    <form id="article-frm" class="form-horizontal" data-parsley-validate="true" action="/" method="POST">
                         <fieldset>
                             <legend>添加/修改文章</legend>
                             <div class="form-group">
@@ -78,7 +78,7 @@
                                 <label class="col-md-2 control-label">文章内容</label>
                                 <div class="col-md-10">
                                     <div class="editor">
-                                        <textarea id='myEditor'></textarea>
+                                        <textarea id='myEditor' name="content"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -86,25 +86,25 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">文章标签</label>
                                 <div class="col-md-10">
-                                    <ul id="jquery-tagIt-white" class="white">
-                                        <li>Tag1</li>
-                                        <li>Tag2</li>
+                                    <ul id="jquery-tagIt-white" class="white" data-parsley-required="true">
                                     </ul>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">是否发布</label>
+                                <label class="col-md-2 control-label">文章状态</label>
                                 <div class="col-md-10">
                                     <input type="checkbox" data-render="switchery" data-theme="blue" data-change="check-article-state" checked />
                                     <a href="#" class="btn btn-xs btn-primary disabled m-l-5" data-id="article-state">正常发布</a>
                                 </div>
                             </div>
 
+                            <input type="hidden" name="status" id="article-status" for="jquery-tagIt-white" >
+
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-2">
                                     <button type="submit" class="btn btn-primary m-r-5">提交</button>
-                                    <button type="submit" class="btn btn-default">取消</button>
+                                    <a href="javascript:history.go(-1);" class="btn btn-default">取消</a>
                                 </div>
                             </div>
                         </fieldset>
@@ -142,17 +142,19 @@
         handleJqueryAutocomplete();
         handleBootstrapCombobox();
         handleSelectpicker();
+        $("#jquery-tagIt-white").tagit({
+            singleField: true,
+            singleFieldNode : $('#article-status')
+        });
         handleTagsInput();
-        handleJqueryTagIt();
         FormSliderSwitcher.init();
-
     </script>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/codemirror/4.10.0/codemirror.min.css">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/8.4/styles/default.min.css">
-    <script src="http://cdn.bootcss.com/highlight.js/8.4/highlight.min.js"></script>
-    <script src="http://cdn.bootcss.com/marked/0.3.2/marked.min.js"></script>
-    <script type="text/javascript" src="http://cdn.bootcss.com/codemirror/4.10.0/codemirror.min.js"></script>
-    <script type="text/javascript" src="http://cdn.bootcss.com/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/4.10.0/codemirror.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.4/styles/default.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/8.4/highlight.min.js"></script>
+    <script src="//cdn.bootcss.com/marked/0.3.5/marked.min.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/codemirror/4.10.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
 
     {!! createConcat('plugin/editor/css/', [
         'pygment_trac.css', 'editor.css'
@@ -172,5 +174,14 @@
             });
         });
 
+    </script>
+
+    <script>
+        $(document).on('submit', '#article-frm', function(){
+            alert($('#article-status').val());
+            return false;
+//            alert($("#jquery-tagIt-white").tagit('tagInput'));
+//            return false;
+        });
     </script>
 @stop
