@@ -1,12 +1,8 @@
 /**
  * Created by lilichun on 2015/9/30 0030.
  */
-
-var handleLoginPageChangeBackground=function(){$('[data-click="change-bg"]').live("click",function(){var e='[data-id="login-cover-image"]';var t=$(this).find("img").attr("src");var n='<img src="'+t+'" data-id="login-cover-image" />';$(".login-cover-image").prepend(n);$(e).not('[src="'+t+'"]').fadeOut("slow",function(){$(this).remove()});$('[data-click="change-bg"]').closest("li").removeClass("active");$(this).closest("li").addClass("active")})};
-
 var newAlert = {
     show : function(option, showCancel, isError){
-
         var header = jsonInput.get(option, 'title', '温馨提示');
         var msg = jsonInput.get(option, 'msg', '出现未知错误');
         var cancelBtn = jsonInput.get(option, 'cancelBtn', '');

@@ -110,6 +110,5 @@
 
     <script>
         App.init();
-        handleLoginPageChangeBackground();
     </script>
 @stop
