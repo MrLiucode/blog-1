@@ -60,8 +60,8 @@
                                     <td> 2015-0715 12:01:12 </td>
                                     <td> 2015-0715 12:01:12 </td>
                                     <td style="width: 170px;;">
-                                        <button class="btn btn-primary btn-sm"><span class="fa  fa-edit"></span> 编辑 </button>
-                                        <button class="btn btn-danger btn-sm"><span class="fa fa-trash-o"></span> 删除 </button>
+                                        <button class="btn btn-primary btn-xs"><span class="fa  fa-edit"></span> 编辑 </button>
+                                        <button class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> 删除 </button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -71,9 +71,9 @@
                                     <td> <span class="label label-{!! getRandClass() !!}">Primary</span> </td>
                                     <td> 2015-0715 12:01:12 </td>
                                     <td> 2015-0715 12:01:12 </td>
-                                    <td style="width: 170px;;">
-                                        <button class="btn btn-primary btn-sm"><span class="fa  fa-edit"></span> 编辑 </button>
-                                        <button class="btn btn-danger btn-sm"><span class="fa fa-trash-o"></span> 删除 </button>
+                                    <td style="width: 170px;">
+                                        <button class="btn btn-primary btn-xs"><span class="fa  fa-edit"></span> 编辑 </button>
+                                        <button class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> 删除 </button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -84,8 +84,8 @@
                                     <td> 2015-0715 12:01:12 </td>
                                     <td> 2015-0715 12:01:12 </td>
                                     <td style="width: 170px;;">
-                                        <button class="btn btn-primary btn-sm"><span class="fa  fa-edit"></span> 编辑 </button>
-                                        <button class="btn btn-danger btn-sm"><span class="fa fa-trash-o"></span> 删除 </button>
+                                        <button class="btn btn-primary btn-xs"><span class="fa  fa-edit"></span> 编辑 </button>
+                                        <button class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> 删除 </button>
                                     </td>
                                 </tr>
                             </tbody>

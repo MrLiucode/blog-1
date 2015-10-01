@@ -33,8 +33,9 @@
     @show
             <!-- ================== END PAGE LEVEL CSS STYLE ================== -->
     <!-- ================== BEGIN BASE JS ================== -->
-    <script src="{{asset('admin/plugins/pace/pace.min.js')}}"></script>
-    <script src="{{asset('admin/plugins/jquery/jquery-1.9.1.min.js')}}"></script>
+    {!! createConcat('admin/', [
+        'plugins/pace/pace.min.js', 'plugins/jquery/jquery-1.9.1.min.js', 'js/common.js'
+    ]) !!}
 
     <!-- ================== END BASE JS ================== -->
 </head>
