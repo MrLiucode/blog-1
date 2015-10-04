@@ -28,6 +28,20 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
+        /**
+         * 文章分类处理接口绑定
+         */
+        $this->app->bind(
+            \App\Contracts\ArticleCategory::class,
+            \App\Services\ArticleCategory::class
+        );
+
+        /**
+         * 文章处理接口绑定
+         */
+        $this->app->bind(
+            \App\Contracts\Article::class,
+            \App\Services\Article::class
+        );
     }
 }
