@@ -19,13 +19,12 @@ class ArticleCategory implements \App\Contracts\ArticleCategory{
 
     /**
      * 获取所有的的分类
-     * @param Category $category
      * @param int $pageSize
      * @return Category
      */
-    public function All(Category $category, $pageSize = 10)
+    public function all($pageSize = 10)
     {
-        // TODO: Implement All() method.
+        return Category::paginate($pageSize);
     }
 
     /**
@@ -35,7 +34,7 @@ class ArticleCategory implements \App\Contracts\ArticleCategory{
      */
     public function findById($categoryId)
     {
-        // TODO: Implement findById() method.
+        return Category::findOrFail(intval($categoryId));
     }
 
 
