@@ -27,7 +27,8 @@ class ArticleRequest extends Request{
             'content' => 'required',
             'category' => 'required|numeric',
             'tags' => 'required',
-            'status' => 'required|in:0,1',
+            'status' => 'required',
+            'is_top' => 'required',
         ];
     }
 
@@ -40,7 +41,7 @@ class ArticleRequest extends Request{
             'category.numeric' => '请选择正确的文章分类!',
             'tags.required' => '文章标签不能为空!',
             'status.required' => '请选择文章状态!',
-            'status.in' => '文章状态错误!',
+            'is_top.required' => '请选择文章是否置顶!',
         ];
     }
 
