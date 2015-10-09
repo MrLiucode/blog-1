@@ -35,6 +35,7 @@ class CategoryRequest extends Request{
         return [
             'name' => 'required|max:30|min:2',
             'description' => 'max:100',
+            'order' => 'numeric|min:100',
         ];
     }
 
@@ -45,6 +46,8 @@ class CategoryRequest extends Request{
             'name.max' => '分类名称的长度不能超过30!',
             'name.min' => '分类名称的长度不能小于2!',
             'description' => '分类描述的长度不能超过100!',
+            'order.numeric' => '分类排序必须是数字!',
+            'order.min' => '分类排序不能小于100!',
         ];
     }
 
