@@ -201,4 +201,6 @@ return [
 
     ],
 
+    'theme' => env('THEME'),
+
 ];
