@@ -16,7 +16,7 @@ abstract class Controller extends BaseController
 
         $appTheme = config('theme');
 
-        View::setDefaultNamespace(
+        View::prependNamespace(
             $appTheme, base_path() . DIRECTORY_SEPARATOR .  'resources' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $appTheme
         );
     }
