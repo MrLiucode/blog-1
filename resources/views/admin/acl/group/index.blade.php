@@ -31,7 +31,7 @@
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                        <a href="{{route('admin.category.create')}}" class="btn btn-xs btn-icon btn-circle btn-primary" data-click="panel-edit"><i class="fa fa-plus"></i></a>
+                        <a href="{{route('admin.acl.group.create')}}" class="btn btn-xs btn-icon btn-circle btn-primary" data-click="panel-edit"><i class="fa fa-plus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
@@ -59,8 +59,8 @@
                                     <td> {{$item->description}} </td>
                                     <td> {{count($item->permissions)}} </td>
                                     <td style="width: 170px;;">
-                                        <a href="{{route('admin.acl.permission.edit', ['id' => $item->id])}}" class="btn btn-primary btn-xs"><span class="fa  fa-edit"></span> 编辑 </a>
-                                        <a href="javascript:;" data-value="{{$item->id}}" class="btn btn-danger btn-xs" data-click="category-remove" ><span class="fa fa-trash-o"></span> 删除 </a>
+                                        <a href="{{route('admin.acl.group.edit', ['id' => $item->id])}}" class="btn btn-primary btn-xs"><span class="fa  fa-edit"></span> 编辑 </a>
+                                        <a href="javascript:;" data-value="{{$item->id}}" class="btn btn-danger btn-xs" data-click="group-remove" ><span class="fa fa-trash-o"></span> 删除 </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -89,26 +89,12 @@
 
     <script>
         App.init();
-        $(document).on('click', '[data-click=category-remove]', function(){
+        $(document).on('click', '[data-click=group-remove]', function(){
             var id = $(this).attr("data-value");
-             newAlert.show({'msg' : '删除后将不可恢复，确认删除？'}, function(){
-                 $.ajax({
-                     url : "/admin/category/" + id,
-                     type : "DELETE",
-                     headers : {'X-CSRF-TOKEN' : "{{ csrf_token()}}"},
-                     success : function(data){
-                         newAlert.show({msg : "删除成功!"}, function(){
-                             window.location.reload();
-                         });
-                     },
-                     error : function(){
-                         newAlert.show({msg : '删除失败!'}, function(){
-                             window.location.reload();
-                         }, false, true);
-                         return false;
-                     }
-                 });
-            }, true);
+            var url = "/admin/acl/group/" + id;
+            var result = form_data.remove({
+                'url' : url
+            });
             return false;
         });
     </script>
