@@ -12,7 +12,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-class HomeController extends Controller{
+class HomeController extends BaseController{
 
     public function index(){
         return adminView('article.edit');

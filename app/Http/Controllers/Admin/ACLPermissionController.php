@@ -6,7 +6,7 @@ use App\Contracts\IACLPermission;
 
 use App\Http\Requests;
 
-class ACLPermissionController extends Controller
+class ACLPermissionController extends BaseController
 {
 
     const VIEW_INDEX = 'acl.permission.index';

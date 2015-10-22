@@ -12,7 +12,7 @@
  
 namespace App\Http\Controllers\Admin;
 
-class ArticleController extends Controller{
+class ArticleController extends BaseController{
 
     public function index(){
         return adminView('article.index');

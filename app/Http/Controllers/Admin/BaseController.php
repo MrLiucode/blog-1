@@ -10,3 +10,16 @@
  * @author    Fackeronline <1077341744@qq.com>
  * @link      https://github.com/Fakeronline
  */
+
+namespace App\Http\Controllers\Admin;
+
+use App\Repositories\ACLRepo;
+
+class BaseController extends Controller{
+
+    public function __construct(ACLRepo $aclRepo){
+        $menuList = $aclRepo->getMenuListByPermission();    //»ñÈ¡²Ëµ¥
+        view()->share('menuList', $menuList);
+    }
+
+}

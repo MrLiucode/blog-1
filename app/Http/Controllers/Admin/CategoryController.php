@@ -14,7 +14,7 @@ namespace App\Http\Controllers\Admin;
 use App\Contracts\ICategory;
 use App\Http\Requests\CategoryRequest;
 
-class CategoryController extends Controller{
+class CategoryController extends BaseController{
 
 //    public function __construct(){
 ////        Carbon::setLocale('zh');  //设置显示语言
