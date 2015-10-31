@@ -27,21 +27,26 @@ class EventServiceProvider extends ServiceProvider
     public function boot(DispatcherContract $events)
     {
         parent::boot($events);
-
-        /**
-         * 文章分类处理接口绑定
-         */
+        //文章分类接口绑定
         $this->app->bind(
-            \App\Contracts\ArticleCategory::class,
-            \App\Services\ArticleCategory::class
+            \App\Contracts\ICategory::class,
+            \App\Services\Category::class
         );
 
-        /**
-         * 文章处理接口绑定
-         */
-        $this->app->bind(
-            \App\Contracts\Article::class,
-            \App\Services\Article::class
-        );
+//        /**
+//         * 文章分类处理接口绑定
+//         */
+//        $this->app->bind(
+//            \App\Contracts\ArticleCategory::class,
+//            \App\Services\ArticleCategory::class
+//        );
+//
+//        /**
+//         * 文章处理接口绑定
+//         */
+//        $this->app->bind(
+//            \App\Contracts\Article::class,
+//            \App\Services\Article::class
+//        );
     }
 }
