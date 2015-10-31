@@ -6,7 +6,7 @@ use App\Models\Tag;
 
 interface Article{
 
-    public function findAllPaginated(ArticleModel $article, $pageSize = 10);
+    public function all($pageSize = 10);
 
     public function findRecommend(ArticleModel $article, $pageSize = 5);
 
