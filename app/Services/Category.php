@@ -18,12 +18,22 @@ class Category implements ICategory{
 
     /**
      * 获取所有分类列表
-     * @param int $pageSize
+     * @param int $perPage
      * @return mixed
      */
-    public function lists($pageSize = 15)
+    public function lists($perPage = 15)
     {
-        return CategoryModel::paginate($pageSize);
+        return CategoryModel::orderBy('order', 'DESC')->paginate($perPage);
+    }
+
+    /**
+     * 根据ID获取分类数据
+     * @param $categoryId
+     * @return CategoryModel|null
+     */
+    public function getCategory($categoryId)
+    {
+        return CategoryModel::find($categoryId);
     }
 
 }

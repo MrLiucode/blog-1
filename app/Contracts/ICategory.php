@@ -12,6 +12,8 @@
 
 namespace App\Contracts;
 
+use App\Models\Category;
+
 interface ICategory{
 
     /**
@@ -20,6 +22,13 @@ interface ICategory{
      * @return mixed
      */
     public function lists($pageSize = 15);
+
+    /**
+     * 根据ID获取分类数据
+     * @param $categoryId
+     * @return Category|null
+     */
+    public function getCategory($categoryId);
 
 }
 
