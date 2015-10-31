@@ -21,14 +21,10 @@ class CreateArticleTable extends Migration
             $table->integer('hits')->unsigned();  //点击次数
             $table->integer('is_top')->default(0)->unsigned();  //是否置顶
             $table->integer('status')->default(1)->unsigned();  //状态[0=不发布，1=发布]
-            $table->integer('user_id')->unsigned();    //添加用户
+            $table->integer('user_id')->index()->unsigned();    //添加用户
             $table->integer('published_at')->unsigned();    //发布时间
             $table->integer('created_at')->unsigned();
             $table->integer('updated_at')->unsigned();
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
         });
     }
 
@@ -39,9 +35,6 @@ class CreateArticleTable extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function ($table) {
-            $table->dropForeign('articles_user_id_foreign');
-        });
         Schema::drop('articles');
     }
 }

@@ -16,8 +16,7 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function(Blueprint $table){
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name', 30)->unique();   //标签名称
-            $table->integer('click_num')->default(0)->unsigned();   //点击次数
+            $table->string('name', 30)->index()->unique();   //标签名称
             $table->integer('created_at')->unsigned();
             $table->integer('updated_at')->unsigned();
         });

@@ -16,7 +16,7 @@ class CreateCategoryTables extends Migration
         Schema::create('categories', function(Blueprint $table){
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name', 20)->unique(); //分类名称
+            $table->string('name', 20)->index()->unique(); //分类名称
             $table->string('description');  //描述
             $table->integer('order')->unsigned();   //排序
             $table->integer('created_at');
