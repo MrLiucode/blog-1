@@ -35,19 +35,20 @@ class CategoryRequest extends Request{
         return [
             'name' => 'required|max:30|min:2',
             'description' => 'max:100',
-            'order' => 'numeric|min:100',
+            'order' => 'required|numeric|min:100',
         ];
     }
 
     public function messages(){
 
         return [
-            'name.required' => '·ÖÀàÃû³Æ²»ÄÜÎª¿Õ!',
-            'name.max' => '·ÖÀàÃû³ÆµÄ³¤¶È²»ÄÜ³¬¹ý30!',
-            'name.min' => '·ÖÀàÃû³ÆµÄ³¤¶È²»ÄÜÐ¡ÓÚ2!',
-            'description' => '·ÖÀàÃèÊöµÄ³¤¶È²»ÄÜ³¬¹ý100!',
-            'order.numeric' => '·ÖÀàÅÅÐò±ØÐëÊÇÊý×Ö!',
-            'order.min' => '·ÖÀàÅÅÐò²»ÄÜÐ¡ÓÚ100!',
+            'name.required' => 'åˆ†ç±»åç§°ä¸ä¸ºç©º!',
+            'name.max' => 'åˆ†ç±»åç§°çš„æ€»é•¿åº¦ä¸èƒ½è¶…è¿‡30!',
+            'name.min' => 'åˆ†ç±»åç§°çš„æœ€å°é•¿åº¦ä¸èƒ½å°äºŽ2!',
+            'description.max' => 'åˆ†ç±»æè¿°çš„æ€»é•¿åº¦ä¸èƒ½è¶…è¿‡100!',
+            'order.required' => 'æŽ’åºä¸èƒ½ä¸ºç©º!',
+            'order.numeric' => 'æŽ’åºå¿…é¡»ä¸ºæ•°å­—!',
+            'order.min' => 'æŽ’åºçš„æ•°å€¼å¿…é¡»å¤§äºŽæˆ–ç­‰äºŽ100!',
         ];
     }
 
