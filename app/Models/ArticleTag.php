@@ -14,6 +14,6 @@ namespace App\Models;
 
 class ArticleTag extends BaseModel{
 
-    protected $table = 'article_tags';
+    protected $table = 'article_tag';
 
 }

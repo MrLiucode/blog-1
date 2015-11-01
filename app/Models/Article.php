@@ -16,7 +16,7 @@ class Article extends BaseModel{
 
     protected $table = 'articles';
 
-    protected $with = ['user', 'tags'];
+//    protected $with = ['user', 'tags'];
 
     public function user()
     {
