@@ -34,7 +34,7 @@
                         </a></li>
                     <li class="media"><a href="javascript:;">
                             <div class="media-left">
-                                <img src="assets/img/user-1.jpg" class="media-object" alt=""/></div>
+                                <img src="http://blog.com/logo.ico" class="media-object" alt=""/></div>
                             <div class="media-body">
                                 <h6 class="media-heading">
                                     John Smith</h6>
@@ -49,7 +49,7 @@
                         </a></li>
                     <li class="media"><a href="javascript:;">
                             <div class="media-left">
-                                <img src="assets/img/user-2.jpg" class="media-object" alt=""/></div>
+                                <img src="http://blog.com/logo.ico" class="media-object" alt=""/></div>
                             <div class="media-body">
                                 <h6 class="media-heading">
                                     Olivia</h6>

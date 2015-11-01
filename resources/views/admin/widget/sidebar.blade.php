@@ -15,14 +15,14 @@
         </ul>
         <!-- end sidebar user -->
         <!-- begin sidebar nav -->
-        <ul class="nav">
+        <ul id="sidebar" class="nav">
             <li class="nav-header">所有可用列表</li>
             <li class="has-sub active">
                 <a href="javascript:;"><b class="caret pull-right"></b><i
                             class="fa fa-laptop"></i><span>博文管理</span> </a>
                 <ul class="sub-menu">
-                    <li><a href="index.html">文章列表</a></li>
-                    <li class="active"><a href="index_v2.html">分类列表</a></li>
+                    <li><a href="{{route('admin.article.index')}}">文章列表</a></li>
+                    <li class="active"><a href="{{route('admin.category.index')}}">分类列表</a></li>
                     <li ><a href="index_v2.html">标签列表</a></li>
                 </ul>
             </li>
