@@ -31,3 +31,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
 
 });
+
+if(env('APP_DEBUG')){
+    Route::resource('test', 'TestController');
+}
