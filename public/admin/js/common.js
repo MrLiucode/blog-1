@@ -2,13 +2,13 @@
  * Created by lilichun on 2015/9/30 0030.
  */
 var newAlert = {
-    show : function(option, showCancel, isError){
+    show : function(option, callBackFunc, showCancel, isError){
         var header = jsonInput.get(option, 'title', '温馨提示');
         var msg = jsonInput.get(option, 'msg', '出现未知错误');
         var cancelBtn = jsonInput.get(option, 'cancelBtn', '');
         var cancelBtnHtml = cancelBtn ? '<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">取消</a>' : '';
        isError = isError ? true : false;
-        var callBackFunc = jsonInput.get(option, 'callable', null);
+        //var callBackFunc = jsonInput.get(option, 'callable', null);
 
         var cancelBtnHtml = showCancel ? '<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">取消</a>' : '';
 
@@ -16,6 +16,7 @@ var newAlert = {
             event.preventDefault();
             if(callBackFunc){
                 callBackFunc();
+                callBackFunc = null;
             }
             $("#modal-alert").remove();
         });
