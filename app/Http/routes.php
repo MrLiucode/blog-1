@@ -12,15 +12,22 @@
 */
 
 Route::get('/', function () {
-    return view('admin.article.edit');
+    return view('admin.category.index');
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
+    
     Route::get('/', 'HomeController@index');
 
     /**
      * 文章模块
      */
     Route::resource('article', 'ArticleController');
+
+    /**
+     * 文章分类处理模块
+     */
+    Route::resource('category', 'CategoryController');
+
 
 });
