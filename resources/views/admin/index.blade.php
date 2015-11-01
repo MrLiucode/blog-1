@@ -271,7 +271,7 @@
                         </h4>
                     </li>
                     <li><a href="javascript:;">
-                            <img src="assets/img/user-1.jpg" alt=""/></a>
+                            <img src="http://blog.com/logo.ico" alt=""/></a>
                         <h4 class="username text-ellipsis">
                             Marble Lungs
                             <small>Indian</small>
@@ -285,7 +285,7 @@
                         </h4>
                     </li>
                     <li><a href="javascript:;">
-                            <img src="assets/img/user-2.jpg" alt=""/></a>
+                            <img src="http://blog.com/logo.ico" alt=""/></a>
                         <h4 class="username text-ellipsis">
                             Hip Sculling
                             <small>Cuban</small>
