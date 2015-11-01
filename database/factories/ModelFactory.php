@@ -43,3 +43,29 @@ $factory->define(App\Models\Article::class, function (Faker\Generator $faker) {
         'updated_at' => $faker->unixTime
     ];
 });
+
+$factory->define(App\Models\ArticleCategory::class, function (Faker\Generator $faker) {
+    return [
+        'article_id' => $faker->numberBetween(1, 120),
+        'category_id' => $faker->numberBetween(1, 100),
+        'created_at' => $faker->unixTime,
+        'updated_at' => $faker->unixTime
+    ];
+});
+
+$factory->define(App\Models\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        'created_at' => $faker->unixTime,
+        'updated_at' => $faker->unixTime
+    ];
+});
+
+$factory->define(App\Models\ArticleTag::class, function (Faker\Generator $faker) {
+    return [
+        'article_id' => $faker->numberBetween(1, 120),
+        'tag_id' => $faker->numberBetween(1, 40),
+        'created_at' => $faker->unixTime,
+        'updated_at' => $faker->unixTime
+    ];
+});
