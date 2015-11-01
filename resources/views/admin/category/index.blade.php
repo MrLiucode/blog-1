@@ -31,7 +31,7 @@
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-primary" data-click="panel-edit"><i class="fa fa-plus"></i></a>
+                        <a href="{{route('admin.category.create')}}" class="btn btn-xs btn-icon btn-circle btn-primary" data-click="panel-edit"><i class="fa fa-plus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
@@ -39,6 +39,7 @@
                     <h4 class="panel-title">分类列表</h4>
                 </div>
                 <div class="panel-body">
+                    @include('admin.widget.message')
                     <div class="table-responsive">
                         <table id="data-table" class="table table-striped table-bordered">
                             <thead>
@@ -46,51 +47,33 @@
                                 <th></th>
                                 <th>分类名称</th>
                                 <th>描述</th>
-                                <th>添加者</th>
+                                <th>排序</th>
                                 <th>修改时间</th>
                                 <th>添加时间</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($categoryList as $index => $item)
                                 <tr>
-                                    <td><span class="badge badge-primary">1</span></td>
-                                    <td> laravel </td>
-                                    <td> 记录有关Laravel的文章 </td>
-                                    <td> admin </td>
-                                    <td> 2015-0715 12:01:12 </td>
-                                    <td> 2015-0715 12:01:12 </td>
+                                    <td><span class="badge badge-primary"> {{ $index + 1 }}</span></td>
+                                    <td> {{$item->name}} </td>
+                                    <td> {{$item->description}} </td>
+                                    <td> {{$item->order}} </td>
+                                    <td> {{$item->updated_at}} </td>
+                                    <td> {{ $item->created_at }} </td>
                                     <td style="width: 170px;;">
-                                        <button class="btn btn-primary btn-xs"><span class="fa  fa-edit"></span> 编辑 </button>
-                                        <button class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> 删除 </button>
+                                        <a href="{{route('admin.category.edit', ['id' => $item->id])}}" class="btn btn-primary btn-xs"><span class="fa  fa-edit"></span> 编辑 </a>
+                                        <a href="javascript:;" data-value="{{$item->id}}" class="btn btn-danger btn-xs" data-click="category-remove" ><span class="fa fa-trash-o"></span> 删除 </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><span class="badge badge-primary">2</span></td>
-                                    <td> laravel </td>
-                                    <td> 记录有关Laravel的文章 </td>
-                                    <td> admin </td>
-                                    <td> 2015-0715 12:01:12 </td>
-                                    <td> 2015-0715 12:01:12 </td>
-                                    <td style="width: 170px;;">
-                                        <button class="btn btn-primary btn-xs"><span class="fa  fa-edit"></span> 编辑 </button>
-                                        <button class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> 删除 </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><span class="badge badge-primary">3</span></td>
-                                    <td> laravel </td>
-                                    <td> 记录有关Laravel的文章 </td>
-                                    <td> admin </td>
-                                    <td> 2015-0715 12:01:12 </td>
-                                    <td> 2015-0715 12:01:12 </td>
-                                    <td style="width: 170px;;">
-                                        <button class="btn btn-primary btn-xs"><span class="fa  fa-edit"></span> 编辑 </button>
-                                        <button class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span> 删除 </button>
-                                    </td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
+                        <div class="dataTables_paginate paging_simple_numbers" id="data-table_paginate">
+                            {!! $categoryList->render() !!}
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -110,5 +93,27 @@
 
     <script>
         App.init();
+        $(document).on('click', '[data-click=category-remove]', function(){
+            var id = $(this).attr("data-value");
+             newAlert.show({'msg' : '删除后将不可恢复，确认删除？'}, function(){
+                 $.ajax({
+                     url : "/admin/category/" + id,
+                     type : "DELETE",
+                     headers : {'X-CSRF-TOKEN' : "{{ csrf_token()}}"},
+                     success : function(data){
+                         newAlert.show({msg : "删除成功!"}, function(){
+                             window.location.reload();
+                         });
+                     },
+                     error : function(){
+                         newAlert.show({msg : '删除失败!'}, function(){
+                             window.location.reload();
+                         }, false, true);
+                         return false;
+                     }
+                 });
+            }, true);
+            return false;
+        });
     </script>
 @stop
