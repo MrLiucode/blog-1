@@ -29,3 +29,17 @@ $factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
         'updated_at' => $faker->unixTime
     ];
 });
+
+$factory->define(App\Models\Article::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->title,
+        'content' => $faker->text(500),
+        'hits' => $faker->numberBetween(1, 1000),
+        'is_top' => $faker->boolean(),
+        'status' => $faker->boolean(),
+        'user_id' => 1,
+        'published_at' => $faker->unixTime,
+        'created_at' => $faker->unixTime,
+        'updated_at' => $faker->unixTime
+    ];
+});
