@@ -30,5 +30,27 @@ interface ICategory{
      */
     public function getCategory($categoryId);
 
+    /**
+     * 根据ID更新文章分类
+     * @param $categoryId
+     * @param array $data
+     * @return Category|null
+     */
+    public function updateCategory($categoryId, array $data);
+
+    /**
+     * 保存文章分类
+     * @param array $data
+     * @return Category
+     */
+    public function storeCategory(array $data);
+
+    /**
+     * 根据ID删除文章分类
+     * @param $categoryId
+     * @return int
+     */
+    public function delCategory($categoryId);
+
 }
 

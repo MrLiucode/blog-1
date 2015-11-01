@@ -36,5 +36,37 @@ class Category implements ICategory{
         return CategoryModel::find($categoryId);
     }
 
+    /**
+     * 根据ID更新文章分类
+     * @param $categoryId
+     * @param array $data
+     * @return CategoryModel|null
+     */
+    public function updateCategory($categoryId, array $data)
+    {
+        $category = CategoryModel::find($categoryId);
+        return $category ? $category->update($data) : $category;
+    }
+
+    /**
+     * 保存文章分类
+     * @param array $data
+     * @return CategoryModel
+     */
+    public function storeCategory(array $data)
+    {
+        return CategoryModel::create($data);
+    }
+
+    /**
+     * 根据ID删除文章分类
+     * @param $categoryId
+     * @return int
+     */
+    public function delCategory($categoryId)
+    {
+        return CategoryModel::destroy($categoryId);
+    }
+
 }
 
