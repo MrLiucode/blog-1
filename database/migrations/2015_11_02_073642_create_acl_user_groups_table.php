@@ -13,8 +13,8 @@ class CreateAclUserGroupsTable extends Migration
     public function up()
     {
         Schema::create('acl_user_groups', function (Blueprint $table) {
-            $table->integer('user_id', false);
-            $table->integer('group_id', false);
+            $table->integer('user_id', false, true);
+            $table->integer('group_id', false, true);
             $table->engine = "InnoDB";
         });
     }
