@@ -16,6 +16,7 @@ class CreateAclPermissionsTable extends Migration
             $table->increments('id');
             $table->string('ident', 255);
             $table->string('description', 255);
+            $table->engine = "InnoDB";
         });
     }
 

@@ -15,6 +15,7 @@ class CreateAclGroupPermissionsTable extends Migration
         Schema::create('acl_group_permissions', function (Blueprint $table) {
             $table->integer('group_id', false);
             $table->integer('permission_id', false);
+            $table->engine = "InnoDB";
         });
     }
 
