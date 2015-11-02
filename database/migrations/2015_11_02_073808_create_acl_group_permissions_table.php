@@ -13,8 +13,8 @@ class CreateAclGroupPermissionsTable extends Migration
     public function up()
     {
         Schema::create('acl_group_permissions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->integer('group_id', false);
+            $table->integer('permission_id', false);
         });
     }
 
