@@ -11,25 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.category.index');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
+    Route::get('/', 'HomeController@index');    //TODO:test
+    Route::resource('article', 'ArticleController');    //文章模块
+    Route::resource('category', 'CategoryController');  //文章分类处理模块
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
-    
-    Route::get('/', 'HomeController@index');
-
-    /**
-     * 文章模块
-     */
-    Route::resource('article', 'ArticleController');
-
-    /**
-     * 文章分类处理模块
-     */
-    Route::resource('category', 'CategoryController');
-
-
+/**
+ * ACL 权限控制组
+ */
+Route::group(['prefix' => 'admin/acl', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
+    Route::resource('group', 'ACLGroupController'); //权限组模块
+    Route::resource('permission', 'ACLPermissionController');   //权限模块
 });
 
 /**
