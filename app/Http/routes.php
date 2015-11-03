@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('admin.category.index');
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
     
     Route::get('/', 'HomeController@index');
 
@@ -32,6 +32,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
 });
 
+/**
+ * 自动认证模块
+ */
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+]);
+
 if(env('APP_DEBUG')){
     Route::resource('test', 'TestController');
 }
+
+Route::group(['middleware' => 'permission'], function(){
+    Route::get('testPermission', ['as' => 'test.permission', 'uses' => 'TestController@test']);
+});

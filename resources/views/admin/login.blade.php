@@ -46,33 +46,40 @@
         </div>
         <!-- end brand -->
         <div class="login-content">
-            <form action="index.html" method="POST" class="margin-bottom-0">
-                <div class="form-group m-b-20">
-                    <input type="text" class="form-control input-lg" placeholder="用户名" />
+            {!! Form::open(['url' =>  url('auth/login'), 'method' => 'POST', 'class' => 'margin-bottom-0']) !!}
+            @if (count($errors) > 0)
+                <div class="alert alert-danger fade in m-b-15">
+                    <strong>登录失败：</strong>
+                    用户名或密码错误！
+                    <span class="close" data-dismiss="alert">×</span>
                 </div>
-                <div class="form-group m-b-20">
-                    <input type="password" class="form-control input-lg" placeholder="密码" />
-                </div>
-                <div class="checkbox m-b-20">
-                    <label>
-                        <input type="checkbox" /> 记住我
-                    </label>
-                </div>
-                <div class="login-buttons">
-                    <button type="submit" class="btn btn-success btn-block btn-lg">确认登录</button>
-                </div>
-            </form>
+            @endif
+            <div class="form-group m-b-20">
+                {!! Form::input('email', 'email', old('email'), ['placeholder' => '用户名', 'class' => 'form-control input-lg']) !!}
+            </div>
+            <div class="form-group m-b-20">
+                {!! Form::input('password', 'password', null, ['class' => 'form-control input-lg', 'placeholder' => '密码']) !!}
+            </div>
+            <div class="checkbox m-b-20">
+                <label>
+                    {!! Form::checkbox('remember') !!}记住我
+                </label>
+            </div>
+            <div class="login-buttons">
+                {!! Form::button('确认登录', ['type' => 'submit', 'class' => 'btn btn-success btn-block btn-lg']) !!}
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
     <!-- end login -->
 
     <ul class="login-bg-list">
-        <li class="active"><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-1.jpg')}}" alt="" /></a></li>
-        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-2.jpg')}}" alt="" /></a></li>
-        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-3.jpg')}}" alt="" /></a></li>
-        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-4.jpg')}}" alt="" /></a></li>
-        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-5.jpg')}}" alt="" /></a></li>
-        <li><a href="#" data-click="change-bg"><img src="{{asset('admin/img/login-bg/bg-6.jpg')}}" alt="" /></a></li>
+        <li class="active"><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-1.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-2.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-3.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-4.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-5.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-6.jpg') ) !!} </a></li>
     </ul>
 </div>
 <!-- end page container -->
