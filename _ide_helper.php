@@ -2971,7 +2971,7 @@ namespace {
          *
          * @param string $table
          * @param string $column
-         * @return \Doctrine\DBAL\Schema\Column 
+         * @return \Doctrine\DBAL\Schema\Column
          * @static 
          */
         public static function getDoctrineColumn($table, $column){
