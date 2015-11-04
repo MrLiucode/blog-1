@@ -36,6 +36,16 @@
     {!! createConcat('admin/', [
         'plugins/pace/pace.min.js', 'plugins/jquery/jquery-1.9.1.min.js', 'js/common.js'
     ]) !!}
+    <script>
+        $(function(){
+            //设置AJAX header头
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            });
+        });
+    </script>
 
     <!-- ================== END BASE JS ================== -->
 </head>
