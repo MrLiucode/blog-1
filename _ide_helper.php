@@ -12470,15 +12470,6 @@ namespace {
     }
 
 
-    class 0 extends \Illuminate\Translation\TranslationServiceProvider{
-        
-    }
-
-
-    class 1 extends \Overtrue\LaravelLang\TranslationServiceProvider{
-        
-    }
-
 
 }
 
