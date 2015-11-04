@@ -27,6 +27,12 @@ class EventServiceProvider extends ServiceProvider
     public function boot(DispatcherContract $events)
     {
         parent::boot($events);
+
+        $this->app->bind(
+            \App\Contracts\IACLPermission::class,
+            \App\Services\ACLPermission::class
+        );
+
         //文章分类接口绑定
         $this->app->bind(
             \App\Contracts\ICategory::class,

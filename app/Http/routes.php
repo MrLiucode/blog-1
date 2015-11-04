@@ -22,7 +22,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
  */
 Route::group(['prefix' => 'admin/acl', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
     Route::resource('group', 'ACLGroupController'); //权限组模块
-    Route::resource('permission', 'ACLPermissionController');   //权限模块
+    Route::resource('permission', 'ACLPermissionController', [
+        'except' => ['create', 'show']  //排除路由
+    ]);   //权限模块
 });
 
 /**

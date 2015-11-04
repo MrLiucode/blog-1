@@ -34,7 +34,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['password', 'remember_token'];
 
     public function article(){
+
         return $this->hasMany(Article::class);
+    }
+
+    public function groups()
+    {
+        return $this->belongsToMany(AclGroup::class, 'acl_user_groups', 'user_id', 'group_id');
     }
 
 }

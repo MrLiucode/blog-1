@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\IACLGroup;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,12 +12,14 @@ class ACLGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param IACLGroup $aclGroup
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(IACLGroup $aclGroup)
     {
-        return adminView('acl.group.index');
+        $groupList = $aclGroup->lists();
+        view()->share('categoryList', []);
+        return adminView('acl.group.index', compact('groupList'));
     }
 
     /**
