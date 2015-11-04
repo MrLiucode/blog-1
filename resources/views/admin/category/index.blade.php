@@ -93,6 +93,7 @@
 
     <script>
         App.init();
+        //TODO:下面JS需要简化
         $(document).on('click', '[data-click=category-remove]', function(){
             var id = $(this).attr("data-value");
              newAlert.show({'msg' : '删除后将不可恢复，确认删除？'}, function(){
