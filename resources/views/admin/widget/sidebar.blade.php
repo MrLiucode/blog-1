@@ -31,6 +31,7 @@
                 <a href="javascript:;"><b class="caret pull-right"></b><i
                             class="fa fa-laptop"></i><span>权限管理</span> </a>
                 <ul class="sub-menu">
+                    <li><a href="#"></a> </li>
                     <li><a href="index.html">权限列表</a></li>
                     <li><a href="index_v2.html">角色列表</a></li>
                     <li ><a href="index_v2.html">用户列表</a></li>
