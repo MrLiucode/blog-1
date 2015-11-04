@@ -38,11 +38,53 @@ var jsonInput = {
     }
 };
 
-$(function(){
-    //设置AJAX header头
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        }
-    });
-});
+var form_data = {
+    ajaxGet : function(url, method, data) {
+        method = method ? method : 'GET';
+        var data;
+        $.ajax({
+            url : url,
+            type : method,
+            async : false,
+            data : data,
+            success : function(res){
+                data = {'status' : true, 'data' : res};
+            },
+            error : function(res){
+                data = {'status' : false, 'data' : res};
+            }
+        });
+        return data;
+    },
+    remove : function(option){
+        var url = jsonInput.get(option, 'url', '');
+        var msg = jsonInput.get(option, 'msg', '删除后将不可恢复，确认删除？');
+        var successMsg = jsonInput.get(option, 'successMsg', '删除成功!');
+        var errorMsg = jsonInput.get(option, 'errorMsg', '删除失败!');
+        var success = jsonInput.get(option, 'success', null);
+        var error = jsonInput.get(option, 'error', null);
+
+        newAlert.show({'msg' : msg}, function(){
+            $.ajax({
+                url : url,
+                type : "DELETE",
+                success : function(data){
+                    if(success){
+                        return success();
+                    }
+                    newAlert.show({msg : successMsg}, function(){
+                        window.location.reload();
+                    });
+                },
+                error : function(){
+                    newAlert.show({msg : errorMsg}, function(){
+                        if(error){
+                            return error();
+                        }
+                    }, false, true);
+                    return false;
+                }
+            });
+        }, true);
+    }
+};
