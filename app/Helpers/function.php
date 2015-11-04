@@ -90,9 +90,15 @@ function createConcat($basePath, array $fileList){
     return $htmlStr;
 }
 
+/**
+ * 获取随机样式
+ * @return mixed
+ */
 function getRandClass(){
     $classMap = [
         'default', 'danger', 'warning', 'success', 'info', 'primary', 'inverse'
     ];
     return $classMap[array_rand($classMap, 1)];
 }
+
+
