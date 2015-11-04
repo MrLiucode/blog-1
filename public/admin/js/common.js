@@ -37,3 +37,12 @@ var jsonInput = {
         (!jsonStr.hasOwnProperty(keyName))  ) ? defaultVal : jsonStr[keyName];
     }
 };
+
+$(function(){
+    //设置AJAX header头
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    });
+});
