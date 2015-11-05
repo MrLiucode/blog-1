@@ -25,7 +25,7 @@ class PermissionRequest extends Request
     {
         return [
             'ident' => 'required|max:255',
-            'description' => 'max:255',
+            'description' => 'required|max:255',
         ];
     }
 
@@ -33,6 +33,7 @@ class PermissionRequest extends Request
         return [
             'ident.required' => '请填写权限标识!',
             'ident.max' => '权限标识的字符长度不能超过255!',
+            'description.required' => '请填写权限描述!',
             'description.max' => '权限描述的字符长度不能超过255!',
         ];
     }
