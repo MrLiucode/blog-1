@@ -28,9 +28,16 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
+        //绑定权限服务
         $this->app->bind(
             \App\Contracts\IACLPermission::class,
             \App\Services\ACLPermission::class
+        );
+
+        //绑定权限组服务
+        $this->app->bind(
+            \App\Contracts\IACLGroup::class,
+            \App\Services\ACLGroup::class
         );
 
         //文章分类接口绑定
