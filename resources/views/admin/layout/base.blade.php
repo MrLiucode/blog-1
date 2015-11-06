@@ -21,6 +21,10 @@
     {!! createConcat('admin/css', [
         'animate.min.css',  'style.min.css', 'style-responsive.min.css', 'theme/black.css',
     ]) !!}
+
+    {!! createConcat('package/', [
+       'icheck/skins/flat/blue.css'
+   ]) !!}
             <!-- ================== END BASE CSS STYLE ================== -->
     <!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
     @section('css')
@@ -36,6 +40,9 @@
     {!! createConcat('admin/', [
         'plugins/pace/pace.min.js', 'plugins/jquery/jquery-1.9.1.min.js', 'js/common.js'
     ]) !!}
+    {!! createConcat('package', [
+        'icheck/icheck.min.js'
+    ]) !!}
     <script>
         $(function(){
             //设置AJAX header头
@@ -43,6 +50,11 @@
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
+            });
+
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-blue',
+                radioClass: 'iradio_flat'
             });
         });
     </script>
