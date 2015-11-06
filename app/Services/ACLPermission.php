@@ -22,11 +22,12 @@ class ACLPermission implements IACLPermission
     /**
      * 获取所有权限列表
      * @param int $pageSize
+     * @param array $withParams
      * @return \App\Models\AclPermission
      */
-    public function lists($pageSize = 15)
+    public function lists($pageSize = 15, array $withParams = [])
     {
-        return PermissionModel::paginate($pageSize);
+        return PermissionModel::with($withParams)->paginate($pageSize);
     }
 
     /**

@@ -21,9 +21,10 @@ interface IACLPermission
     /**
      * 获取所有权限列表
      * @param int $pageSize
+     * @param array $withParams
      * @return \App\Models\AclPermission
      */
-    public function lists($pageSize = 15);
+    public function lists($pageSize = 15, array $withParams = []);
 
     /**
      * 获取所有未分配权限的路由列表
