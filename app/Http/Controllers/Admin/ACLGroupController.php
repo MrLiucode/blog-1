@@ -17,8 +17,7 @@ class ACLGroupController extends Controller
      */
     public function index(IACLGroup $aclGroup)
     {
-        $groupList = $aclGroup->lists();
-        view()->share('categoryList', []);
+        $groupList = $aclGroup->lists(15, ['permissions']);    //获取所有的权限组
         return adminView('acl.group.index', compact('groupList'));
     }
 
