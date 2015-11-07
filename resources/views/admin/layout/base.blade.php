@@ -12,7 +12,7 @@
     <meta content="Fakeronline" name="description"/>
     <meta content="Fakeronline" name="author"/>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    {{--<link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">--}}
     {!! createConcat('admin/plugins', [
         'jquery-ui/themes/base/minified/jquery-ui.min.css',
         'bootstrap/css/bootstrap.min.css',
@@ -54,7 +54,7 @@
 
             $('input').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
-                radioClass: 'iradio_flat'
+                radioClass: 'iradio_flat-blue'
             });
         });
     </script>
