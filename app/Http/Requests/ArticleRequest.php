@@ -29,19 +29,21 @@ class ArticleRequest extends Request{
             'tags' => 'required',
             'status' => 'required',
             'is_top' => 'required',
+            'published_at' => 'required',
         ];
     }
 
     public function messages(){
         return [
-            'title.required' => 'ндуб╠ЙлБ╡╩дэн╙©у!',
-            'title.max' => 'ндуб╠ЙлБ╣дЁ╓╤х╡╩дэЁ╛╧Щ50!',
-            'content' => 'ндубдзхщ╡╩дэн╙©у!',
-            'category.required' => 'гКя║тЯндуб╥жюЮ!',
-            'category.numeric' => 'гКя║тЯуЩх╥╣дндуб╥жюЮ!',
-            'tags.required' => 'ндуб╠Йг╘╡╩дэн╙©у!',
-            'status.required' => 'гКя║тЯндубв╢л╛!',
-            'is_top.required' => 'гКя║тЯндубйг╥Яжц╤╔!',
+            'title.required' => 'Ф√┤Г╚═Ф═┤И╒≤Д╦█Х┐╫Д╦╨Г╘╨!',
+            'title.max' => 'Ф√┤Г╚═Ф═┤И╒≤Г └Е╜≈Г╛╕И∙©Е╨╕Д╦█Х┐╫Х╤┘Х©┤50!',
+            'content.required' => 'Ф√┤Г╚═Е├┘Е╝╧Д╦█Х┐╫Д╦╨Г╘╨!',
+            'category.required' => 'Ф√┤Г╚═Е┬├Г╠╩Д╦█Х┐╫Д╦╨Г╘╨!',
+            'category.numeric' => 'Х╞╥И─┴Ф▀╘Ф╜ёГ║╝Г └Ф√┤Г╚═Е┬├Г╠╩!',
+            'tags.required' => 'Ф√┤Г╚═Ф═┤Г╜╬Д╦█Х┐╫Д╦╨Г╘╨!',
+            'status.required' => 'Ф√┤Г╚═Г┼╤Ф─│Д╦█Х┐╫Д╦╨Г╘╨!',
+            'is_top.required' => 'Е©┘И║╩И─┴Ф▀╘Ф≤╞Е░╕Г╫╝И║╤!',
+            'published_at' => 'Е▐▒Е╦┐Ф≈╔Ф°÷Д╦█Х┐╫Д╦╨Г╘╨!',
         ];
     }
 
