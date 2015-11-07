@@ -16,6 +16,7 @@ class CreateArticleTable extends Migration
         Schema::create('articles', function(Blueprint $table){
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('category_id')->index();    //文章分类
             $table->string('title', 140);   //标题
             $table->text('content');    //内容
             $table->integer('hits')->unsigned();  //点击次数
