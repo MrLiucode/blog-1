@@ -19,9 +19,11 @@ interface ICategory{
     /**
      * 获取所有分类列表
      * @param int $pageSize
-     * @return mixed
+     * @param string|array $selectParams
+     * @param string|array $withParams
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function lists($pageSize = 15);
+    public function lists($pageSize = 15, $selectParams = '*', $withParams = []);
 
     /**
      * 根据ID获取分类数据

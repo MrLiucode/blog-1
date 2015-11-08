@@ -19,11 +19,13 @@ class Category implements ICategory{
     /**
      * 获取所有分类列表
      * @param int $perPage
+     * @param string|array $selectParams
+     * @param string|array $withParams
      * @return mixed
      */
-    public function lists($perPage = 15)
+    public function lists($perPage = 15, $selectParams = '*', $withParams = [])
     {
-        return CategoryModel::orderBy('order', 'DESC')->paginate($perPage);
+        return CategoryModel::select($selectParams)->with($withParams)->orderBy('order', 'DESC')->paginate($perPage);
     }
 
     /**
