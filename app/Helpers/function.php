@@ -91,7 +91,7 @@ function createConcat($basePath, array $fileList){
 }
 
 /**
- * »ñÈ¡Ëæ»úÑùÊ½
+ * è·å–éšæœºæ ·å¼
  * @return mixed
  */
 function getRandClass(){
@@ -103,7 +103,7 @@ function getRandClass(){
 
 
 /**
- * ÌáÈ¡¶şÎ¬Êı×éÀïµÄ2¸ö¼ü×÷ÎªÒ»Î»Êı×é·µ»Ø
+ * æå–äºŒç»´æ•°ç»„é‡Œçš„2ä¸ªé”®ä½œä¸ºä¸€ä½æ•°ç»„è¿”å›
  * @param array $data
  * @param $keyName
  * @param $valueName
@@ -121,5 +121,4 @@ function array_melting(array $data, $keyName, $valueName){
     }
     return $result;
 }
-
 
