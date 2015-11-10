@@ -95,7 +95,7 @@ return [
     |
     */
 
-    'log' => 'single',
+    'log' => 'daily',
 
     /*
     |--------------------------------------------------------------------------
@@ -146,7 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        'YuanChao\Editor\EndaEditorServiceProvider',
+        YuanChao\Editor\EndaEditorServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
 
     ],
@@ -197,8 +197,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'EndaEditor' => 'YuanChao\Editor\Facade\EndaEditorFacade',
+        'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,
         'Form'      => Illuminate\Html\FormFacade::class,
 
     ],
