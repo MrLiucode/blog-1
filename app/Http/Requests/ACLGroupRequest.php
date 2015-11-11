@@ -13,7 +13,7 @@ class ACLGroupRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class ACLGroupRequest extends Request
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:50',
+            'description' => 'max:255',
         ];
     }
+
+    public function messages(){
+        return [
+            'name.required' => '请填写权限组名称!',
+            'name.max' => '权限组名称字符长度不能超过25!',
+            'description.max' => '权限组描述字符长度不能超过255!',
+        ];
+    }
+
 }
