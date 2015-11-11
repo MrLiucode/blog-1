@@ -64,4 +64,6 @@ return [
         'expire' => 60,
     ],
 
+    'admin_user' => env('ADMIN_USER')
+
 ];
