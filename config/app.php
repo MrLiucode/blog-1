@@ -148,7 +148,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         YuanChao\Editor\EndaEditorServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
-
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -199,6 +199,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,
         'Form'      => Illuminate\Html\FormFacade::class,
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
 
     ],
 
