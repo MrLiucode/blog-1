@@ -19,8 +19,8 @@ class CreateCategoryTables extends Migration
             $table->string('name', 20)->index()->unique(); //分类名称
             $table->string('description');  //描述
             $table->integer('order')->unsigned();   //排序
-            $table->integer('created_at');
-            $table->integer('updated_at');
+            $table->integer('created_at')->unsigned();
+            $table->integer('updated_at')->unsigned();
         });
     }
 
