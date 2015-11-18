@@ -18,6 +18,7 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         HttpException::class,
         ModelNotFoundException::class,
+        NotFoundHttpException::class,
     ];
 
     /**
