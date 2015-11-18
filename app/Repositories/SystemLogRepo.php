@@ -17,6 +17,7 @@ use App\Models\ErrorLog;
 use App\Models\SystemLog;
 use Auth;
 use Exception;
+use Psy\Exception\ErrorException;
 use ReflectionObject;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,7 @@ class SystemLogRepo
             'headers' => json_encode($header),
             'http_method' => $request->method(),
             'ip' => $request->ip(),
+            'severity' => $exception instanceof ErrorException ? 1 : 0,
             'request_url' => $request->url(),
             'user_agent' => $request->header('user-agent', '未知设备'),
         ];
