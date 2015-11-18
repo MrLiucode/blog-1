@@ -15,6 +15,7 @@ class CreateSystemLogTables extends Migration
         Schema::create('error_logs', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('severity')->unsign()->index()->default(0);    //严重级别[0=警告,1=严重]
 
             $table->string('file_name')->index();    //文件名称(带路径)
             $table->string('type'); //错误类型
