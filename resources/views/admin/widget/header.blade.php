@@ -100,7 +100,7 @@
                     <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> 消息通知</a></li>
                     <li><a href="javascript:;">日程安排</a></li>
                     <li class="divider"></li>
-                    <li><a href="javascript:;">退出</a></li>
+                    <li><a href="{{ url('auth/logout') }}">退出</a></li>
                 </ul>
             </li>
         </ul>
