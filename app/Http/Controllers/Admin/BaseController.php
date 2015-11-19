@@ -14,12 +14,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Repositories\ACLRepo;
+use Carbon\Carbon;
 
 class BaseController extends Controller{
 
     public function __construct(ACLRepo $aclRepo){
-        $menuList = $aclRepo->getMenuListByPermission();    //»ñÈ¡²Ëµ¥
+        $menuList = $aclRepo->getMenuListByPermission();    //ï¿½ï¿½È¡ï¿½Ëµï¿½
         view()->share('menuList', $menuList);
+        Carbon::setLocale('zh');
     }
 
 }
