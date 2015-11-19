@@ -40,6 +40,17 @@ class EventServiceProvider extends ServiceProvider
             \App\Services\ACLGroup::class
         );
 
+        //绑定用户管理服务
+        $this->app->bind(
+            \App\Contracts\IACLUser::class,
+            \App\Services\ACLUser::class
+        );
+
+        $this->app->bind(
+            \App\Contracts\IErrorLog::class,
+            \App\Services\ErrorLog::class
+        );
+
         //文章分类接口绑定
         $this->app->bind(
             \App\Contracts\ICategory::class,
