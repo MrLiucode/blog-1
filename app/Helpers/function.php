@@ -122,3 +122,9 @@ function array_melting(array $data, $keyName, $valueName){
     return $result;
 }
 
+function handelTraceString($str){
+    $str = str_replace('#', '#####', $str);
+    return \YuanChao\Editor\EndaEditor::MarkDecode($str);
+
+}
+
