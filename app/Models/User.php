@@ -24,7 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'login_ip', 'status'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -33,14 +33,30 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
+    /**
+     * ��������
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function article(){
 
         return $this->hasMany(Article::class);
     }
 
+    /**
+     * Ȩ������Ϣ
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function groups()
     {
         return $this->belongsToMany(AclGroup::class, 'acl_user_groups', 'user_id', 'group_id');
+    }
+
+    /**
+     * �û���Ϣ
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function userInfo(){
+        return $this->hasOne(UserInfo::class);
     }
 
 }

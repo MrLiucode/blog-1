@@ -25,6 +25,13 @@ return [
         'child' => [
             ['text' => '权限列表', 'as' => 'admin.acl.permission.index'],
             ['text' => '权限组列表', 'as' => 'admin.acl.group.index'],
+            ['text' => '用户列表', 'as' => 'admin.acl.user.index'],
+        ]
+    ],
+    '系统管理' => [
+        'class' => 'fa fa-laptop',
+        'child' => [
+            ['text' => '错误日志', 'as' => 'admin.errorLog.index'],
         ]
     ],
 ];

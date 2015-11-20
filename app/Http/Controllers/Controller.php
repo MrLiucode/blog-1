@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -15,6 +16,7 @@ abstract class Controller extends BaseController
     public function __construct(){
 
         $appTheme = config('theme');
+        Carbon::setLocale('zh');
 
         View::prependNamespace(
             $appTheme, base_path() . DIRECTORY_SEPARATOR .  'resources' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $appTheme

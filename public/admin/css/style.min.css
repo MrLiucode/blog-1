@@ -5153,3 +5153,19 @@ body.flat-black {
 	transform:rotate(360deg)
 }
 }
+
+.u-block {
+	display: block!important;
+}
+.tx-r{
+	text-align: right;
+}
+
+.tab-span,.tab-p{
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.tab-p{
+	color: #d14;
+}

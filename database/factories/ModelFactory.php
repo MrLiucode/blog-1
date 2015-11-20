@@ -69,3 +69,21 @@ $factory->define(App\Models\ArticleTag::class, function (Faker\Generator $faker)
         'updated_at' => $faker->unixTime
     ];
 });
+
+
+$factory->define(App\Models\UserInfo::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => 1,
+        'mobile' => '13076378594',
+        'website' => 'https://github.com/fakeronline',
+        'synopsis' => '个人简介',
+        'live_province' => '广东省',
+        'live_city' => '深圳市',
+        'live_area' => '龙岗区',
+        'live_address' => 'XXX村XX路XX大厦',
+        'position' => 'PHP开发工程师',
+        'created_at' => $faker->unixTime,
+        'updated_at' => $faker->unixTime
+    ];
+});
+
