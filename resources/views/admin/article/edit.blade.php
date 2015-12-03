@@ -51,7 +51,7 @@
                     <h4 class="panel-title">文章表单</h4>
                 </div>
                 <div class="panel-body">
-                    <form id="article-frm" class="form-horizontal" data-parsley-validate="true" action="/" method="POST">
+                    <form id="article-frm" class="form-horizontal" action="/" method="POST">
                         <fieldset>
                             <legend>添加/修改文章</legend>
                             <div class="form-group">
@@ -94,8 +94,15 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">文章状态</label>
                                 <div class="col-md-10">
-                                    <input type="checkbox" data-render="switchery" data-theme="blue" data-change="check-article-state" checked />
-                                    <a href="#" class="btn btn-xs btn-primary disabled m-l-5" data-id="article-state">正常发布</a>
+                                    {!! Form::radio('status', 1, isset($article) ? null : true) !!} 正常发布
+                                    {!! Form::radio('status', 1) !!} 隐藏文章
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="" class="col-md-2 control-label">发布时间</label>
+                                <div class="col-md-10">
+                                    {!! Form::input('date', 'published_at', null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
 
