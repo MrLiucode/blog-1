@@ -57,13 +57,13 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">标题</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" placeholder="请输入文章标题" data-parsley-required="true" />
+                                    {!! Form::input('text', 'title', null, ['class' => 'form-control', 'placeholder' => '请输入文章标题', '']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">文章分类</label>
                                 <div class="col-md-10">
-                                    <select class="form-control selectpicker " data-size="10" data-live-search="true" data-style="btn-white" data-parsley-required="true" >
+                                    <select class="form-control selectpicker " name="category" data-size="10" data-live-search="true" data-style="btn-white" data-parsley-required="true" >
                                         <option value="" >请选择文章分类</option>
                                         <option value="AF">Laravel</option>
                                         <option value="AL">PHP</option>
@@ -78,7 +78,7 @@
                                 <label class="col-md-2 control-label">文章内容</label>
                                 <div class="col-md-10">
                                     <div class="editor">
-                                        <textarea id='myEditor' name="content"></textarea>
+                                        {!! Form::textarea('content', null, ['id' => 'myEditor']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -185,10 +185,18 @@
 
     <script>
         $(document).on('submit', '#article-frm', function(){
-            alert($('#article-status').val());
+
+            $.ajax({
+                type : 'POST',
+                data : {
+                    'title' : $("").val(),
+                    'tags' : $("#jquery-tagIt-white").tagit('tagInput')
+                },
+                success : function(){
+
+                }
+            });=
             return false;
-//            alert($("#jquery-tagIt-white").tagit('tagInput'));
-//            return false;
         });
     </script>
 @stop
