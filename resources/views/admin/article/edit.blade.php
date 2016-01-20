@@ -15,16 +15,16 @@
 @stop
 
     @section('css')
-    {!! createConcat('admin/plugins/', [
-        'DataTables/css/data-table.css',
+    {!! createConcat('static/package', [
+        'datatables/media/css/jquery.dataTables.min.css',
         'bootstrap-combobox/css/bootstrap-combobox.css',
-        'bootstrap-select/bootstrap-select.min.css',
-        'bootstrap-tagsinput/bootstrap-tagsinput.css',
-        'jquery-tag-it/css/jquery.tagit.css',
-        'parsley/src/parsley.css',
-        'switchery/switchery.min.css',
-        'powerange/powerange.min.css'
+        'bootstrap-select/dist/css/bootstrap-select.min.css',
+        'bootstrap-tagsinput/dist/bootstrap-tagsinput.css',
+        'jquery-tagit/css/jquery.tagit.css',
+        'switchery/switchery.css',
+        'powerange/dist/powerange.min.css'
     ]) !!}
+
     <style>
         .tab-content{
             padding: 0px;
@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">标题</label>
                                 <div class="col-md-10">
-                                    {!! Form::input('text', 'title', null, ['class' => 'form-control', 'placeholder' => '请输入文章标题', '']) !!}
+                                    {!! Form::input('text', 'title', null, ['class' => 'form-control', 'placeholder' => '请输入文章标题']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -94,8 +94,12 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">文章状态</label>
                                 <div class="col-md-10">
-                                    {!! Form::radio('status', 1, isset($article) ? null : true) !!} 正常发布
-                                    {!! Form::radio('status', 1) !!} 隐藏文章
+                                    <label>
+                                        {!! Form::radio('status', 1, isset($article) ? null : true) !!} 正常发布
+                                    </label>
+                                    <label>
+                                        {!! Form::radio('status', 1) !!} 隐藏文章
+                                    </label>
                                 </div>
                             </div>
 
@@ -110,7 +114,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-10 col-md-offset-2">
-                                    <button type="submit" class="btn btn-primary m-r-5">提交</button>
+                                    {!! Form::submit('提交', ['class' => 'btn btn-primary m-r-5']) !!}
                                     <a href="javascript:history.go(-1);" class="btn btn-default">取消</a>
                                 </div>
                             </div>
@@ -156,12 +160,14 @@
         handleTagsInput();
         FormSliderSwitcher.init();
     </script>
-    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/4.10.0/codemirror.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/8.4/styles/default.min.css">
-    <script src="//cdn.bootcss.com/highlight.js/8.4/highlight.min.js"></script>
-    <script src="//cdn.bootcss.com/marked/0.3.5/marked.min.js"></script>
-    <script type="text/javascript" src="//cdn.bootcss.com/codemirror/4.10.0/codemirror.min.js"></script>
-    <script type="text/javascript" src="//cdn.bootcss.com/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
+    {!! createConcat('static/package', [
+        'codemirror/lib/codemirror.css'
+    ]) !!}
+    {!! createConcat('static/package', [
+        'marked/lib/marked.js',
+        'codemirror/lib/codemirror.js',
+        'zeroclipboard/dist/ZeroClipboard.min.js',
+    ]) !!}
 
     {!! createConcat('plugin/editor/css/', [
         'pygment_trac.css', 'editor.css'
@@ -175,27 +181,23 @@
             url = "{{ url(config('editor.uploadUrl')) }}";
             var myEditor = new Editor(url);
             myEditor.render('#myEditor');
-            $('[data-change="check-article-state"]').live("change",function(){
-                var status_text = $(this).prop("checked") ? '正常显示' : '隐藏';
-                $('[data-id="article-state"]').text(status_text);
-            });
         });
 
     </script>
-
     <script>
         $(document).on('submit', '#article-frm', function(){
-
             $.ajax({
+                url : "{{ route('admin.article.store') }}",
                 type : 'POST',
                 data : {
-                    'title' : $("").val(),
-                    'tags' : $("#jquery-tagIt-white").tagit('tagInput')
+                    'title' : $("input[name='title']").val(),
+                    'tags' : $("#jquery-tagIt-white").tagit('tagInput'),
+                    'categroy' : $("[name='category']").val(),
                 },
                 success : function(){
 
                 }
-            });=
+            });
             return false;
         });
     </script>
