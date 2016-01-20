@@ -124,10 +124,11 @@ function createConcat($basePath, array $fileList){
         'js' => '<script type="text/javascript" src="%s"></script>',
         'css' => '<link rel="stylesheet" href="%s">'
     ];
-    $extension = pathinfo(head($fileList))['extension'];
+    $extension = array_get(pathinfo(head($fileList)), 'extension');
     $htmlTpl = array_get($htmlMap, $extension);
     $basePath = rtrim(asset($basePath), '/');
-    if(is_null($htmlTpl)){
+    if(empty($extension) || is_null($htmlTpl)){
+        dd(head($fileList));
         return '';
     }
     if(env('TENGINE')){
