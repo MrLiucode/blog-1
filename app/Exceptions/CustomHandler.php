@@ -31,7 +31,8 @@ class CustomHandler extends Handler{
      */
     public function report(Exception $e)
     {
-        app(SystemLogRepo::class)->storeErrorLog($e, app(Request::class));
-        return parent::report($e);
+        if ($this->shouldReport($e)) {
+            app(SystemLogRepo::class)->storeErrorLog($e, app(Request::class));
+        }
     }
 }
