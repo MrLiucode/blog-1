@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--[if IE 8]>
-<html lang="en" class="ie8"> <![endif]-->
+<html class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html>
 <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
@@ -13,35 +13,27 @@
     <meta content="Fakeronline" name="author"/>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     {{--<link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">--}}
-    {!! createConcat('admin/plugins', [
-        'jquery-ui/themes/base/minified/jquery-ui.min.css',
-        'bootstrap/css/bootstrap.min.css',
-        'font-awesome/css/font-awesome.min.css'
+    {!! createConcat('static/package', [
+        'jquery-ui/themes/base/jquery-ui.min.css',
+        'bootstrap/dist/css/bootstrap.min.css',
+        'font-awesome/css/font-awesome.min.css',
+        'icheck/skins/flat/blue.css', //ICheck
     ]) !!}
-    {!! createConcat('admin/css', [
-        'animate.min.css',  'style.min.css', 'style-responsive.min.css', 'theme/black.css',
+    {!! createConcat('static/css/admin', [
+        'animate.min.css',  'style.min.css', 'style-responsive.min.css', 'black.css',
     ]) !!}
-
-    {!! createConcat('package/', [
-       'icheck/skins/flat/blue.css'
-   ]) !!}
             <!-- ================== END BASE CSS STYLE ================== -->
     <!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
     @section('css')
-    {{--{!! createConcat('admin/plugins/', [--}}
-    {{--'jquery-jvectormap/jquery-jvectormap-1.2.2.css',--}}
-    {{--'bootstrap-calendar/css/bootstrap_calendar.css',--}}
-    {{--'assets/plugins/gritter/css/jquery.gritter.css',--}}
-    {{--'morris/morris.css'--}}
-    {{--]) !!}--}}
     @show
             <!-- ================== END PAGE LEVEL CSS STYLE ================== -->
     <!-- ================== BEGIN BASE JS ================== -->
-    {!! createConcat('admin/', [
-        'plugins/pace/pace.min.js', 'plugins/jquery/jquery-1.9.1.min.js', 'js/common.js'
+
+    {!! createConcat('static/package', [
+        'pace/pace.min.js', 'jquery/dist/jquery.min.js', 'icheck/icheck.min.js'
     ]) !!}
-    {!! createConcat('package', [
-        'icheck/icheck.min.js'
+    {!! createConcat('static/js/admin', [
+        'common.js'
     ]) !!}
     <script>
         $(function(){
@@ -99,20 +91,24 @@
 </div>
 <!-- end page container -->
 <!-- ================== BEGIN BASE JS ================== -->
-{!! createConcat('admin/plugins/', [
-    'jquery/jquery-migrate-1.1.0.min.js',
-    'jquery-ui/ui/minified/jquery-ui.min.js',
-    'bootstrap/js/bootstrap.min.js'
+{{--{!! createConcat('static/package/js', [--}}
+    {{--''--}}
+{{--]) !!}--}}
+
+{!! createConcat('static/package', [
+    'jquery-migrate/jquery-migrate.min.js',
+    'jquery-ui/jquery-ui.min.js',
+    'bootstrap/dist/js/bootstrap.min.js',
+    'jquery-slimscroll/jquery.slimscroll.min.js',
+    'jquery-cookie/jquery.cookie.js',
 ]) !!}
 <!--[if lt IE 9]>
-{!! createConcat('admin/crossbrowserjs/', [
-'html5shiv.js', 'respond.min.js', 'excanvas.min.js'
+{!! createConcat('static/package', [
+    'html5shiv/dist/html5shiv.js',
+    'respond/dist/respond.min.js',
+    'excanvas/excanvas.js'
 ]) !!}
 <![endif]-->
-{!! createConcat('admin', [
-    'plugins/slimscroll/jquery.slimscroll.min.js',
-    'plugins/jquery-cookie/jquery.cookie.js'
-]) !!}
 <!-- ================== END BASE JS ================== -->
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 {!! createConcat('admin', [
@@ -128,24 +124,6 @@
         });
     </script>
 @show
-
-{{--<script src="assets/plugins/morris/raphael.min.js"></script>--}}
-
-{{--<script src="assets/plugins/morris/morris.js"></script>--}}
-
-{{--<script src="assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>--}}
-
-{{--<script src="assets/plugins/jquery-jvectormap/jquery-jvectormap-world-merc-en.js"></script>--}}
-
-{{--<script src="assets/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js"></script>--}}
-
-{{--<script src="assets/plugins/gritter/js/jquery.gritter.js"></script>--}}
-
-{{--<script src="assets/js/dashboard-v2.min.js"></script>--}}
-
-{{--<script src="assets/js/apps.min.js"></script>--}}
-
- <!-- ================== END PAGE LEVEL JS ================== -->
 
 </body>
 </html>
