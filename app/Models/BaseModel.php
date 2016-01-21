@@ -25,7 +25,7 @@ class BaseModel extends Model{
         return 'U';
     }
 
-    public function batchInsert(array $dataArr, $asymmetry = false){
+    public function batchInsert(array $dataArr){
 
         if(empty($dataArr)){
             return true;
