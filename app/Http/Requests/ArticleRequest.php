@@ -28,7 +28,7 @@ class ArticleRequest extends Request{
             'category' => 'required|numeric',
             'tags' => 'required',
             'status' => 'required',
-            'is_top' => 'required',
+//            'is_top' => 'required',
             'published_at' => 'required',
         ];
     }
