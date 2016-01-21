@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Tag as TagModel;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -19,12 +20,15 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function boot(Router $router)
     {
-        //
+        //标签路由模型
+        $router->bind('tag', function ($tagId) {
+            return TagModel::findOrFail($tagId);
+        });
 
         parent::boot($router);
     }
@@ -32,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function map(Router $router)
