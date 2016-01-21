@@ -17,7 +17,7 @@ return [
         'child' => [
             ['text' => '文章列表', 'as' => 'admin.article.index'],
             ['text' => '分类列表', 'as' => 'admin.category.index'],
-            ['text' => '标签列表', 'as' => 'admin.category.index'], //TODO：需要做修改
+            ['text' => '标签列表', 'as' => 'admin.tag.index'],
         ],
     ],
     '权限管理' => [
