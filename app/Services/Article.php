@@ -1,44 +1,23 @@
 <?php namespace App\Services;
 
-use App\Models\Article as ArticleModel;
-use App\Models\Category;
-use App\Models\Tag;
+use App\Http\Requests\ArticleRequest;
+use App\Repositories\ArticleRepo as ArticleRepo;
+use DB;
 
-class Article implements \App\Contracts\Article{
+class Article implements \App\Contracts\IArticle
+{
 
-    public function findAllPaginated(ArticleModel $article, $pageSize = 10)
+    public function store(ArticleRequest $request)
     {
-        return $article->orderBy('created_at', 'DESC')->paginate($pageSize);
-    }
+        DB::beginTransaction();
+        $tags = explode(',', $request->tags);   //获取所有的文章标签
 
-    public function findRecommend(ArticleModel $article, $pageSize = 5)
-    {
-        return $article->orderBy('is_top', 'DESC')->paginate($pageSize);
-    }
+        $category = $request->category; //获取文章分类
 
-    public function findHot(ArticleModel $article, $pageSize = 10)
-    {
-        return $article->orderBy('click_num', 'DESC')->paginate($pageSize);
-    }
+        $article = app(ArticleRepo::class)->storeArticle($request->all());
 
-    public function findById(ArticleModel $article, $articleId)
-    {
-        return $article->findOrFail($articleId);
-    }
+        $articleData = array_only($request->all(), ['title', 'content', 'status', 'published_at']);
 
-    public function findByCategory(Category $category, $categoryId, $pageSize = 10)
-    {
-        $categoryRes = $category->findOrFail($categoryId);
-        $articleRes = $categoryRes->article()->orderBy('created_at', 'DESC')->paginate($pageSize);
-        return ['category' => $categoryRes, 'article' => $articleRes];
     }
-
-    public function findByTag(Tag $tag, $tagId, $pageSize = 10)
-    {
-        $tagRes = $tag->findOrFail($tagId);
-        $articleRes = $tagRes->article()->orderBy('created_at', 'DESC')->paginate($pageSize);
-        return ['tag' => $tagRes, 'article' => $articleRes];
-    }
-
 
 }
