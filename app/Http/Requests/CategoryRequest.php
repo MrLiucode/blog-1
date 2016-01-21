@@ -33,7 +33,7 @@ class CategoryRequest extends Request{
     public function rules()
     {
         return [
-            'name' => 'required|max:30|min:2',
+            'name' => 'unique:categories|required|max:30|min:2',
             'description' => 'max:100',
             'order' => 'required|numeric|min:100',
         ];
@@ -42,6 +42,7 @@ class CategoryRequest extends Request{
     public function messages(){
 
         return [
+            'categories.unique' => '该分类名称已存在!',
             'name.required' => '分类名称不为空!',
             'name.max' => '分类名称的总长度不能超过30!',
             'name.min' => '分类名称的最小长度不能小于2!',
