@@ -1,6 +1,7 @@
 var elixir = require('laravel-elixir');
 var resourcesDir = 'resources/assets';
 var publicCssDir = 'public/static/css';
+var publicJsDir = 'public/static/js';
 elixir(function (mix) {
     mix.copy(resourcesDir + '/package', 'public/static/package');   //移动包文件
     mix.copy(resourcesDir + '/js/admin', 'public/static/js/admin'); //移动后台JS文件
@@ -11,6 +12,10 @@ elixir(function (mix) {
     mix.styles([
         resourcesDir + '/css/site.css', resourcesDir + '/css/common.css'
     ], publicCssDir + '/common.css');
+
+    mix.scripts([
+        resourcesDir + "/js/common.js",
+    ], publicJsDir + '/common.js');
 
 });
 
