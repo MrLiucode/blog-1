@@ -25,9 +25,10 @@ class ArticleController extends BaseController
     const VIEW_EDIT = 'article.edit';
     const ROUTE_INDEX = 'admin.article.index';
 
-    public function index()
+    public function index(IArticle $articleService)
     {
-        return adminView(self::VIEW_INDEX);
+        $articleList = $articleService->getList(20, ['tags', 'categories']);
+        return adminView(self::VIEW_INDEX, compact('articleList'));
     }
 
     public function create(ICategory $category, ITag $tag)
@@ -52,13 +53,13 @@ class ArticleController extends BaseController
     public function update(ArticleModel $article, ArticleRequest $request, IArticle $articleService)
     {
         $result = $articleService->update($article, $request);
-        return $result ? success(route(self::ROUTE_INDEX)) : error($articleService->getError() ?: '修改文章失败!');
+        return $result ? success(route(self::ROUTE_INDEX), '修改文章成功!') : error($articleService->getError() ?: '修改文章失败!');
     }
 
     public function destroy(ArticleModel $article, IArticle $articleService)
     {
         $result = $articleService->destroy($article);
-        return $result ? success(route(self::ROUTE_INDEX)) : error($articleService->getError() ?: '删除文章失败!');
+        return $result ? success(route(self::ROUTE_INDEX), '删除文章成功!') : error($articleService->getError() ?: '删除文章失败!');
     }
 
 }
