@@ -21,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
     /**
      * Register any other events for your application.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
+     * @param  \Illuminate\Contracts\Events\Dispatcher $events
      * @return void
      */
     public function boot(DispatcherContract $events)
@@ -57,20 +57,16 @@ class EventServiceProvider extends ServiceProvider
             \App\Services\Category::class
         );
 
-//        /**
-//         * 文章分类处理接口绑定
-//         */
-//        $this->app->bind(
-//            \App\Contracts\ArticleCategory::class,
-//            \App\Services\ArticleCategory::class
-//        );
-//
-//        /**
-//         * 文章处理接口绑定
-//         */
-//        $this->app->bind(
-//            \App\Contracts\Article::class,
-//            \App\Services\Article::class
-//        );
+        //标签接口绑定
+        $this->app->bind(
+            \App\Contracts\ITag::class,
+            \App\Services\Tag::class
+        );
+
+        $this->app->bind(
+            \App\Contracts\IArticle::class,
+            \App\Services\Article::class
+        );
+
     }
 }
