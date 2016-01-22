@@ -14,6 +14,8 @@ namespace App\Models;
 
 class Article extends BaseModel{
 
+    protected $dates = ['created_at', 'published_at', 'updated_at'];
+
     protected $table = 'articles';
 
 //    protected $with = ['user', 'tags'];
