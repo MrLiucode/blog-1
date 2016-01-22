@@ -1,4 +1,4 @@
-@extends('flatVersion.public.layout')
+@extends('flat.layout.base')
 
 @section('main')
     <div class="timeline">
@@ -9,7 +9,7 @@
                 <div class="time">{{date('M t', strtotime($item->created_at))}}</div>
                 <div class="events">
                     <div class="pull-left">
-                        <img class="events-object img-rounded head-pic-64" src="{{_asset('images/hd_pic.jpg')}}">
+                        <img class="events-object img-rounded head-pic-64" src="{{asset('static/images/hd_pic.jpg')}}">
                     </div>
                     <div class="events-body">
                         <h5><a href="{{route('article.show', ['id' => $item->id])}}">{{$item->title}}</a></h5>

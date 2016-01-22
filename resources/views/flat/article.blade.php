@@ -1,10 +1,10 @@
 @extends('flatVersion.public.layout')
 
 @section('main')
-    <link rel="stylesheet" href="{{_package('editor.md/css/editormd.min.css')}}">
-    <link rel="stylesheet" href="{{_package('editor.md/lib/codemirror/lib/codemirror.css')}}">
+    {{--<link rel="stylesheet" href="{{_package('editor.md/css/editormd.min.css')}}">--}}
+    {{--<link rel="stylesheet" href="{{_package('editor.md/lib/codemirror/lib/codemirror.css')}}">--}}
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}">首页</a></li>
+        <li><a href="/">首页</a></li>
         <li class="active">文章类型</li>
         <li class="active">PHP</li>
     </ol>

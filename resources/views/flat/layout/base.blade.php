@@ -26,7 +26,7 @@
 <body>
 @section('bodyBefore')
 @show
-@include('flatVersion.public.header')
+@include('flat.layout.header')
 <div class="main container">
     <div class="col-lg-8">
         @section('main')
@@ -145,7 +145,7 @@
         </div>
     </div>
 </div>
-@include('flatVersion.public.footer')
+@include('flat.layout.footer')
         <!-- Bootstrap -->
 {!! createConcat('static/package/bootflat/js', [
     'bootstrap.min.js', 'jquery.icheck.js'
