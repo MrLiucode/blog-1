@@ -80,7 +80,7 @@
 @stop
 
 @section('js')
-    {!! createConcat('admin', [
+    {!! createConcat('js/admin/static', [
         'plugins/DataTables/js/jquery.dataTables.js',
         'js/apps.min.js',
         'js/dashboard-v2.min.js'

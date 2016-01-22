@@ -111,9 +111,9 @@
 <![endif]-->
 <!-- ================== END BASE JS ================== -->
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
-{!! createConcat('admin', [
-    'js/apps.min.js',
-    'js/dashboard-v2.min.js'
+{!! createConcat('static/js/admin', [
+    'apps.min.js',
+    'dashboard-v2.min.js'
 ]) !!}
 
 @section('js')

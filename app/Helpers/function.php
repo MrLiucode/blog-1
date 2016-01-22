@@ -18,7 +18,7 @@
 function fontView($view)
 {
     $args = func_get_args();
-    $args[0] = 'theme.' . env('THEME') . '.' . $view;
+    $args[0] = env('THEME') . '.' . $view;
     return call_user_func_array('view', $args);
 }
 
