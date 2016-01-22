@@ -10,7 +10,7 @@ elixir(function (mix) {
 
     //首页css
     mix.styles([
-        resourcesDir + '/css/site.css', resourcesDir + '/css/common.css'
+        resourcesDir + '/css/site.min.css', resourcesDir + '/css/common.css'
     ], publicCssDir + '/common.css');
 
     mix.scripts([
