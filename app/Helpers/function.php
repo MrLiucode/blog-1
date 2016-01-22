@@ -15,7 +15,8 @@
  * @param $view
  * @return mixed
  */
-function fontView($view){
+function fontView($view)
+{
     $args = func_get_args();
     $args[0] = 'theme.' . env('THEME') . '.' . $view;
     return call_user_func_array('view', $args);
@@ -26,7 +27,8 @@ function fontView($view){
  * @param $view
  * @return mixed
  */
-function adminView($view){
+function adminView($view)
+{
     $args = func_get_args();
     $args[0] = 'admin.' . $view;
     return call_user_func_array('view', $args);
@@ -38,13 +40,14 @@ function adminView($view){
  * @param $key
  * @return array
  */
-function array_key_advance(array $array ,$key){
+function array_key_advance(array $array, $key)
+{
     $result = array();
-    foreach($array as $item){
+    foreach ($array as $item) {
         $field = array_get($item, $key);
-        if(is_null($field)){
+        if (is_null($field)) {
             $result[] = $item;
-        }else{
+        } else {
             $result[$field] = $item;
         }
     }
@@ -57,9 +60,10 @@ function array_key_advance(array $array ,$key){
  * @param array $value_array
  * @return array
  */
-function array_get_all(array $key_array, array $value_array){
+function array_get_all(array $key_array, array $value_array)
+{
     $result = array();
-    foreach($key_array as $key){
+    foreach ($key_array as $key) {
         $result[$key] = array_get($value_array, $key);
     }
     return $result;
@@ -71,11 +75,12 @@ function array_get_all(array $key_array, array $value_array){
  * @param $key
  * @return array
  */
-function array_get_value(array $array, $key){
+function array_get_value(array $array, $key)
+{
     $result = [];
-    if($array && $key){
-        foreach($array as $item){
-            if($res = array_get($item, $key)){
+    if ($array && $key) {
+        foreach ($array as $item) {
+            if ($res = array_get($item, $key)) {
                 $result[] = $res;
             }
         }
@@ -89,7 +94,8 @@ function array_get_value(array $array, $key){
  * @param string $message
  * @return \Illuminate\Http\RedirectResponse
  */
-function success($url, $message = ''){
+function success($url, $message = '')
+{
     return redirect($url)->with('message', $message);
 }
 
@@ -100,7 +106,8 @@ function success($url, $message = ''){
  * @param int $status
  * @return $this
  */
-function error($message, $url = '',  $status = 422){
+function error($message, $url = '', $status = 422)
+{
     return $url ? redirect($url, $status)->withErrors($message) : redirect()->back()->withErrors($message)->withInput(\Illuminate\Support\Facades\Input::all());
 }
 
@@ -109,7 +116,8 @@ function error($message, $url = '',  $status = 422){
  * @param $path
  * @return string
  */
-function _package($path){
+function _package($path)
+{
     return asset('package/' . $path);
 }
 
@@ -119,7 +127,8 @@ function _package($path){
  * @param array $fileList
  * @return string
  */
-function createConcat($basePath, array $fileList){
+function createConcat($basePath, array $fileList)
+{
     $htmlMap = [
         'js' => '<script type="text/javascript" src="%s"></script>',
         'css' => '<link rel="stylesheet" href="%s">'
@@ -127,15 +136,15 @@ function createConcat($basePath, array $fileList){
     $extension = array_get(pathinfo(head($fileList)), 'extension');
     $htmlTpl = array_get($htmlMap, $extension);
     $basePath = rtrim(asset($basePath), '/');
-    if(empty($extension) || is_null($htmlTpl)){
+    if (empty($extension) || is_null($htmlTpl)) {
         dd(head($fileList));
         return '';
     }
-    if(env('TENGINE')){
+    if (env('TENGINE')) {
         return sprintf($htmlTpl, $basePath . '/??' . implode(',', $fileList));
     }
     $htmlStr = '';
-    foreach($fileList as $fileName){
+    foreach ($fileList as $fileName) {
         $htmlStr .= sprintf($htmlTpl, $basePath . '/' . $fileName);
     }
     return $htmlStr;
@@ -145,7 +154,8 @@ function createConcat($basePath, array $fileList){
  * 获取随机样式
  * @return mixed
  */
-function getRandClass(){
+function getRandClass()
+{
     $classMap = [
         'default', 'danger', 'warning', 'success', 'info', 'primary', 'inverse'
     ];
@@ -160,11 +170,12 @@ function getRandClass(){
  * @param $valueName
  * @return array
  */
-function array_melting(array $data, $keyName, $valueName){
+function array_melting(array $data, $keyName, $valueName)
+{
     $result = [];
-    foreach($data as $item){
+    foreach ($data as $item) {
         $value = array_get($item, $valueName);
-        if($key = array_get($item, $keyName)){
+        if ($key = array_get($item, $keyName)) {
             $result[$key] = $value;
             continue;
         }
@@ -179,9 +190,35 @@ function array_melting(array $data, $keyName, $valueName){
  * @param string $str
  * @return string
  */
-function handelTraceString($str){
+function handelTraceString($str)
+{
     $str = str_replace('#', '#####', $str);
     return \YuanChao\Editor\EndaEditor::MarkDecode($str);
 
+}
+
+function array_key_value(array $data, $keyName, $valueName)
+{
+    $result = [];
+    foreach ($data as $item) {
+        $result[array_get($item, $keyName)] = array_get($item, $valueName);
+    }
+    return $result;
+}
+
+/**
+ * 匹配模型数据
+ * @param string $modelName
+ * @param string $key
+ * @param array $valueList
+ * @return array
+ */
+function matchModelData($modelName, $key, array $valueList)
+{
+    $result = [];
+    if ($dataResult = app($modelName)->whereIn($key, $valueList)->get()) {
+        $result = array_pluck($dataResult->toArray(), $key);
+    }
+    return $result;
 }
 
