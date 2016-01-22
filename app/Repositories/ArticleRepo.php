@@ -27,8 +27,7 @@ class ArticleRepo
     public function storeArticle(array $articleData)
     {
         $articleData = $this->getAllFiledData($articleData);   //获取文章数据
-        $result = $this->articleModel->create($articleData);    //创建文章
-        return $result->id;
+        return $this->articleModel->create($articleData);
     }
 
     protected function getAllFiledData(array $data)
