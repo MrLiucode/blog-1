@@ -25,8 +25,8 @@ class ArticleRequest extends Request{
         return [
             'title' => 'required|max:50',
             'content' => 'required',
-            'category' => 'required|numeric',
-            'tags' => 'required',
+//            'category' => 'required',
+//            'tags' => 'required',
             'status' => 'required',
 //            'is_top' => 'required',
             'published_at' => 'required',
