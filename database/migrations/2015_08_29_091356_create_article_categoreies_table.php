@@ -13,7 +13,7 @@ class CreateArticleCategoreiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('article_categories', function(Blueprint $table){
+        Schema::create('article_category', function(Blueprint $table){
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('article_id')->index()->unsigned();
@@ -30,6 +30,6 @@ class CreateArticleCategoreiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('article_categories');
+        Schema::drop('article_category');
     }
 }
