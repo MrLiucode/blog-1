@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/', 'ArticleController@index'); //首页
+Route::resource('article', 'ArticleController');
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
     Route::get('/', 'HomeController@index');    //TODO:test
     Route::resource('article', 'ArticleController');    //文章模块
