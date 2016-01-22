@@ -17,6 +17,7 @@ abstract class Controller extends BaseController
 
         $appTheme = config('theme');
         Carbon::setLocale('zh');
+        View::share('optionList', []);
 
         View::prependNamespace(
             $appTheme, base_path() . DIRECTORY_SEPARATOR .  'resources' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $appTheme
