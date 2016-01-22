@@ -26,6 +26,23 @@ class Article implements \App\Contracts\IArticle
     }
 
     /**
+     * 获取文章列表
+     * @param int $pageSize
+     * @param  array $withParams
+     * @return ArticleModel
+     */
+    public function getList($pageSize = 10, array $withParams = [])
+    {
+        return $this->articleModel
+            ->where('published_at', '<=', time())
+            ->where('status', '=', 1)
+            ->with($withParams)
+            ->orderBy('published_at')
+            ->paginate($pageSize);
+    }
+
+
+    /**
      * 验证表单规则   TODO:这块需要加到表单验证部分，而不是加到当前接口中
      * @param ArticleRequest $request
      * @return bool

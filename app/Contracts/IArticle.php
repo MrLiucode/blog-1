@@ -5,6 +5,15 @@ use App\Models\Article as ArticleModel;
 
 interface IArticle
 {
+
+    /**
+     * 获取文章列表
+     * @param int $pageSize
+     * @param array $withParams
+     * @return ArticleModel
+     */
+    public function getList($pageSize = 10, array $withParams = []);
+
     /**
      * 保存文章
      * @param ArticleRequest $request
