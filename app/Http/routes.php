@@ -15,6 +15,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('/', 'HomeController@index');    //TODO:test
     Route::resource('article', 'ArticleController');    //文章模块
     Route::resource('category', 'CategoryController');  //文章分类处理模块
+    Route::resource('tag', 'TagsController');   //文章标签模块
     Route::resource('errorLog', 'ErrorLogController', ['only' => ['index', 'show']]);  //错误日志模块
 });
 
