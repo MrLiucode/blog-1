@@ -10,7 +10,15 @@ elixir(function (mix) {
 
     //首页css
     mix.styles([
-        resourcesDir + '/css/site.min.css', resourcesDir + '/css/common.css'
+        resourcesDir + '/css/components/collection.css',
+        resourcesDir + '/css/components/repo-card.css',
+        resourcesDir + '/css/components/collection.css',
+        resourcesDir + '/css/sections/repo-list.css',
+        resourcesDir + '/css/sections/mini-repo-list.css',
+        resourcesDir + '/css/components/boxed-group.css',
+        resourcesDir + '/css/globals/common.css',
+        resourcesDir + '/css/globals/responsive.css',
+        resourcesDir + '/css/pages/index.css'
     ], publicCssDir + '/common.css');
 
     mix.scripts([
