@@ -13,6 +13,7 @@
 
 Route::get('/', 'ArticleController@index'); //首页
 Route::resource('article', 'ArticleController');
+Route::get('categoryArticle/{category}', 'ArticleController@categoryArticle');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
     Route::get('/', 'HomeController@index');    //TODO:test
