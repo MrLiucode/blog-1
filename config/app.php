@@ -201,6 +201,8 @@ return [
         'Form'      => Illuminate\Html\FormFacade::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
 
+        'ViewData' => App\Facades\ViewData::class,
+
     ],
 
     'theme' => env('THEME'),
