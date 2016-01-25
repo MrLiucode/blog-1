@@ -9,10 +9,11 @@
  * @author    Fackeronline <1077341744@qq.com>
  * @link      https://github.com/Fakeronline
  */
- 
+
 namespace App\Models;
 
-class Article extends BaseModel{
+class Article extends BaseModel
+{
 
     protected $dates = ['created_at', 'published_at', 'updated_at'];
 
@@ -33,6 +34,22 @@ class Article extends BaseModel{
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published_at', '<=', time())
+            ->where('status', '=', 1);
+    }
+
+    public function scopeOrderByPublished($query)
+    {
+        return $query->orderBy('published_at', 'DESC');
+    }
+
+    public function scopeOrderByHits($query)
+    {
+        return $query->orderBy('hits', 'DESC');
     }
 
 }

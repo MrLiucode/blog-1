@@ -14,6 +14,7 @@ namespace App\Models;
 
 class Category extends BaseModel{
 
+
     protected $table = 'categories';
 
     /**
@@ -24,4 +25,10 @@ class Category extends BaseModel{
     {
         return $this->belongsToMany(Article::class);    //一个文章分类下有多个文章
     }
+
+    public function scopeCategoryId($query, $categoryId)
+    {
+        return $query->where('id', $categoryId);
+    }
+
 }
