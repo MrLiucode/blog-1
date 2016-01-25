@@ -254,3 +254,15 @@ function strCut($string, $length, $suffix = '...')
     return $resultString;
 }
 
+/**
+ * @param $markdownContent
+ * @return string
+ */
+function conversionMarkdown($markdownContent)
+{
+    $endaEditor = app('YuanChao\Editor\Facade\EndaEditorFacade');
+    return !empty($markdownContent) ? $endaEditor::MarkDecode($markdownContent) : '';
+}
+
+
+
