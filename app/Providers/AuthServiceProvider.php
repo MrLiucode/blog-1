@@ -5,8 +5,6 @@ namespace App\Providers;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-use Auth;
-
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -30,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('route-permission', function($user, $routeName) {
             $permitted = false;
-            $user->load('groups', 'groups.permissions');    //Ô¤ÔØÈëÈ¨ÏŞ×éºÍÈ¨ÏŞÁĞ±í
+            $user->load('groups', 'groups.permissions');    //Ô¤ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½Ğ±ï¿½
             foreach($user->groups as $group) {
                 if($group->permissions->find($routeName)) {
                     $permitted = true;
