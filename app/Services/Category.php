@@ -12,9 +12,21 @@
 
 namespace App\Services;
 use App\Contracts\ICategory;
+use App\Models\Article as ArticleModel;
 use App\Models\Category as CategoryModel;
+use Illuminate\Pagination\Paginator;
 
 class Category implements ICategory{
+
+    /**
+     * @var CategoryModel
+     */
+    protected $model;
+
+    public function __construct(CategoryModel $model)
+    {
+        $this->model = $model;
+    }
 
     /**
      * 获取所有分类列表
@@ -25,7 +37,7 @@ class Category implements ICategory{
      */
     public function lists($perPage = 15, $selectParams = '*', $withParams = [])
     {
-        return CategoryModel::select($selectParams)->with($withParams)->orderBy('order', 'DESC')->paginate($perPage);
+        return $this->model->select($selectParams)->with($withParams)->orderBy('order', 'DESC')->paginate($perPage);
     }
 
     /**
@@ -35,8 +47,18 @@ class Category implements ICategory{
      */
     public function getCategory($categoryId)
     {
-        return CategoryModel::find($categoryId);
+        return $this->model->findOrFail($categoryId);
     }
+
+    public function getCategoryArticle($categoryId, $perPage = 15)
+    {
+        $article =  app(ArticleModel::class)->categories()->find($categoryId);
+        dd($article);
+        $category = $this->model->with('article')->findOrFail($categoryId);
+        dd($category->article->key);
+        return new Paginator($category->article, $perPage);
+    }
+
 
     /**
      * 根据ID更新文章分类
@@ -46,7 +68,7 @@ class Category implements ICategory{
      */
     public function updateCategory($categoryId, array $data)
     {
-        $category = CategoryModel::find($categoryId);
+        $category = $this->model->find($categoryId);
         return $category ? $category->update($data) : $category;
     }
 
@@ -57,7 +79,7 @@ class Category implements ICategory{
      */
     public function storeCategory(array $data)
     {
-        return CategoryModel::create($data);
+        return $this->model->create($data);
     }
 
     /**
@@ -67,7 +89,7 @@ class Category implements ICategory{
      */
     public function delCategory($categoryId)
     {
-        return CategoryModel::destroy($categoryId);
+        return $this->model->destroy($categoryId);
     }
 
 }

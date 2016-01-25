@@ -36,6 +36,17 @@ class Tag implements ITag
     }
 
     /**
+     * 根据ID获取标签
+     * @param int $tagId
+     * @return TagModel
+     */
+    public function getTag($tagId)
+    {
+        return $this->tagModel->findOrFail($tagId);
+    }
+
+
+    /**
      * 保存标签
      * @param TagRequest $request
      * @return TagModel|null

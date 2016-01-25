@@ -18,6 +18,9 @@ class Article implements \App\Contracts\IArticle
      */
     protected $errorMsg;
 
+    /**
+     * @var ArticleModel
+     */
     protected $articleModel;
 
     public function __construct(ArticleModel $model)
@@ -34,10 +37,36 @@ class Article implements \App\Contracts\IArticle
     public function getList($pageSize = 10, array $withParams = [])
     {
         return $this->articleModel
-            ->where('published_at', '<=', time())
-            ->where('status', '=', 1)
+            ->published()
             ->with($withParams)
-            ->orderBy('published_at')
+            ->orderByPublished()
+            ->paginate($pageSize);
+    }
+
+    /**
+     * 根据文章ID获取文章
+     * @param $articleId
+     * @return mixed
+     */
+    public function getArticle($articleId)
+    {
+        return $this->articleModel->findOrFail($articleId);
+    }
+
+
+    /**
+     * 获取点击量最大的文章列表
+     * @param int $pageSize
+     * @param array $withParams
+     * @return ArticleModel
+     */
+    public function hotList($pageSize = 10, array $withParams = [])
+    {
+        return $this->articleModel
+            ->select(['id', 'title'])
+            ->published()
+            ->with($withParams)
+            ->orderByHits()
             ->paginate($pageSize);
     }
 
