@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Article;
-use App\Models\Tag as TagModel;
+use App\Contracts\IArticle;
+use App\Contracts\ICategory;
+use App\Contracts\ITag;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -26,14 +27,19 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-
+        //文章路由模型
         $router->bind('article', function ($articleId) {
-            return Article::findOrFail($articleId);
+            return app(IArticle::class)->getArticle($articleId);
         });
 
         //标签路由模型
         $router->bind('tag', function ($tagId) {
-            return TagModel::findOrFail($tagId);
+            return app(ITag::class)->getTag($tagId);
+        });
+
+        //文章分类路由模型
+        $router->bind('category', function ($categoryId) {
+            return app(ICategory::class)->getCategory($categoryId);
         });
 
         parent::boot($router);
