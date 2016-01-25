@@ -4,95 +4,48 @@ namespace App\Http\Controllers;
 
 use App\Contracts\IArticle;
 use App\Contracts\ICategory;
-use App\Contracts\ITag;
-use Illuminate\Http\Request;
+use App\Models\Article as ArticleModel;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Models\Category as CategoryModel;
 
-class ArticleController extends Controller
+class ArticleController extends BaseController
 {
+
+    const VIEW_LIST = 'articleList';
+
     /**
      * Display a listing of the resource.
      *
      * @param IArticle $articleService
-     * @param ICategory $categoryService
-     * @param ITag $tagService
      * @return \Illuminate\Http\Response
      */
-    public function index(IArticle $articleService, ICategory $categoryService, ITag $tagService)
+    public function index(IArticle $articleService)
     {
         $articleList = $articleService->getList(10, ['tags', 'categories']);
-        $category = $categoryService->lists(99);
-        $hotArticle = [];
-        $hotTagList = $tagService->getList(999);
-        $goodArticle = [];
-        return fontView('index', compact('articleList', 'category', 'hotArticle', 'hotTagList', 'goodArticle'));
+        return fontView(self::VIEW_LIST, compact('articleList'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function categoryArticle(CategoryModel $categoryModel)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        dump(app(ArticleModel::class)->categories()->relations());
+        $articleList = [];
+        return fontView(self::VIEW_LIST, compact('articleList'));
+        return ;
+        $articleList = $categoryModel->article;
+        dd(app(ICategory::class)->getCategoryArticle($categoryModel->id));
+        dd($articleList);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  ArticleModel $article
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ArticleModel $article)
     {
-        return fontView('article.edit');
+        return fontView('article', compact('article'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
