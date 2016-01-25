@@ -15,6 +15,13 @@ interface ITag
     public function getList($perPage = 15, $selectParams = '*', $withParams = []);
 
     /**
+     * 根据ID获取标签
+     * @param int $tagId
+     * @return TagModel
+     */
+    public function getTag($tagId);
+
+    /**
      * 保存标签
      * @param TagRequest $request
      * @return TagModel|null

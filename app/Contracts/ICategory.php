@@ -14,7 +14,8 @@ namespace App\Contracts;
 
 use App\Models\Category;
 
-interface ICategory{
+interface ICategory
+{
 
     /**
      * 获取所有分类列表
@@ -31,6 +32,8 @@ interface ICategory{
      * @return Category|null
      */
     public function getCategory($categoryId);
+
+    public function getCategoryArticle($categoryId);
 
     /**
      * 根据ID更新文章分类

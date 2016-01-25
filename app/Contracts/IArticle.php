@@ -7,12 +7,27 @@ interface IArticle
 {
 
     /**
-     * 获取文章列表
+     * 获取已发布的文章列表
      * @param int $pageSize
      * @param array $withParams
      * @return ArticleModel
      */
     public function getList($pageSize = 10, array $withParams = []);
+
+    /**
+     * 根据文章ID获取文章
+     * @param $articleId
+     * @return mixed
+     */
+    public function getArticle($articleId);
+
+    /**
+     * 获取点击量最大的文章列表
+     * @param int $pageSize
+     * @param array $withParams
+     * @return ArticleModel
+     */
+    public function hotList($pageSize = 10, array $withParams = []);
 
     /**
      * 保存文章
