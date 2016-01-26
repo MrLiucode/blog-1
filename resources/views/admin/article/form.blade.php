@@ -9,7 +9,7 @@
     <div class="form-group">
         <label class="col-md-2 control-label">文章分类</label>
         <div class="col-md-10">
-            {!! Form::select('category[]', $categoryList, $categoryList, ['class' => 'form-control selectized', 'id' => 'category', 'placeholder' => '请选择文章分类', 'tabindex' => '-1', 'multiple' => 'multiple']) !!}
+            {!! Form::select('category[]', [], null, ['class' => 'form-control selectized', 'id' => 'category', 'placeholder' => '请选择文章分类', 'tabindex' => '-1', 'multiple' => 'multiple']) !!}
         </div>
     </div>
 
