@@ -11,11 +11,17 @@
 |
 */
 
+/**
+ * 前台模块
+ */
 Route::get('/', 'ArticleController@index'); //首页
-Route::resource('article', 'ArticleController');
-Route::get('categoryArticle/{category}', 'ArticleController@categoryArticle');
+Route::get('categoryArticle/{category}', 'ArticleController@categoryArticle');  //分类查询文章
+Route::get('TagArticle/{tag}', 'ArticleController@tagArticle'); //标签查询文章
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
+/**
+ * 后台模块
+ */
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index');    //TODO:test
     Route::resource('article', 'ArticleController');    //文章模块
     Route::resource('category', 'CategoryController');  //文章分类处理模块
@@ -26,7 +32,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 /**
  * ACL 权限控制组
  */
-Route::group(['prefix' => 'admin/acl', 'namespace' => 'Admin', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'admin/acl', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::resource('group', 'ACLGroupController', ['except' => ['show']]); //权限组模块
     Route::resource('permission', 'ACLPermissionController', [
         'except' => ['create', 'show']  //排除路由
@@ -41,11 +47,6 @@ Route::controllers([
     'auth' => 'Auth\AuthController',
 ]);
 
-if(env('APP_DEBUG')){
-    Route::resource('test', 'TestController');
-}
-
-Route::get('testPermission', ['as' => 'test.permission', 'uses' => 'TestController@test']);
-if(env('APP_DEBUG')){
+if (env('APP_DEBUG')) {
     Route::resource('test', 'TestController');
 }
