@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Contracts\IArticle;
 use App\Contracts\ICategory;
 use App\Contracts\ITag;
+use App\Contracts\IUser;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -40,6 +41,13 @@ class RouteServiceProvider extends ServiceProvider
         //文章分类路由模型
         $router->bind('category', function ($categoryId) {
             return app(ICategory::class)->getCategory($categoryId);
+        });
+
+        /**
+         * 用户路由模型
+         */
+        $router->bind('user', function ($userId) {
+            return $this->app->make(IUser::class)->getUser($userId);
         });
 
         parent::boot($router);
