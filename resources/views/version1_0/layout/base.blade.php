@@ -88,9 +88,6 @@
 @section('script')
 @stop
         <!-- / footer -->
-{{--<script src="{{ homeAsset('/js/geopattern.js') }}"></script>--}}
-{{--<script src="{{ homeAsset('/js/prism.js') }}"></script>--}}
-{{--<link rel="stylesheet" href="{{ homeAsset('/css/globals/prism.css') }}">--}}
 
 </body>
 </html>

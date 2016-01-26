@@ -69,6 +69,11 @@
 @endsection
 
 @section('script')
-    {!! createConcat('') !!}
+    {!! createConcat('static/package', [
+        'prism/prism.js'
+    ]) !!}
+    {!! createConcat('static/package', [
+        'prism/themes/prism.css'
+    ]) !!}
 @stop
 
