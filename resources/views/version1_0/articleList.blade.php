@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="pagination text-align">
-            {!! $articleList && $articleList->render(new \App\Components\CustomPage($articleList)) !!}
+            {!! $articleList->render(new \App\Components\CustomPage($articleList)) !!}
         </div>
         <!-- /pagination -->
     </section>
