@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Contracts\IArticle;
 use App\Contracts\ICategory;
 use App\Contracts\ITag;
+use App\Contracts\IUser;
 use App\Models\Article as ArticleModel;
 
 use App\Http\Requests;
 use App\Models\Category as CategoryModel;
 use App\Models\Tag as TagModel;
+use App\Models\User as UserModel;
 
 class ArticleController extends BaseController
 {
@@ -51,6 +53,18 @@ class ArticleController extends BaseController
     public function tagArticle(TagModel $tagModel, ITag $tagService)
     {
         $this->articleList = $tagService->getTagArticle($tagModel);
+        return $this->displayArticleList();
+    }
+
+    /**
+     * 根据用户展示文章
+     * @param UserModel $userModel
+     * @param IUser $userService
+     * @return \Illuminate\Http\Response
+     */
+    public function userArticle(UserModel $userModel, IUser $userService)
+    {
+        $this->articleList = $userService->getUserArticle($userModel);
         return $this->displayArticleList();
     }
 
