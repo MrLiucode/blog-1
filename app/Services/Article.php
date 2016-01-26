@@ -32,15 +32,16 @@ class Article implements \App\Contracts\IArticle
      * 获取文章列表
      * @param int $pageSize
      * @param  array $withParams
+     * @param array $columns
      * @return ArticleModel
      */
-    public function getList($pageSize = 10, array $withParams = [])
+    public function getList($pageSize = 10, array $withParams = [], $columns = ['*'])
     {
         return $this->articleModel
             ->published()
             ->with($withParams)
             ->orderByPublished()
-            ->paginate($pageSize);
+            ->paginate($pageSize, $columns, 'articlePage');
     }
 
     /**
@@ -58,16 +59,17 @@ class Article implements \App\Contracts\IArticle
      * 获取点击量最大的文章列表
      * @param int $pageSize
      * @param array $withParams
+     * @param array $columns
      * @return ArticleModel
      */
-    public function hotList($pageSize = 10, array $withParams = [])
+    public function hotList($pageSize = 10, array $withParams = [], $columns = ['*'])
     {
         return $this->articleModel
             ->select(['id', 'title'])
             ->published()
             ->with($withParams)
             ->orderByHits()
-            ->paginate($pageSize);
+            ->paginate($pageSize, $columns, 'hotArticleList');
     }
 
 

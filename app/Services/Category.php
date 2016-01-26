@@ -11,12 +11,14 @@
  */
 
 namespace App\Services;
+
 use App\Contracts\ICategory;
 use App\Models\Article as ArticleModel;
 use App\Models\Category as CategoryModel;
 use Illuminate\Pagination\Paginator;
 
-class Category implements ICategory{
+class Category implements ICategory
+{
 
     /**
      * @var CategoryModel
@@ -33,11 +35,12 @@ class Category implements ICategory{
      * @param int $perPage
      * @param string|array $selectParams
      * @param string|array $withParams
+     * @param array $columns
      * @return mixed
      */
-    public function lists($perPage = 15, $selectParams = '*', $withParams = [])
+    public function lists($perPage = 15, $selectParams = '*', $withParams = [], $columns = ['*'])
     {
-        return $this->model->select($selectParams)->with($withParams)->orderBy('order', 'DESC')->paginate($perPage);
+        return $this->model->select($selectParams)->with($withParams)->orderBy('order', 'DESC')->paginate($perPage, $columns, 'categoryPage');
     }
 
     /**
@@ -50,13 +53,15 @@ class Category implements ICategory{
         return $this->model->findOrFail($categoryId);
     }
 
-    public function getCategoryArticle($categoryId, $perPage = 15)
+    /**
+     * @param CategoryModel $model
+     * @param int $perPage
+     * @param array $columns
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function getCategoryArticle(CategoryModel $model, $perPage = 15, $columns = ['*'])
     {
-        $article =  app(ArticleModel::class)->categories()->find($categoryId);
-        dd($article);
-        $category = $this->model->with('article')->findOrFail($categoryId);
-        dd($category->article->key);
-        return new Paginator($category->article, $perPage);
+        return $model->article()->paginate($perPage, $columns, 'categoryArticlePage');
     }
 
 
