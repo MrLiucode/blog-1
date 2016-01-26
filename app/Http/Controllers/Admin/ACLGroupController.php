@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contracts\IACLGroup;
 use App\Contracts\IACLPermission;
+use App\Models\AclGroup;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -73,19 +74,14 @@ class ACLGroupController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
-     * @param   IACLGroup $alcGroup
+     * @param  AclGroup $group
      * @param   IACLPermission $aclPermission
      * @return  View
      */
-    public function edit($id, IACLGroup $alcGroup, IACLPermission $aclPermission)
+    public function edit(AclGroup $group, IACLPermission $aclPermission)
     {
         $permissionList = $aclPermission->lists(9999);
-        $group = $alcGroup->getGroupById($id);
         $groupPermissionList = array_get_value($group->permissions->toArray(), 'id');
-        if (!$group) {
-            return error('该权限组不存在或已被删除!', route(self::ROUTE_INDEX));
-        }
         return adminView(self::VIEW_EDIT, compact('group', 'permissionList', 'groupPermissionList'));
     }
 
@@ -117,13 +113,13 @@ class ACLGroupController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     * @param   IACLGroup $aclGroup
+     * @param  AclGroup $groupModel
+     * @param  IACLGroup $aclGroupService
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, IACLGroup $aclGroup)
+    public function destroy(AclGroup $groupModel, IACLGroup $aclGroupService)
     {
-        $result = $aclGroup->destroyGroup($id);
+        $result = $aclGroupService->destroyGroup($groupModel);
         return $result ? response(['msg' => '删除权限组成功!']) : response("权限组不存在或已删除!", 422);
     }
 }

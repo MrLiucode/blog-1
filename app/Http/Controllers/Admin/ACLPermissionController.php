@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Contracts\IACLPermission;
 
 use App\Http\Requests;
+use App\Models\AclPermission as PermissionModel;
+use App\Models\AclPermission;
 
 class ACLPermissionController extends BaseController
 {
@@ -20,7 +22,7 @@ class ACLPermissionController extends BaseController
      * @param IACLPermission $aclPermission
      * @return \Illuminate\Http\Response
      */
-    public function index(IACLPermission $aclPermission )
+    public function index(IACLPermission $aclPermission)
     {
         $permissionList = $aclPermission->lists();  //获取已分配的权限列表
         $undistributedRouteList = $aclPermission->undistributedRouteList();    //获取未分配的路由列表
@@ -30,7 +32,7 @@ class ACLPermissionController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Requests\PermissionRequest  $request
+     * @param  Requests\PermissionRequest $request
      * @param \App\Contracts\IACLPermission $permission
      * @return \Illuminate\Http\Response
      */
@@ -43,39 +45,39 @@ class ACLPermissionController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @param  \App\Contracts\IACLPermission    $permission
+     * @param  int $id
+     * @param  \App\Contracts\IACLPermission $permission
      * @return \Illuminate\Http\Response
      */
     public function edit($id, IACLPermission $permission)
     {
-        return $permission->getPermissionById($id);
+        return $permission->getPermission($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @param  \App\Contracts\IACLPermission    $permission
+     * @param  AclPermission $permissionModel
+     * @param  Requests\PermissionRequest $request
+     * @param  IACLPermission $permissionService
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\PermissionRequest $request, $id, IACLPermission $permission)
+    public function update(AclPermission $permissionModel, Requests\PermissionRequest $request, IACLPermission $permissionService)
     {
-        $result = $permission->updatePermission($request, $id);
+        $result = $permissionService->updatePermission($permissionModel, $request);
         return $result ? response(['msg' => '更新权限成功!']) : response("更新权限失败!", 422);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @param \App\Contracts\IACLPermission    $permission
+     * @param  AclPermission $permissionModel
+     * @param IACLPermission $permissionService
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, IACLPermission $permission)
+    public function destroy(AclPermission $permissionModel, IACLPermission $permissionService)
     {
-        $result = $permission->destroyPermission($id);
+        $result = $permissionService->destroyPermission($permissionModel);
         return $result ? response(['msg' => '删除成功!']) : response("删除失败!", 422);
     }
 }
