@@ -6,6 +6,7 @@ use App\Contracts\IArticle;
 use App\Contracts\ICategory;
 use App\Contracts\ITag;
 use App\Contracts\IUser;
+use App\Contracts\IACLGroup;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -48,6 +49,13 @@ class RouteServiceProvider extends ServiceProvider
          */
         $router->bind('user', function ($userId) {
             return $this->app->make(IUser::class)->getUser($userId);
+        });
+
+        /**
+         * 权限组路由模型
+         */
+        $router->bind('group', function ($groupId) {
+            return $this->app->make(IACLGroup::class)->getGroup($groupId);
         });
 
         parent::boot($router);
