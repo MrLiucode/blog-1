@@ -15,50 +15,53 @@
 namespace App\Contracts;
 
 use App\Http\Requests\PermissionRequest;
+use App\Models\AclPermission as AclPermissionModel;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface IACLPermission
 {
     /**
-     * »ñÈ¡ËùÓĞÈ¨ÏŞÁĞ±í
-     * @param int $pageSize
-     * @param array $withParams
-     * @return \App\Models\AclPermission
+     * æƒé™åˆ—è¡¨
+     * @param int $perPage          éœ€è¦è·å–çš„æ•°é‡
+     * @param array $withParams     é¢„è½½å…¥çš„å‚æ•°
+     * @param array $columns        éœ€è¦æŸ¥è¯¢çš„å‚æ•°
+     * @return LengthAwarePaginator
      */
-    public function lists($pageSize = 15, array $withParams = []);
+    public function lists($perPage = 15, array $withParams = [], $columns = ['*']);
 
     /**
-     * »ñÈ¡ËùÓĞÎ´·ÖÅäÈ¨ÏŞµÄÂ·ÓÉÁĞ±í
+     * è·å–æ‰€æœ‰æœªåˆ†é…æƒé™çš„è·¯ç”±åˆ—è¡¨
      * @return array
      */
     public function undistributedRouteList();
 
     /**
-     * Éú³ÉÈ¨ÏŞ
+     * ç”Ÿæˆæƒé™
      * @param PermissionRequest $request
-     * @return \App\Models\AclPermission|null
+     * @return AclPermissionModel|null
      */
     public function createPermission(PermissionRequest $request);
 
     /**
-     * ¸ù¾İÈ¨ÏŞID»ñÈ¡È¨ÏŞ
+     * æ ¹æ®IDè·å–æƒé™
      * @param int $permissionId
-     * @return \App\Models\AclPermission|null
+     * @return AclPermissionModel|null
      */
-    public function getPermissionById($permissionId);
+    public function getPermission($permissionId);
 
     /**
-     * ¸ù¾İID¸üĞÂÈ¨ÏŞ
+     * æ›´æ–°æƒé™
      * @param PermissionRequest $request
-     * @param $permissionId
-     * @return \App\Models\AclPermission|null
+     * @param AclPermissionModel $permissionModel
+     * @return AclPermissionModel|null
      */
-    public function updatePermission(PermissionRequest $request, $permissionId);
+    public function updatePermission(AclPermissionModel $permissionModel, PermissionRequest $request);
 
     /**
-     * ¸ù¾İIDÉ¾³ıÈ¨ÏŞ
+     * åˆ é™¤æƒé™
      * @param int $permissionId
      * @return int
      */
-    public function destroyPermission($permissionId);
+    public function destroyPermission(AclPermissionModel $permissionModel);
 
 }

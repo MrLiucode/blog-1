@@ -16,6 +16,7 @@ namespace App\Services;
 use App\Contracts\IACLPermission;
 use App\Http\Requests\PermissionRequest;
 use App\Models\AclPermission as PermissionModel;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ACLPermission implements IACLPermission
 {
@@ -23,11 +24,12 @@ class ACLPermission implements IACLPermission
      * 获取所有权限列表
      * @param int $pageSize
      * @param array $withParams
-     * @return \App\Models\AclPermission
+     * @param array $columns
+     * @return LengthAwarePaginator
      */
-    public function lists($pageSize = 15, array $withParams = [])
+    public function lists($pageSize = 15, array $withParams = [], $columns = ['*'])
     {
-        return PermissionModel::with($withParams)->paginate($pageSize);
+        return PermissionModel::with($withParams)->paginate($pageSize, $columns, 'permissionPage');
     }
 
     /**
@@ -86,31 +88,31 @@ class ACLPermission implements IACLPermission
      * @param int $permissionId
      * @return \App\Models\AclPermission|null
      */
-    public function getPermissionById($permissionId)
+    public function getPermission($permissionId)
     {
-        return PermissionModel::find($permissionId);
+        return PermissionModel::findOrFail($permissionId);
     }
 
     /**
-     * 根据ID删除权限
-     * @param int $permissionId
+     * 删除权限
+     * @param PermissionModel $permissionModel
      * @return int
      */
-    public function destroyPermission($permissionId)
+    public function destroyPermission(PermissionModel $permissionModel)
     {
-        return PermissionModel::destroy($permissionId);
+        return $permissionModel->delete();
     }
 
     /**
-     * 根据ID更新权限
+     * 更新权限
      * @param PermissionRequest $request
-     * @param $permissionId
-     * @return \App\Models\AclPermission|null
+     * @param PermissionModel $permissionModel
+     * @return PermissionModel|null
      */
-    public function updatePermission(PermissionRequest $request, $permissionId)
+    public function updatePermission(PermissionModel $permissionModel, PermissionRequest $request)
     {
-        $permission = PermissionModel::find($permissionId);
-        return $permission ? $permission->update($request->all()) : $permission;
+        return $permissionModel->update($request->all());
     }
+
 
 }

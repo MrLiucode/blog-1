@@ -13,29 +13,31 @@
 
 namespace App\Contracts;
 
-//TODO:1.Éú³ÉÈ¨ÏŞ×éÊ±²»Ó¦¸ÃÖ±½Ó´«Êı×é£¬Ó¦¸Ã´« ACLGroupRequest ¶ÔÏó
-//TODO:2.È¨ÏŞ×éÖĞÊàÊı¾İµÄÉú³É·½·¨´«²ÎÓ¦¸Ã´« ACLGroup Model ¶ÔÏó(´«Model¶ÔÏó¿É¼õÉÙ²éÑ¯)
-use App\Models\AclGroup;
+//TODO:1.ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ó¦ï¿½ï¿½Ö±ï¿½Ó´ï¿½ï¿½ï¿½ï¿½é£¬Ó¦ï¿½Ã´ï¿½ ACLGroupRequest ï¿½ï¿½ï¿½ï¿½
+//TODO:2.È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İµï¿½ï¿½ï¿½ï¿½É·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã´ï¿½ ACLGroup Model ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Modelï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½Ù²ï¿½Ñ¯)
+use App\Models\AclGroup as GroupModel;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface IACLGroup
 {
     /**
-     * »ñÈ¡È¨ÏŞ×éÁĞ±í
-     * @param int $pageSize
-     * @param array $withParams
-     * @return \App\Models\AclGroup
+     * è·å–æƒé™ç»„åˆ—è¡¨
+     * @param int $perPage          éœ€è¦è·å–çš„æ•°é‡
+     * @param array $withParams     é¢„è½½å…¥å‚æ•°
+     * @param array $columns        éœ€è¦æŸ¥è¯¢çš„å­—æ®µ
+     * @return LengthAwarePaginator
      */
-    public function lists($pageSize = 15, array $withParams = []);
+    public function lists($perPage = 15, array $withParams = [], $columns = ['*']);
 
     /**
-     * ´´½¨È¨ÏŞ×é
+     * åˆ›å»ºæƒé™ç»„
      * @param array $data
-     * @return \App\Models\AclGroup
+     * @return GroupModel
      */
     public function createGroup(array $data);
 
     /**
-     * Éú³ÉÈ¨ÏŞ×éÖĞÊà
+     * ç”Ÿæˆæƒé™ä¸­æ¢
      * @param $groupId
      * @param array $permissionId
      * @return bool
@@ -43,33 +45,28 @@ interface IACLGroup
     public function createGroupBackbone($groupId, array $permissionId);
 
     /**
-     * ¸ù¾İID»ñÈ¡È¨ÏŞ·Ö×é
+     * æ ¹æ®IDè·å–æƒé™ç»„
      * @param int $groupId
-     * @return \App\Models\AclGroup
+     * @return GroupModel
      */
-    public function getGroupById($groupId);
+    public function getGroup($groupId);
+
+
+    public function updateGroup(GroupModel $groupModel, array $data);
 
     /**
-     * ¸üĞÂÈ¨ÏŞ×é
-     * @param int   $id                 È¨ÏŞ×éID
-     * @param array $data               È¨ÏŞ×éÊı¾İ
-     * @return mixed
-     */
-    public function updateGroup($id, array $data);
-
-    /**
-     * ¸üĞÂÈ¨ÏŞ×éÖĞÊàÊı¾İ
+     * æ›´æ–°æƒé™ç»„ä¸­æ¢
      * @param int   $groupId
      * @param array $permissionIdList
-     * @return bool|AclGroup
+     * @return bool|GroupModel
      */
     public function updateGroupBackbone($groupId, array $permissionIdList);
 
     /**
-     * É¾³ıÈ¨ÏŞ×é
-     * @param int $groupId  È¨ÏŞ×éID
+     * åˆ é™¤æƒé™ç»„
+     * @param GroupModel $groupModel
      * @return bool
      */
-    public function destroyGroup($groupId);
+    public function destroyGroup(GroupModel $groupModel);
 
 }

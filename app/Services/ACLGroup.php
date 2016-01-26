@@ -16,19 +16,33 @@ namespace App\Services;
 use App\Contracts\IACLGroup;
 use App\Models\AclGroup as ACLGroupModel;
 use App\Models\AclPermission;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ACLGroup implements IACLGroup
 {
     /**
-     * 获取权限组列表
-     * @param int $pageSize
-     * @param array $withParams
-     * @return AclGroup
+     * 权限组模型
+     * @var ACLGroupModel
      */
-    public function lists($pageSize = 15, array $withParams = [])
+    protected $groupModel;
+
+    public function __construct(ACLGroupModel $model)
     {
-        return ACLGroupModel::with($withParams)->paginate($pageSize);
+        $this->groupModel = $model;
     }
+
+    /**
+     * 获取权限组列表
+     * @param int $perPage 需要获取的数量
+     * @param array $withParams 预载入参数
+     * @param array $columns 需要查询的字段
+     * @return LengthAwarePaginator
+     */
+    public function lists($perPage = 15, array $withParams = [], $columns = ['*'])
+    {
+        return $this->groupModel->with($withParams)->paginate($perPage, $columns, 'alcGroupPage');
+    }
+
 
     /**
      * 创建权限组
@@ -37,7 +51,7 @@ class ACLGroup implements IACLGroup
      */
     public function createGroup(array $data)
     {
-        $group = ACLGroupModel::where('name', array_get($data, 'name', ''))->first();
+        $group = $this->groupModel->where('name', array_get($data, 'name', ''))->first();
         return $group ? false : ACLGroupModel::create($data);
     }
 
@@ -59,11 +73,10 @@ class ACLGroup implements IACLGroup
             return false;
         }
         try {
-            $this->getGroupById($groupId)->permissions()->attach($permissionId);
+            $this->getGroup($groupId)->permissions()->attach($permissionId);
         } catch (\Exception $e) {
             return false;
         }
-
         return true;
     }
 
@@ -72,22 +85,22 @@ class ACLGroup implements IACLGroup
      * @param int $groupId
      * @return \App\Models\AclGroup
      */
-    public function getGroupById($groupId)
+    public function getGroup($groupId)
     {
-        return ACLGroupModel::find($groupId);
+        return $this->groupModel->findOrFail($groupId);
     }
 
     /**
      * 更新权限组
-     * @param int $id 权限组ID
-     * @param array $data 权限组数据
-     * @return mixed
+     * @param ACLGroupModel $groupModel
+     * @param array $data
+     * @return bool|int
      */
-    public function updateGroup($id, array $data)
+    public function updateGroup(ACLGroupModel $groupModel, array $data)
     {
-        $group = $this->getGroupById($id);
-        return $group ? $group->update($data) : false;
+        return $groupModel->update($data);
     }
+
 
     /**
      * 更新权限组中枢数据
@@ -97,13 +110,13 @@ class ACLGroup implements IACLGroup
      */
     public function updateGroupBackbone($groupId, array $permissionIdList)
     {
-        $group = $this->getGroupById($groupId);
-        if(!$group){
+        $group = $this->getGroup($groupId);
+        if (!$group) {
             return false;
         }
-        try{
+        try {
             $group->permissions()->detach();
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return false;
         }
         $this->createGroupBackbone($groupId, $permissionIdList);  //更新权限组中枢关系
@@ -112,17 +125,13 @@ class ACLGroup implements IACLGroup
 
     /**
      * 删除权限组
-     * @param int $groupId 权限组ID
+     * @param \App\Models\AclGroup $groupModel
      * @return bool
      */
-    public function destroyGroup($groupId)
+    public function destroyGroup(\App\Models\AclGroup $groupModel)
     {
-        $group = $this->getGroupById($groupId);
-        if(!$group){
-            return true;
-        }
-        $group->permissions()->detach();    //移除中枢数据
-        return $group->delete();
+        $groupModel->permissions()->detach();    //移除中枢数据
+        return $groupModel->delete();
     }
 
 }
