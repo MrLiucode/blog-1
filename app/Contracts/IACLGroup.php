@@ -13,8 +13,6 @@
 
 namespace App\Contracts;
 
-//TODO:1.����Ȩ����ʱ��Ӧ��ֱ�Ӵ����飬Ӧ�ô� ACLGroupRequest ����
-//TODO:2.Ȩ�����������ݵ����ɷ�������Ӧ�ô� ACLGroup Model ����(��Model����ɼ��ٲ�ѯ)
 use App\Models\AclGroup as GroupModel;
 use Illuminate\Pagination\LengthAwarePaginator;
 

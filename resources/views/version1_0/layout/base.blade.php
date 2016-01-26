@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
     <title>Faker-online</title>
-    <meta name="keywords" content="Faker"/>
-    <meta name="description" content="Faker">
+    <meta name="keywords" content="{!! getConfig('keyword') !!}"/>
+    <meta name="description" content="{!! getConfig('description') !!}">
+    <meta name="author" content="{!! getConfig('author') !!}">
 
     {!! createConcat('static/package', [
         'primer-css/css/primer.css',
@@ -68,8 +69,7 @@
 <footer class="container">
     <div class="site-footer" role="contentinfo">
         <div class="copyright left mobile-block">
-            © 2015
-            <span>fakeronline.com</span>
+            {!! getConfig('copyright', '© 2015 <span>fakeronline.com</span>') !!}
             <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
         </div>
 

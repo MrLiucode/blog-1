@@ -1,20 +1,20 @@
 @extends('admin.layout.base')
 
-@section('title')博文管理@stop
+@section('title')系统管理@stop
 
 @section('breadcrumb')
     <ol class="breadcrumb pull-right">
         <li><a href="javascript:;">首页</a></li>
-        <li><a href="javascript:;">博文管理</a></li>
-        <li class="active">{{isset($tag) ? '修改' : '添加'}}标签</li>
+        <li><a href="javascript:;">系统管理</a></li>
+        <li class="active">系统配置</li>
     </ol>
-    @stop
+@stop
 
-    @section('page-header')
+@section('page-header')
     {{--<h1 class="page-header"> {{isset($article) ? '修改' : '添加'}}文章 <small> </small></h1>--}}
-    @stop
+@stop
 
-    @section('css')
+@section('css')
     <style>
         #permission-list .icheckbox_flat-blue{
             margin-top: 0;
@@ -36,19 +36,14 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
-                    <h4 class="panel-title">标签表单</h4>
+                    <h4 class="panel-title">配置表单</h4>
                 </div>
                 <div class="panel-body">
                     @include('admin.widget.message')
-                    @if(isset($tag))
-                        {!! Form::model($tag, ['url' => route('admin.tag.update', ['id' => $tag->id]), 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
-                        @include('admin.tag.form')
-                        {!! Form::close() !!}
-                    @else
-                        {!! Form::open(['url' => route('admin.tag.store'), 'method' => 'POST', 'class' => 'form-horizontal']) !!}
-                        @include('admin.tag.form')
-                        {!! Form::close() !!}
-                    @endif
+
+                    {!! Form::model($setting, ['url' => route('admin.setting.store'), 'method' => 'POST', 'class' => 'form-horizontal']) !!}
+                    @include('admin.setting.basic')
+                    {!! Form::close() !!}
                 </div>
             </div>
             <!-- end panel -->

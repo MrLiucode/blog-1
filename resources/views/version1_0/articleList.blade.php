@@ -5,10 +5,10 @@
         <div class="collection-head">
             <div class="container">
                 <div class="collection-title">
-                    <h1 class="collection-header">Fakeronline</h1>
+                    <h1 class="collection-header">{!! getConfig('author') !!}</h1>
                     <div class="collection-info">
                     <span class="meta-info">
-                        如果没有梦想，那跟咸鱼有什么区别？
+                        {!! getConfig('motto', '如果没有梦想，那跟咸鱼有什么区别？') !!}
                     </span>
                     </div>
                 </div>
