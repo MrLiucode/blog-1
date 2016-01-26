@@ -8,7 +8,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+class User extends BaseModel implements AuthenticatableContract, CanResetPasswordContract
 {
     use Authenticatable, CanResetPassword;
 
@@ -20,13 +20,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $table = 'users';
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'email', 'password', 'login_ip', 'status'];
-
-    /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
@@ -34,7 +27,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['password', 'remember_token'];
 
     /**
-     * ��������
+     * 用户所有文章
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function article(){
@@ -43,7 +36,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
-     * Ȩ������Ϣ
+     * 用户所有组
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function groups()
@@ -52,7 +45,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
-     * �û���Ϣ
+     * 用户的基本信息
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function userInfo(){
