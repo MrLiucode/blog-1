@@ -53,7 +53,7 @@
                     </a>
                     <div class="author-info">
                         <h3>
-                            <a href="/" title="{{ $article->user->name }}">
+                            <a href="{{url('userArticle', ['user' => $article->user->id])}}" title="{{ $article->user->name }}">
                                 {{ $article->user->name }}
                             </a>
                         </h3>
