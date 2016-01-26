@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\IACLGroup;
-use App\Contracts\IACLUser;
 
+use App\Contracts\IUser;
 use App\Http\Requests;
+use App\Http\Requests\UserRequest as userRequest;
+use App\Models\User as UserModel;
 
 class ACLUserController extends BaseController
 {
@@ -19,18 +21,13 @@ class ACLUserController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @param IACLUser $user
+     * @param IUser $userService
      * @return \Illuminate\Http\Response
      */
-    public function index(IACLUser $user)
+    public function index(IUser $userService)
     {
-        $userList = $user->lists(15, ['userInfo', 'groups']);
+        $userList = $userService->getUserLists(15, ['userInfo', 'groups']);
         $statusMap = config('admin-acl.user_status');
-//        foreach($userList as $item){
-//            dump($item->userInfo->mobile);
-//        }
-//
-//        dd($userList->toArray());
         return adminView(self::VIEW_INDEX, compact('userList', 'statusMap'));
     }
 
@@ -47,22 +44,21 @@ class ACLUserController extends BaseController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Requests\UserRequest  $request
-     * @param   IACLUser $user
-     * @return \Illuminate\Http\Response
+     * 保存用户信息
+     * @param Requests\UserRequest $request
+     * @param IUser $userService
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function store(Requests\UserRequest $request, IACLUser $user)
+    public function store(UserRequest $request, IUser $userService)
     {
-        $result = $user->store($request);
+        $result = $userService->storeUser($request);
         return $result ? success(route(self::ROUTE_INDEX), '添加用户成功!') : error('保存失败!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -71,43 +67,38 @@ class ACLUserController extends BaseController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @param   IACLUser $user
-     * @return \Illuminate\Http\Response
+     * 编辑用户
+     * @param UserModel $user
+     * @return mixed
      */
-    public function edit($id, IACLUser $user)
+    public function edit(UserModel $user)
     {
-        $user = $user->getUserById($id);
         return adminView(self::VIEW_EDIT, compact('user'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @param  IACLUser $user
-     * @return \Illuminate\Http\Response
+     * 更新用户
+     * @param UserModel $user
+     * @param Requests\UserRequest $request
+     * @param IUser $userService
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function update(Requests\UserRequest $request, $id, IACLUser $user)
+    public function update(UserModel $user, Requests\UserRequest $request, IUser $userService)
     {
-        $userData = $user->getUserById($id);
-        $result = $user->update($userData, $request);
+        $result = $userService->updateUser($user, $request);
         return $result ? success(route(self::ROUTE_INDEX), '修改用户信息成功!') : error('保存用户信息失败!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @param   IACLUser $user
+     * @param  UserModel $user
+     * @param   IUser $userService
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, IACLUser $user)
+    public function destroy(UserModel $user, IUser $userService)
     {
-        $result = $user->destroy($id);
-        return $result ? response(['msg' => '删除用户成功!']) : response("用户不存在或已删除!", 422);
+        $result = $userService->destroyUser($user);
+        return $result ? response(['msg' => '删除用户成功!']) : response("删除用户失败!", 422);
     }
 }
