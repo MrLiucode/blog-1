@@ -22,7 +22,7 @@
     <div class="content tag-cloud">
         @if(!empty($tagList))
             @foreach($tagList as $tag)
-                <a href="{{ url('search/tag',['id'=>$tag->id]) }}" title="{{ $tag->name }}">{{ $tag->name }}</a>
+                <a href="{{ url('tagArticle',['id'=>$tag->id]) }}" title="{{ $tag->name }}">{{ $tag->name }}</a>
             @endforeach
         @endif
     </div>
