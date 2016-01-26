@@ -22,9 +22,10 @@ interface ICategory
      * @param int $pageSize
      * @param string|array $selectParams
      * @param string|array $withParams
+     * @param array $columns
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function lists($pageSize = 15, $selectParams = '*', $withParams = []);
+    public function lists($pageSize = 15, $selectParams = '*', $withParams = [], $columns = ['*']);
 
     /**
      * 根据ID获取分类数据
@@ -33,7 +34,14 @@ interface ICategory
      */
     public function getCategory($categoryId);
 
-    public function getCategoryArticle($categoryId);
+    /**
+     * 根据分类获取文章
+     * @param Category $model
+     * @param int $perPage
+     * @param array $columns
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function getCategoryArticle(Category $model, $perPage = 15, $columns = ['*']);
 
     /**
      * 根据ID更新文章分类

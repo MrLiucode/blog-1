@@ -10,9 +10,10 @@ interface IArticle
      * 获取已发布的文章列表
      * @param int $pageSize
      * @param array $withParams
-     * @return ArticleModel
+     * @param array $columns
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getList($pageSize = 10, array $withParams = []);
+    public function getList($pageSize = 10, array $withParams = [], $columns = ['*']);
 
     /**
      * 根据文章ID获取文章
@@ -25,9 +26,10 @@ interface IArticle
      * 获取点击量最大的文章列表
      * @param int $pageSize
      * @param array $withParams
-     * @return ArticleModel
+     * @param array $columns
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function hotList($pageSize = 10, array $withParams = []);
+    public function hotList($pageSize = 10, array $withParams = [], $columns = ['*']);
 
     /**
      * 保存文章
