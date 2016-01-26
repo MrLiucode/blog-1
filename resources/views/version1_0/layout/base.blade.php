@@ -78,7 +78,7 @@
                 <a href="javascript:window.scrollTo(0,0)">TOP</a>
             </li>
         </ul>
-        <a href="/" target="_blank" aria-label="view source code">
+        <a href="https://github.com/fakeronline" target="_blank" aria-label="view source code">
             <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
         </a>
 
@@ -88,8 +88,6 @@
 @section('script')
 @stop
         <!-- / footer -->
-{{--<script src="{{ homeAsset('/vendor/share.js/dist/js/share.min.js') }}"></script>--}}
-{{--<script src="{{ homeAsset('/vendor/share.js/dist/js/jquery.qrcode.min.js') }}"></script>--}}
 {{--<script src="{{ homeAsset('/js/geopattern.js') }}"></script>--}}
 {{--<script src="{{ homeAsset('/js/prism.js') }}"></script>--}}
 {{--<link rel="stylesheet" href="{{ homeAsset('/css/globals/prism.css') }}">--}}

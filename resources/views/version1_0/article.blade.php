@@ -67,3 +67,8 @@
         </div>
     </section>
 @endsection
+
+@section('script')
+    {!! createConcat('') !!}
+@stop
+
