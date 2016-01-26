@@ -264,5 +264,18 @@ function conversionMarkdown($markdownContent)
     return !empty($markdownContent) ? $endaEditor::MarkDecode($markdownContent) : '';
 }
 
+/**
+ * 获取系统配置
+ * @param string $key
+ * @param string $default
+ * @return string
+ */
+function getConfig($key, $default = '')
+{
+    $allConfig = app(App\Contracts\ISetting::class)->getLists(9999);
+    $allConfig = array_key_value($allConfig->toArray()['data'], 'key', 'value');
+    return array_get($allConfig, $key, $default);
+}
+
 
 

@@ -71,6 +71,12 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\User::class
         );
 
+        //系统配置接口
+        $this->app->bind(
+            \App\Contracts\ISetting::class,
+            \App\Services\Setting::class
+        );
+
     }
 
     public function bindFacade()
