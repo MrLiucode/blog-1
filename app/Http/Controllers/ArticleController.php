@@ -4,37 +4,54 @@ namespace App\Http\Controllers;
 
 use App\Contracts\IArticle;
 use App\Contracts\ICategory;
+use App\Contracts\ITag;
 use App\Models\Article as ArticleModel;
 
 use App\Http\Requests;
 use App\Models\Category as CategoryModel;
+use App\Models\Tag as TagModel;
 
 class ArticleController extends BaseController
 {
 
     const VIEW_LIST = 'articleList';
 
+    protected $articleList;
+
     /**
-     * Display a listing of the resource.
+     * 展示文章首页
      *
      * @param IArticle $articleService
      * @return \Illuminate\Http\Response
      */
     public function index(IArticle $articleService)
     {
-        $articleList = $articleService->getList(10, ['tags', 'categories']);
-        return fontView(self::VIEW_LIST, compact('articleList'));
+        $this->articleList = $articleService->getList(15, ['tags', 'categories']);
+        return $this->displayArticleList();
     }
 
-    public function categoryArticle(CategoryModel $categoryModel)
+    /**
+     * 根据分类展示文章
+     * @param CategoryModel $categoryModel
+     * @param ICategory $categoryService
+     * @return mixed
+     */
+    public function categoryArticle(CategoryModel $categoryModel, ICategory $categoryService)
     {
-        dump(app(ArticleModel::class)->categories()->relations());
-        $articleList = [];
-        return fontView(self::VIEW_LIST, compact('articleList'));
-        return ;
-        $articleList = $categoryModel->article;
-        dd(app(ICategory::class)->getCategoryArticle($categoryModel->id));
-        dd($articleList);
+        $this->articleList = $categoryService->getCategoryArticle($categoryModel);
+        return $this->displayArticleList();
+    }
+
+    /**
+     * 根据标签展示文章
+     * @param TagModel $tagModel
+     * @param ITag $tagService
+     * @return mixed
+     */
+    public function tagArticle(TagModel $tagModel, ITag $tagService)
+    {
+        $this->articleList = $tagService->getTagArticle($tagModel);
+        return $this->displayArticleList();
     }
 
     /**
@@ -46,6 +63,15 @@ class ArticleController extends BaseController
     public function show(ArticleModel $article)
     {
         return fontView('article', compact('article'));
+    }
+
+    /**
+     * 渲染文章列表
+     * @return \Illuminate\Http\Response
+     */
+    protected function displayArticleList()
+    {
+        return fontView(self::VIEW_LIST, ['articleList' => $this->articleList]);
     }
 
 }
