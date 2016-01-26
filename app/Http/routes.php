@@ -17,7 +17,7 @@
 Route::get('/', 'ArticleController@index'); //首页
 Route::get('article/{article}', ['as' => 'article.show', 'uses' => 'ArticleController@show']);
 Route::get('categoryArticle/{category}', 'ArticleController@categoryArticle');  //分类查询文章
-Route::get('TagArticle/{tag}', 'ArticleController@tagArticle'); //标签查询文章
+Route::get('tagArticle/{tag}', 'ArticleController@tagArticle'); //标签查询文章
 
 /**
  * 后台模块
