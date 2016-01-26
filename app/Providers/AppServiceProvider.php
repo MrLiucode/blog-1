@@ -42,12 +42,6 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\ACLGroup::class
         );
 
-        //绑定用户管理服务
-        $this->app->bind(
-            \App\Contracts\IACLUser::class,
-            \App\Services\ACLUser::class
-        );
-
         $this->app->bind(
             \App\Contracts\IErrorLog::class,
             \App\Services\ErrorLog::class
@@ -65,10 +59,18 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\Tag::class
         );
 
+        //文章接口绑定
         $this->app->bind(
             \App\Contracts\IArticle::class,
             \App\Services\Article::class
         );
+
+        //用户接口
+        $this->app->bind(
+            \App\Contracts\IUser::class,
+            \App\Services\User::class
+        );
+
     }
 
     public function bindFacade()
