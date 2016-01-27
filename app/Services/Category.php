@@ -13,6 +13,7 @@
 namespace App\Services;
 
 use App\Contracts\ICategory;
+use App\Contracts\IPaginateCache;
 use App\Models\Article as ArticleModel;
 use App\Models\Category as CategoryModel;
 use Illuminate\Pagination\Paginator;
@@ -25,7 +26,9 @@ class Category implements ICategory
      */
     protected $model;
 
-    public function __construct(CategoryModel $model)
+    protected $cache;
+
+    public function __construct(CategoryModel $model, IPaginateCache $cache)
     {
         $this->model = $model;
     }
@@ -40,7 +43,10 @@ class Category implements ICategory
      */
     public function lists($perPage = 15, $selectParams = '*', $withParams = [], $columns = ['*'])
     {
-        return $this->model->select($selectParams)->with($withParams)->orderBy('order', 'DESC')->paginate($perPage, $columns, 'categoryPage');
+        return app(IPaginateCache::class)
+            ->get('interface.category.list.paginate', function () use ($perPage, $selectParams, $withParams, $columns) {
+                return CategoryModel::select($selectParams)->with($withParams)->orderBy('order', 'DESC')->paginate($perPage, $columns, 'categoryPage');
+            });
     }
 
     /**
@@ -50,7 +56,9 @@ class Category implements ICategory
      */
     public function getCategory($categoryId)
     {
-        return $this->model->findOrFail($categoryId);
+        return app(IPaginateCache::class)->get("category.item.{$categoryId}", function () use ($categoryId) {
+            return CategoryModel::findOrFail($categoryId);
+        });
     }
 
     /**
@@ -61,7 +69,9 @@ class Category implements ICategory
      */
     public function getCategoryArticle(CategoryModel $model, $perPage = 15, $columns = ['*'])
     {
-        return $model->article()->paginate($perPage, $columns, 'categoryArticlePage');
+        return app(IPaginateCache::class)->get('category.article.list.paginate', function () use ($model, $perPage, $columns) {
+            return $model->article()->paginate($perPage, $columns, 'categoryArticlePage');
+        });
     }
 
 

@@ -1,5 +1,6 @@
 <?php namespace App\Services;
 
+use App\Contracts\IPaginateCache;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Category as CategoryModel;
 use App\Models\Tag as TagModel;
@@ -17,6 +18,11 @@ class Article implements \App\Contracts\IArticle
      * @var string $errorMsg 错误消息
      */
     protected $errorMsg;
+
+    /**
+     * @var IPaginateCache
+     */
+    protected $cache;
 
     /**
      * @var ArticleModel
@@ -37,11 +43,12 @@ class Article implements \App\Contracts\IArticle
      */
     public function getList($pageSize = 10, array $withParams = [], $columns = ['*'])
     {
-        return $this->articleModel
-            ->published()
-            ->with($withParams)
-            ->orderByPublished()
-            ->paginate($pageSize, $columns, 'articlePage');
+        return app(IPaginateCache::class)->get('article.list.paginate', function () use ($pageSize, $withParams, $columns) {
+            return ArticleModel::published()
+                ->with($withParams)
+                ->orderByPublished()
+                ->paginate($pageSize, $columns, 'articlePage');
+        });
     }
 
     /**
@@ -51,7 +58,9 @@ class Article implements \App\Contracts\IArticle
      */
     public function getArticle($articleId)
     {
-        return $this->articleModel->findOrFail($articleId);
+        return app(IPaginateCache::class)->get("interface.article.item.{$articleId}", function () use ($articleId) {
+            return ArticleModel::with(['user'])->findOrFail($articleId);
+        });
     }
 
 
@@ -64,12 +73,14 @@ class Article implements \App\Contracts\IArticle
      */
     public function hotList($pageSize = 10, array $withParams = [], $columns = ['*'])
     {
-        return $this->articleModel
-            ->select(['id', 'title'])
-            ->published()
-            ->with($withParams)
-            ->orderByHits()
-            ->paginate($pageSize, $columns, 'hotArticleList');
+        return app(IPaginateCache::class)->get('article.hot.list.paginate', function () use ($pageSize, $withParams, $columns) {
+            return ArticleModel::select(['id', 'title'])
+                ->published()
+                ->with($withParams)
+                ->orderByHits()
+                ->paginate($pageSize, $columns, 'hotArticleList');
+
+        });
     }
 
 

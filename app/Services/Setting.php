@@ -1,5 +1,6 @@
 <?php namespace App\Services;
 
+use App\Contracts\IPaginateCache;
 use App\Contracts\ISetting;
 use App\Http\Requests\SettingRequest;
 use App\Models\Setting as SettingModel;
@@ -46,7 +47,9 @@ class Setting implements ISetting
      */
     public function getLists($perPage = 15, $columns = ['*'])
     {
-        return $this->settingModel->paginate($perPage, $columns, 'settingPage');
+        return app(IPaginateCache::class)->get('interface.setting.list.paginate', function () use($perPage, $columns) {
+            return SettingModel::paginate($perPage, $columns, 'settingPage');
+        });
     }
 
 

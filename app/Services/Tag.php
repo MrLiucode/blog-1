@@ -4,6 +4,7 @@ use App\Contracts\ITag;
 use App\Http\Requests\TagRequest;
 use App\Models\Tag as TagModel;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Contracts\IPaginateCache;
 
 class Tag implements ITag
 {
@@ -27,14 +28,15 @@ class Tag implements ITag
     /**
      * 获取标签列表
      * @param int $perPage 页码
-     * @param string $selectParams 需要查询的参数
      * @param array $withParams 深入查询的参数
      * @param array $columns
      * @return \Illuminate\Pagination\LengthAwarePaginator|null
      */
     public function getList($perPage = 15, $withParams = [], $columns = ['*'])
     {
-        return $this->tagModel->with($withParams)->paginate($perPage, $columns, 'tagPage');
+        return app(IPaginateCache::class)->get('interface.tag.list.paginate', function () use ($perPage, $withParams, $columns) {
+            return TagModel::with($withParams)->paginate($perPage, $columns, 'tagPage');
+        });
     }
 
     /**
@@ -57,7 +59,9 @@ class Tag implements ITag
      */
     public function getTag($tagId)
     {
-        return $this->tagModel->findOrFail($tagId);
+        return app(IPaginateCache::class)->get("tag.item.{$tagId}", function () use ($tagId) {
+            return TagModel::findOrFail($tagId);
+        });
     }
 
 

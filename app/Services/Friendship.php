@@ -2,6 +2,7 @@
 
 use App\Contracts\IFriendship;
 use App\Http\Requests\FriendshipRequest;
+use App\Contracts\IPaginateCache;
 use App\Models\Friendship as FriendshipModel;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -35,7 +36,9 @@ class Friendship implements IFriendship
      */
     public function getLists($perPage = 15, $columns = ['*'])
     {
-        return $this->friendshipModel->paginate($perPage, $columns, 'friendshipPage');
+        return app(IPaginateCache::class)->get('interface.friendship.list.paginate', function () use ($perPage, $columns) {
+            return FriendshipModel::paginate($perPage, $columns, 'friendshipPage');
+        });
     }
 
     /**
