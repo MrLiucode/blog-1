@@ -27,21 +27,31 @@
                 <article class="article-content markdown-body">
                     {!! conversionMarkdown($article->content) !!}
                 </article>
+                <hr>
                 <div class="share">
-                    <div class="share-bar"></div>
+                    <div class="social-share"></div>
+                    {!! createConcat('/plugin/share/dist', [
+                        'css/share.min.css'
+                    ]) !!}
+                    {!! createConcat('/plugin/share/dist', [
+                        'js/share.min.js'
+                    ]) !!}
                 </div>
                 <div class="comment">
                     <div class="comments">
                         <div id="disqus_thread"></div>
                         <script type="text/javascript">
                             var disqus_shortname = "{{ config('disqus.disqus_shortname') }}";
-                            (function() {
-                                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            (function () {
+                                var dsq = document.createElement('script');
+                                dsq.type = 'text/javascript';
+                                dsq.async = true;
                                 dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
                                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
                             })();
                         </script>
-                        <noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+                        <noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments
+                            powered by Disqus.&lt;/a&gt;</noscript>
                     </div>
                 </div>
             </div>
@@ -49,11 +59,13 @@
             <div class="column one-fourth">
                 <div id="author" class="clearfix">
                     <a href="" title="{{ $article->user->name }}">
-                        <img class="img-circle" src="{{asset('static/images/hd_pic.jpg')}}" height="96" width="96" alt="{{ $article->user->name }}" title="{{ $article->user->name }}">
+                        <img class="img-circle" src="{{asset('static/images/hd_pic.jpg')}}" height="96" width="96"
+                             alt="{{ $article->user->name }}" title="{{ $article->user->name }}">
                     </a>
                     <div class="author-info">
                         <h3>
-                            <a href="{{url('userArticle', ['user' => $article->user->id])}}" title="{{ $article->user->name }}">
+                            <a href="{{url('userArticle', ['user' => $article->user->id])}}"
+                               title="{{ $article->user->name }}">
                                 {{ $article->user->name }}
                             </a>
                         </h3>

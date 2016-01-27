@@ -9,11 +9,12 @@
     <meta name="keywords" content="{!! getConfig('keyword') !!}"/>
     <meta name="description" content="{!! getConfig('description') !!}">
     <meta name="author" content="{!! getConfig('author') !!}">
-
+    <link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     {!! createConcat('static/package', [
         'primer-css/css/primer.css',
         'primer-markdown/dist/user-content.min.css',
         'octicons/octicons/octicons.css',
+        'nprogress/nprogress.css'
     ]) !!}
     {!! createConcat('static/css', [
         'common.css'
@@ -32,7 +33,9 @@
     <meta property="og:locale" content="zh_CN"/>
 
     {!! createConcat('static/package', [
-        'jquery/dist/jquery.min.js'
+        'jquery/dist/jquery.min.js',
+        'jquery-pjax/jquery.pjax.js',
+        'nprogress/nprogress.js'
     ]) !!}
 
     {!! createConcat('static/js', [
@@ -40,39 +43,40 @@
     ]) !!}
 </head>
 <body class="home">
-<header class="site-header">
-    <div class="container">
-        <h1><a href="/">Faker Blog</a></h1>
-        @include('version1_0.widget.navbar')
-    </div>
-</header>
-
-<!-- / header -->
-
-@yield('content')
-
-<footer class="container">
-    <div class="site-footer" role="contentinfo">
-        <div class="copyright left mobile-block">
-            {!! getConfig('copyright', '© 2015 <span>fakeronline.com</span>') !!}
-            <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+<div id="pjax-container">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/">Faker Blog</a></h1>
+            @include('version1_0.widget.navbar')
         </div>
+    </header>
 
-        <ul class="site-footer-links right mobile-hidden">
-            <li>
-                <a href="javascript:window.scrollTo(0,0)">TOP</a>
-            </li>
-        </ul>
-        <a href="https://github.com/fakeronline" target="_blank" aria-label="view source code">
-            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
-        </a>
+    <!-- / header -->
 
-    </div>
-</footer>
+    @yield('content')
 
-@section('script')
-@stop
-        <!-- / footer -->
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                {!! getConfig('copyright', '© 2015 <span>fakeronline.com</span>') !!}
+                <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
 
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)">TOP</a>
+                </li>
+            </ul>
+            <a href="https://github.com/fakeronline" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+
+        </div>
+    </footer>
+
+    @section('script')
+    @stop
+            <!-- / footer -->
+</div>
 </body>
 </html>

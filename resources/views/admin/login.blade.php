@@ -12,13 +12,21 @@
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    {!! createConcat('admin/plugins', [
-        'jquery-ui/themes/base/minified/jquery-ui.min.css',
-        'bootstrap/css/bootstrap.min.css',
-        'font-awesome/css/font-awesome.min.css'
+    {!! createConcat('static/package', [
+        'jquery-ui/themes/base/jquery-ui.min.css',
+        'bootstrap/dist/css/bootstrap.min.css',
+        'font-awesome/css/font-awesome.min.css',
+        'icheck/skins/flat/blue.css', //ICheck
     ]) !!}
-    {!! createConcat('admin/css', [
-        'animate.min.css',  'style.min.css', 'style-responsive.min.css', 'theme/default.css',
+    {!! createConcat('static/css/admin', [
+        'animate.min.css',  'style.min.css', 'style-responsive.min.css', 'black.css',
+    ]) !!}
+
+    {!! createConcat('static/package', [
+        'pace/pace.min.js', 'jquery/dist/jquery.min.js', 'icheck/icheck.min.js'
+    ]) !!}
+    {!! createConcat('static/js/admin', [
+        'common.js'
     ]) !!}
 </head>
 <body>
@@ -27,7 +35,7 @@
 <!-- end #page-loader -->
 
 <div class="login-cover">
-    <div class="login-cover-image"><img src="{{asset('admin/img/login-bg/bg-1.jpg')}}" data-id="login-cover-image" alt="" /></div>
+    <div class="login-cover-image"><img src="{{asset('static/images/bg-1.jpg')}}" data-id="login-cover-image" alt="" /></div>
     <div class="login-cover-bg"></div>
 </div>
 <!-- begin #page-container -->
@@ -74,34 +82,36 @@
     <!-- end login -->
 
     <ul class="login-bg-list">
-        <li class="active"><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-1.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-2.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-3.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-4.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-5.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('admin/img/login-bg/bg-6.jpg') ) !!} </a></li>
+        <li class="active"><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-1.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-2.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-3.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-4.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-5.jpg') ) !!} </a></li>
+        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-6.jpg') ) !!} </a></li>
     </ul>
 </div>
 <!-- end page container -->
 
 <!-- ================== BEGIN BASE JS ================== -->
-{!! createConcat('admin/plugins/', [
-    'jquery/jquery-1.9.1.min.js',
-    'jquery/jquery-migrate-1.1.0.min.js',
-    'jquery-ui/ui/minified/jquery-ui.min.js',
-    'bootstrap/js/bootstrap.min.js'
+{!! createConcat('static/package', [
+    'jquery-migrate/jquery-migrate.min.js',
+    'jquery-ui/jquery-ui.min.js',
+    'bootstrap/dist/js/bootstrap.min.js',
+    'jquery-slimscroll/jquery.slimscroll.min.js',
+    'jquery-cookie/jquery.cookie.js',
 ]) !!}
 <!--[if lt IE 9]>
-{!! createConcat('admin/crossbrowserjs/', [
-    'html5shiv.js', 'respond.min.js', 'excanvas.min.js'
+{!! createConcat('static/package', [
+'html5shiv/dist/html5shiv.js',
+'respond/dist/respond.min.js',
+'excanvas/excanvas.js'
 ]) !!}
 <![endif]-->
-
-{!! createConcat('admin', [
-    'plugins/slimscroll/jquery.slimscroll.min.js',
-    'plugins/jquery-cookie/jquery.cookie.js',
-    'js/login-v2.demo.min.js',
-    'js/apps.min.js'
+<!-- ================== END BASE JS ================== -->
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+{!! createConcat('static/js/admin', [
+    'apps.min.js',
+    'dashboard-v2.min.js'
 ]) !!}
 
 <script>
