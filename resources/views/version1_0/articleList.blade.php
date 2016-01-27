@@ -41,7 +41,9 @@
                 </ol>
             </div>
             <div class="column one-third">
-                @include('version1_0.widget.right')
+                @include('version1_0.widget.hotArticle')
+                @include('version1_0.widget.tagCloud')
+                @include('version1_0.widget.friendship')
             </div>
         </div>
         <div class="pagination text-align">
