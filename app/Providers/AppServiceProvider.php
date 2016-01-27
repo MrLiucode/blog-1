@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\ViewData;
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 
     /**
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->bindingInterface();  //绑定接口
         $this->bindFacade();    //绑定外观
+        Carbon::setLocale('zh');    //设置中文
     }
 
     protected function bindingInterface()
@@ -75,6 +77,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             \App\Contracts\ISetting::class,
             \App\Services\Setting::class
+        );
+
+        /**
+         * 友情链接接口绑定
+         */
+        $this->app->bind(
+            \App\Contracts\IFriendship::class,
+            \App\Services\Friendship::class
         );
 
     }

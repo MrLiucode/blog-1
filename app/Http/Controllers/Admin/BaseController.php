@@ -18,10 +18,4 @@ use Carbon\Carbon;
 
 class BaseController extends Controller{
 
-    public function __construct(ACLRepo $aclRepo){
-        $menuList = $aclRepo->getMenuListByPermission();    //��ȡ�˵�
-        view()->share('menuList', $menuList);
-        Carbon::setLocale('zh');
-    }
-
 }

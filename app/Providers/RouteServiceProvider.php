@@ -7,6 +7,7 @@ use App\Contracts\ICategory;
 use App\Contracts\ITag;
 use App\Contracts\IUser;
 use App\Contracts\IACLGroup;
+use App\Contracts\IFriendship;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -56,6 +57,13 @@ class RouteServiceProvider extends ServiceProvider
          */
         $router->bind('group', function ($groupId) {
             return $this->app->make(IACLGroup::class)->getGroup($groupId);
+        });
+
+        /**
+         * 友情链接路由模型
+         */
+        $router->bind('friendship', function ($friendshipId) {
+            return $this->app->make(IFriendship::class)->getFriendship($friendshipId);
         });
 
         parent::boot($router);

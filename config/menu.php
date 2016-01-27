@@ -32,6 +32,7 @@ return [
         'class' => 'fa fa-laptop',
         'child' => [
             ['text' => '错误日志', 'as' => 'admin.errorLog.index'],
+            ['text' => '友情链接', 'as' => 'admin.friendship.index'],
         ]
     ],
 ];
