@@ -138,9 +138,12 @@ class Article implements \App\Contracts\IArticle
             return false;
         }
         DB::beginTransaction(); //开启事务
-        if ($article->update($request->all()) &&
-            $this->attachArticleCategory($article, $request->category) &&
-            $this->attachArticleTags($article, $request->tags)
+        $data = $request->all();
+        $category = array_pull($data, 'category');
+        $tags = array_pull($data, 'tags');
+        if ($article->update($data) &&
+            $this->attachArticleCategory($article, $category) &&
+            $this->attachArticleTags($article, $tags)
         ) {
             DB::commit();
             return true;

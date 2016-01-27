@@ -19,6 +19,8 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer("{$theme}.widget.tagCloud", '\App\Http\Composers\ViewComposer@tagListData');
         view()->composer("{$theme}.widget.friendship", '\App\Http\Composers\ViewComposer@friendshipData');
         view()->composer("admin.widget.sidebar", '\App\Http\Composers\ViewComposer@adminMenu');
+        view()->composer("admin.article.form", '\App\Http\Composers\ViewComposer@categoryList');
+        view()->composer("admin.article.form", '\App\Http\Composers\ViewComposer@tagList');
     }
 
     /**

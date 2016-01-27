@@ -2,6 +2,8 @@
 
 use App\Facades\ViewData;
 use App\Repositories\ACLRepo;
+use App\Contracts\ICategory;
+use App\Contracts\ITag;
 use Illuminate\Contracts\View\View;
 
 class ViewComposer
@@ -41,11 +43,22 @@ class ViewComposer
     /**
      * 后台菜单
      * @param View $view
-     * @param ACLRepo $aclRepo
      */
     public function adminMenu(View $view)
     {
         $view->with('menuList', app(ACLRepo::class)->getMenuListByPermission());
+    }
+
+    public function categoryList(View $view)
+    {
+        $categoryList = app(ICategory::class)->lists()->toArray()['data'];
+        $view->with('categoryList', array_key_value((array)$categoryList, 'id', 'name'));
+    }
+
+    public function tagList(View $view)
+    {
+        $tagList = app(ITag::class)->getList(9999)->toArray()['data'];
+        $view->with('tagList', array_key_value((array)$tagList, 'id', 'name'));
     }
 
 }

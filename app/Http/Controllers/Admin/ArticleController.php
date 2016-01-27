@@ -46,7 +46,9 @@ class ArticleController extends BaseController
 
     public function edit(ArticleModel $article)
     {
-        return adminView(self::VIEW_EDIT, compact('article'));
+        $articleCategory = array_key_value($article->categories->toArray(), 'id', 'name');
+        $articleTag = array_key_value($article->tags->toArray(), 'id', 'name');
+        return adminView(self::VIEW_EDIT, compact('article', 'articleCategory', 'articleTag'));
     }
 
 

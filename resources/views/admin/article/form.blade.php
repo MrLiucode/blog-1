@@ -9,7 +9,7 @@
     <div class="form-group">
         <label class="col-md-2 control-label">文章分类</label>
         <div class="col-md-10">
-            {!! Form::select('category[]', [], null, ['class' => 'form-control selectized', 'id' => 'category', 'placeholder' => '请选择文章分类', 'tabindex' => '-1', 'multiple' => 'multiple']) !!}
+            {!! Form::select('category[]', $categoryList, $articleCategory or null, ['class' => 'form-control selectized', 'id' => 'category', 'placeholder' => '请选择文章分类', 'tabindex' => '-1', 'multiple' => 'multiple']) !!}
         </div>
     </div>
 
@@ -25,7 +25,7 @@
     <div class="form-group">
         <label class="col-md-2 control-label">文章标签</label>
         <div class="col-md-10">
-            {!! Form::select('tags[]', $tagList, $tagList, ['class' => 'form-control selectized', 'id' => 'tags', 'placeholder' => '请选择文章分类', 'tabindex' => '-1', 'multiple' => 'multiple']) !!}
+            {!! Form::select('tags[]', $tagList, $articleTag or null, ['class' => 'form-control selectized', 'id' => 'tags', 'placeholder' => '请选择文章分类', 'tabindex' => '-1', 'multiple' => 'multiple']) !!}
         </div>
     </div>
 
@@ -33,10 +33,10 @@
         <label class="col-md-2 control-label">文章状态</label>
         <div class="col-md-10">
             <label>
-                {!! Form::radio('status', 1, isset($article) ? null : true) !!} 正常发布
+                {!! Form::radio('status', 1) !!} 正常发布
             </label>
             <label>
-                {!! Form::radio('status', 1) !!} 隐藏文章
+                {!! Form::radio('status', 0) !!} 隐藏文章
             </label>
         </div>
     </div>

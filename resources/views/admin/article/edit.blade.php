@@ -57,7 +57,7 @@
                 <div class="panel-body">
                     @include('admin.widget.message')
                     @if(isset($article))
-                        {!! Form::model($article, ['url' => route('admin.article.store', ['id' => $article->id]), 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+                        {!! Form::model($article, ['url' => route('admin.article.update', ['id' => $article->id]), 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
                     @else
                         {!! Form::open(['url' => route('admin.article.store'), 'method' => 'POST', 'class' => 'form-horizontal']) !!}
                     @endif

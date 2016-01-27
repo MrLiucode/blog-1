@@ -52,4 +52,9 @@ class Article extends BaseModel
         return $query->orderBy('hits', 'DESC');
     }
 
+    public function getPublishedAtAttribute($value)
+    {
+        return date('Y-m-d', $value);
+    }
+
 }
