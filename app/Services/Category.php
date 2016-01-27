@@ -14,6 +14,7 @@ namespace App\Services;
 
 use App\Contracts\ICategory;
 use App\Contracts\IPaginateCache;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Article as ArticleModel;
 use App\Models\Category as CategoryModel;
 use Illuminate\Pagination\Paginator;
@@ -74,17 +75,19 @@ class Category implements ICategory
         });
     }
 
-
     /**
-     * 根据ID更新文章分类
-     * @param $categoryId
-     * @param array $data
-     * @return CategoryModel|null
+     * 更新文章
+     * @param Category $model
+     * @param CategoryRequest $request
+     * @return mixed
      */
-    public function updateCategory($categoryId, array $data)
+    public function updateCategory(CategoryModel $model, CategoryRequest $request)
     {
-        $category = $this->model->find($categoryId);
-        return $category ? $category->update($data) : $category;
+        $categoryData = $request->all();
+        if ($model->name = $request->name) {
+            array_forget($categoryData, 'name');
+        }
+        return $model->update($categoryData);
     }
 
     /**
@@ -99,12 +102,12 @@ class Category implements ICategory
 
     /**
      * 根据ID删除文章分类
-     * @param $categoryId
+     * @param CategoryModel $model
      * @return int
      */
-    public function delCategory($categoryId)
+    public function delCategory(CategoryModel $model)
     {
-        return $this->model->destroy($categoryId);
+        return $model->delete();
     }
 
 }

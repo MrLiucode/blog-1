@@ -12,6 +12,7 @@
 
 namespace App\Contracts;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 
 interface ICategory
@@ -44,12 +45,12 @@ interface ICategory
     public function getCategoryArticle(Category $model, $perPage = 15, $columns = ['*']);
 
     /**
-     * 根据ID更新文章分类
-     * @param $categoryId
-     * @param array $data
-     * @return Category|null
+     * 更新文章
+     * @param Category $model
+     * @param CategoryRequest $request
+     * @return mixed
      */
-    public function updateCategory($categoryId, array $data);
+    public function updateCategory(Category $model, CategoryRequest $request);
 
     /**
      * 保存文章分类
@@ -60,10 +61,10 @@ interface ICategory
 
     /**
      * 根据ID删除文章分类
-     * @param $categoryId
+     * @param Category $model
      * @return int
      */
-    public function delCategory($categoryId);
+    public function delCategory(Category $model);
 
 }
 

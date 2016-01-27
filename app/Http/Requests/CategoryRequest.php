@@ -13,7 +13,8 @@
 
 namespace App\Http\Requests;
 
-class CategoryRequest extends Request{
+class CategoryRequest extends Request
+{
 
     /**
      * Determine if the user is authorized to make this request.
@@ -32,14 +33,20 @@ class CategoryRequest extends Request{
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'unique:categories|required|max:30|min:2',
             'description' => 'max:100',
             'order' => 'required|numeric|min:100',
         ];
+
+        if (in_array(strtoupper($this->getMethod()), ['PUT', 'PATCH'])) {
+            unset($rules['name']);
+        }
+        return $rules;
     }
 
-    public function messages(){
+    public function messages()
+    {
 
         return [
             'categories.unique' => '该分类名称已存在!',
