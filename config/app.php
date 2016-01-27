@@ -149,6 +149,7 @@ return [
         YuanChao\Editor\EndaEditorServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        \App\Providers\ViewComposerServiceProvider::class,
     ],
 
     /*
