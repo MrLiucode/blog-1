@@ -24,7 +24,7 @@ Route::get('userArticle/{user}', 'ArticleController@userArticle');  //用户的�
  * 后台模块
  */
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
-    Route::get('/', 'HomeController@index');    //TODO:test
+    Route::get('/', 'ArticleController@index');
     Route::resource('article', 'ArticleController');    //文章模块
     Route::resource('category', 'CategoryController');  //文章分类处理模块
     Route::resource('tag', 'TagsController');   //文章标签模块
