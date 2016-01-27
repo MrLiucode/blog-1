@@ -47,7 +47,6 @@ class CategoryRequest extends Request
 
     public function messages()
     {
-
         return [
             'categories.unique' => '该分类名称已存在!',
             'name.required' => '分类名称不为空!',
