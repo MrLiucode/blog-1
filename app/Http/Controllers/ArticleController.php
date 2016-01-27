@@ -13,7 +13,7 @@ use App\Models\Category as CategoryModel;
 use App\Models\Tag as TagModel;
 use App\Models\User as UserModel;
 
-class ArticleController extends BaseController
+class ArticleController extends Controller
 {
 
     const VIEW_LIST = 'articleList';
