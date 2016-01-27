@@ -87,6 +87,14 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\Friendship::class
         );
 
+        /**
+         * 缓存接口绑定
+         */
+        $this->app->bind(
+            \App\Contracts\IPaginateCache::class,
+            \App\Services\PaginateCache::class
+        );
+
     }
 
     public function bindFacade()
