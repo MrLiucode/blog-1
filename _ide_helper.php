@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.1.28 (LTS) on 2016-01-22.
+ * Generated for Laravel 5.1.28 (LTS) on 2016-01-27.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -13068,6 +13068,55 @@ namespace {
         public static function offsetUnset($key){
             //Method inherited from \DebugBar\DebugBar            
             return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
+        }
+        
+    }
+
+
+    class ViewData extends \App\Facades\ViewData{
+        
+        /**
+         * 获取分类列表
+         *
+         * @param string $num
+         * @return mixed 
+         * @static 
+         */
+        public static function categoryList($num = '*'){
+            return \App\Services\ViewData::categoryList($num);
+        }
+        
+        /**
+         * 获取标签列表
+         *
+         * @param string $num
+         * @return mixed 
+         * @static 
+         */
+        public static function tagList($num = '*'){
+            return \App\Services\ViewData::tagList($num);
+        }
+        
+        /**
+         * 热门文章列表
+         *
+         * @param string $num
+         * @return mixed 
+         * @static 
+         */
+        public static function hotArticleList($num = '*'){
+            return \App\Services\ViewData::hotArticleList($num);
+        }
+        
+        /**
+         * 友情链接列表
+         *
+         * @param string $num
+         * @return mixed 
+         * @static 
+         */
+        public static function friendshipList($num = '*'){
+            return \App\Services\ViewData::friendshipList($num);
         }
         
     }

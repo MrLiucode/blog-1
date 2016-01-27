@@ -1,6 +1,7 @@
 <?php namespace App\Http\Composers;
 
 use App\Facades\ViewData;
+use App\Repositories\ACLRepo;
 use Illuminate\Contracts\View\View;
 
 class ViewComposer
@@ -30,6 +31,21 @@ class ViewComposer
     public function hotArticleData(View $view)
     {
         $view->with('hotArticleList', ViewData::hotArticleList(5));
+    }
+
+    public function friendshipData(View $view)
+    {
+        $view->with('linkList', ViewData::friendshipList());
+    }
+
+    /**
+     * 后台菜单
+     * @param View $view
+     * @param ACLRepo $aclRepo
+     */
+    public function adminMenu(View $view)
+    {
+        $view->with('menuList', app(ACLRepo::class)->getMenuListByPermission());
     }
 
 }
