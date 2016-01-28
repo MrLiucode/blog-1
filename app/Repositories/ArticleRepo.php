@@ -27,6 +27,7 @@ class ArticleRepo
     public function storeArticle(array $articleData)
     {
         $articleData = $this->getAllFiledData($articleData);   //获取文章数据
+        $articleData['user_id'] = \Auth::user()->id;
         return $this->articleModel->create($articleData);
     }
 
