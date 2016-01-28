@@ -113,7 +113,6 @@
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 {!! createConcat('static/js/admin', [
     'apps.min.js',
-    'dashboard-v2.min.js'
 ]) !!}
 
 @section('js')

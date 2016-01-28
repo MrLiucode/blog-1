@@ -88,7 +88,6 @@
 @section('js')
     {!! createConcat('admin', [
         'js/apps.min.js',
-        'js/dashboard-v2.min.js'
         ])
      !!}
 

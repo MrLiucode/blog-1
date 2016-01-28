@@ -16,15 +16,9 @@
 
 @section('css')
     {!! createConcat('static/package', [
-        'datatables/media/css/jquery.dataTables.min.css',
-        'bootstrap-combobox/css/bootstrap-combobox.css',
         'selectize/dist/css/selectize.bootstrap3.css',
-
-        'jquery-tagit/css/jquery.tagit.css',
-        'switchery/switchery.css',
-        'powerange/dist/powerange.min.css'
+        'bootstrap-combobox/css/bootstrap-combobox.css',
     ]) !!}
-
     <style>
         .tab-content {
             padding: 0px;
@@ -74,7 +68,6 @@
 @section('js')
 
     {!! createConcat('static/package', [
-        'datatables/media/js/jquery.dataTables.min.js',
         'masked-input/masked-input.js',
         'bootstrap-combobox/js/bootstrap-combobox.js',
         'selectize/dist/js/standalone/selectize.min.js',
@@ -82,11 +75,6 @@
 
     <script>
         App.init();
-        handleJqueryAutocomplete();
-        handleBootstrapCombobox();
-        handleSelectpicker();
-
-        FormSliderSwitcher.init();
     </script>
     {!! createConcat('static/package', [
         'codemirror/lib/codemirror.css'
@@ -94,7 +82,6 @@
     {!! createConcat('static/package', [
         'marked/lib/marked.js',
         'codemirror/lib/codemirror.js',
-        'zeroclipboard/dist/ZeroClipboard.min.js',
     ]) !!}
 
     {!! createConcat('plugin/editor/css/', [
