@@ -11,7 +11,7 @@
     <meta content="Fakeronline" name="author" />
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="//fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     {!! createConcat('static/package', [
         'jquery-ui/themes/base/jquery-ui.min.css',
         'bootstrap/dist/css/bootstrap.min.css',

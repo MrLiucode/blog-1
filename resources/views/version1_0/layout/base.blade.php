@@ -9,7 +9,7 @@
     <meta name="keywords" content="{!! getConfig('keyword') !!}"/>
     <meta name="description" content="{!! getConfig('description') !!}">
     <meta name="author" content="{!! getConfig('author') !!}">
-    <link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="//fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     {!! createConcat('static/package', [
         'primer-css/css/primer.css',
         'primer-markdown/dist/user-content.min.css',
