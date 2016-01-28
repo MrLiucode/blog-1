@@ -14,12 +14,6 @@
     错误日志明细
     @stop
 
-    @section('css')
-    {!! createConcat('admin/plugins/', [
-        'DataTables/css/data-table.css',
-    ]) !!}
-    @stop
-
 
     @section('content')
             <!-- begin row -->

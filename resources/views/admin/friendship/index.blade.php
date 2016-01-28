@@ -14,13 +14,6 @@
     友情链接列表
     @stop
 
-    @section('css')
-    {!! createConcat('admin/plugins/', [
-        'DataTables/css/data-table.css',
-    ]) !!}
-    @stop
-
-
     @section('content')
             <!-- begin row -->
     <div class="row">

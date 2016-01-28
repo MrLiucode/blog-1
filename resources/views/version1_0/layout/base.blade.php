@@ -22,12 +22,10 @@
 
     @section('css') @show
 
-    <link rel="shortcut icon" href="{{ asset('static/images/ico/32.png') }}" sizes="32x32" type="image/png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('static/images/ico/72.png') }}"
+    <link rel="shortcut icon" href="{{ asset('static/images/ico/32_32.png') }}" sizes="32x32" type="image/png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="64x64" href="{{ asset('static/images/ico/64_64.png') }}"
           type="image/png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ asset('static/images/ico/120.png') }}"
-          type="image/png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ asset('static/images/ico/152.png') }}"
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="{{ asset('static/images/ico/128_128.png') }}"
           type="image/png"/>
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN"/>

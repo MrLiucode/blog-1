@@ -14,12 +14,6 @@
     文章列表
     @stop
 
-    @section('css')
-    {!! createConcat('admin/plugins/', [
-        'DataTables/css/data-table.css',
-    ]) !!}
-    @stop
-
 
     @section('content')
             <!-- begin row -->
@@ -62,15 +56,23 @@
                             @foreach($articleList as $index => $item)
                                 <tr>
                                     <td><span class="badge badge-primary">{{ $index + 1}}</span></td>
-                                    <td> {{$item->title}}</td>
+                                    <td><a href="{{url('article', ['id' => $item->id])}}"
+                                           target="_blank">{{$item->title}}</a></td>
                                     <td>
                                         @foreach($item->categories as $category)
-                                            <span class="label label-{!! getRandClass() !!}">{{ $category->name }}</span>
+                                            <a class="label" href="{{url('categoryArticle', ['id' => $category->id] )}}"
+                                               target="_blank">
+                                                <span class="label label-{!! getRandClass() !!}">{{ $category->name }}</span>
+                                            </a>
                                         @endforeach
                                     </td>
                                     <td>
                                         @foreach($item->tags as $tag)
-                                            <span class="label label-{!! getRandClass() !!}">{{ $tag->name }}</span>
+                                            <a class="label" href="{{ url('tagArticle',['id'=>$tag->id]) }}"
+                                               title="{{ $tag->name }}"
+                                               target="_blank">
+                                                <span class="label label-{!! getRandClass() !!}">{{ $tag->name }}</span>
+                                            </a>
                                         @endforeach
                                     </td>
                                     <td> {{$item->status ? '正常' : '隐藏'}}</td>
@@ -99,12 +101,6 @@
 @stop
 
 @section('js')
-    {!! createConcat('admin', [
-        'plugins/DataTables/js/jquery.dataTables.js',
-        'js/apps.min.js',
-        'js/dashboard-v2.min.js'
-        ])
-     !!}
 
     <script>
         App.init();
@@ -115,8 +111,8 @@
                     url: "/admin/article/" + id,
                     type: "POST",
                     headers: {'X-CSRF-TOKEN': "{{ csrf_token()}}"},
-                    data : {
-                        '_method' : 'DELETE'
+                    data: {
+                        '_method': 'DELETE'
                     },
                     success: function (data) {
                         newAlert.show({msg: "删除成功!"}, function () {

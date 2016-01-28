@@ -80,15 +80,6 @@
         </div>
     </div>
     <!-- end login -->
-
-    <ul class="login-bg-list">
-        <li class="active"><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-1.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-2.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-3.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-4.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-5.jpg') ) !!} </a></li>
-        <li><a href="#" data-click="change-bg"> {!! Form::image( asset('static/images/bg-6.jpg') ) !!} </a></li>
-    </ul>
 </div>
 <!-- end page container -->
 
@@ -111,13 +102,11 @@
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 {!! createConcat('static/js/admin', [
     'apps.min.js',
-    'dashboard-v2.min.js'
 ]) !!}
 
 <script>
     $(document).ready(function() {
         App.init();
-        LoginV2.init();
     });
 </script>
 

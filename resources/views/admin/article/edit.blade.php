@@ -72,9 +72,6 @@
 @stop
 
 @section('js')
-    {!! createConcat('admin/js', [
-        'apps.min.js', 'form-plugins.demo.min.js', 'form-slider-switcher.demo.min.js',
-    ]) !!}
 
     {!! createConcat('static/package', [
         'datatables/media/js/jquery.dataTables.min.js',

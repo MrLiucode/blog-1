@@ -14,13 +14,6 @@
     标签列表
 @stop
 
-@section('css')
-    {!! createConcat('admin/plugins/', [
-        'DataTables/css/data-table.css',
-    ]) !!}
-@stop
-
-
 @section('content')
         <!-- begin row -->
     <div class="row">
@@ -80,12 +73,6 @@
 @stop
 
 @section('js')
-    {!! createConcat('admin', [
-        'plugins/DataTables/js/jquery.dataTables.js',
-        'js/apps.min.js',
-        'js/dashboard-v2.min.js'
-        ])
-     !!}
 
     <script>
         App.init();
