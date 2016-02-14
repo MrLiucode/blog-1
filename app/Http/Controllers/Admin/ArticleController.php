@@ -27,7 +27,7 @@ class ArticleController extends BaseController
 
     public function index(IArticle $articleService)
     {
-        $articleList = $articleService->getList(20, ['tags', 'categories']);
+        $articleList = $articleService->getList(20, ['tags', 'categories'], ['*'], false);
         return adminView(self::VIEW_INDEX, compact('articleList'));
     }
 
