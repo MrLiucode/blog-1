@@ -202,6 +202,21 @@ class Article implements \App\Contracts\IArticle
         return $result;
     }
 
+    /**
+     * 累加该文章的阅读次数
+     * @param int $articleId
+     * @return bool
+     */
+    public function readAccumulation($articleId)
+    {
+        DB::beginTransaction();
+        $articleModel = ArticleModel::findOrFail($articleId);
+        $articleModel->hits += 1;
+        $articleModel->update();
+        DB::commit();
+        return true;
+    }
+
 
     public function getError()
     {

@@ -72,10 +72,12 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param  ArticleModel $article
+     * @param IArticle $articleServer
      * @return \Illuminate\Http\Response
      */
-    public function show(ArticleModel $article)
+    public function show(ArticleModel $article, IArticle $articleServer)
     {
+        $articleServer->readAccumulation($article->id);
         return fontView('article', compact('article'));
     }
 

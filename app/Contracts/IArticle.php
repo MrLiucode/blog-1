@@ -54,6 +54,13 @@ interface IArticle
     public function destroy(ArticleModel $article);
 
     /**
+     * 累加该文章的阅读次数
+     * @param int $articleId
+     * @return bool
+     */
+    public function readAccumulation($articleId);
+
+    /**
      * 获取错误消息
      * @return string|null
      */
