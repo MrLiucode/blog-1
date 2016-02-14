@@ -39,13 +39,14 @@ class Article implements \App\Contracts\IArticle
      * @param int $pageSize
      * @param  array $withParams
      * @param array $columns
+     * @param bool $filterPublished
      * @return ArticleModel
      */
-    public function getList($pageSize = 10, array $withParams = [], $columns = ['*'])
+    public function getList($pageSize = 10, array $withParams = [], $columns = ['*'], $filterPublished = true)
     {
-        return app(IPaginateCache::class)->get('article.list.paginate', function () use ($pageSize, $withParams, $columns) {
-            return ArticleModel::published()
-                ->with($withParams)
+        return app(IPaginateCache::class)->get('article.list.paginate', function () use ($pageSize, $withParams, $columns, $filterPublished) {
+            $model = $filterPublished ? ArticleModel::published() : app(ArticleModel::class);
+            return $model ->with($withParams)
                 ->orderByPublished()
                 ->paginate($pageSize, $columns, 'articlePage');
         });

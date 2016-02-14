@@ -11,9 +11,10 @@ interface IArticle
      * @param int $pageSize
      * @param array $withParams
      * @param array $columns
+     * @param bool $filterPublished
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getList($pageSize = 10, array $withParams = [], $columns = ['*']);
+    public function getList($pageSize = 10, array $withParams = [], $columns = ['*'], $filterPublished = true);
 
     /**
      * 根据文章ID获取文章
