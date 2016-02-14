@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('errorLog', 'ErrorLogController', ['only' => ['index', 'show']]);  //错误日志模块
     Route::resource('setting', 'SettingController', ['only' => ['index', 'store']]);    //系统设置模块
     Route::resource('friendship', 'FriendshipController', ['except' => 'show']);  //友情链接模块
+
+    Route::any('editorUpload', 'ToolController@editorUpload'); //编辑器文件上传
 });
 
 /**
