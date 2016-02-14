@@ -12,10 +12,11 @@
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     {{--<link href="http://fonts.useso.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">--}}
-    {!! createConcat('admin/', [
-        'plugins/bootstrap/css/bootstrap.min.css',
-        'plugins/font-awesome/css/font-awesome.min.css',
-        'css/animate.min.css', 'css/style.min.css',
+    {!! createConcat('static/', [
+        'package/bootstrap/dist/css/bootstrap.min.css',
+        'package/font-awesome/css/font-awesome.min.css',
+        'css/admin/animate.min.css',
+        'css/admin/style.min.css'
     ]) !!}
     <!-- ================== END BASE CSS STYLE ================== -->
 </head>
