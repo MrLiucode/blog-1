@@ -48,6 +48,8 @@ class ArticleController extends BaseController
     {
         $articleCategory = array_key_value($article->categories->toArray(), 'id', 'name');
         $articleTag = array_key_value($article->tags->toArray(), 'id', 'name');
+        $articleCategory = array_keys($articleCategory);
+        $articleTag = array_keys($articleTag);
         return adminView(self::VIEW_EDIT, compact('article', 'articleCategory', 'articleTag'));
     }
 
