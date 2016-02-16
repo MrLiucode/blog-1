@@ -42,7 +42,7 @@ class User implements IUser
      */
     public function getUserArticle(UserModel $user, $perPage = 15, $columns = ['*'])
     {
-        return $user->article()->paginate($perPage, $columns, 'userArticle');
+        return $user->article()->published()->paginate($perPage, $columns, 'userArticle');
     }
 
     /**
