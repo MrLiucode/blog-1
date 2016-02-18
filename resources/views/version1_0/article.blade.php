@@ -7,7 +7,7 @@
                     <h1 class="collection-header">{{ $article->title }}</h1>
                     <div class="collection-info">
                         <span class="meta-info">
-                            <span class="octicon octicon-calendar"></span> {{ $article->created_at->format('Y-m-d') }}
+                            <span class="octicon octicon-calendar"></span> {{ $article->published_at }}
                         </span>
                     </div>
                     <div class="collection-info">

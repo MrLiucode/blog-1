@@ -33,7 +33,7 @@
                                     {{ strCut(conversionMarkdown($article->content),80) }}
                                 </p>
                                 <p class="repo-list-meta">
-                                    <span class="octicon octicon-calendar"></span>{{ $article->created_at->format('Y-m-d') }}
+                                    <span class="octicon octicon-calendar"></span>{{ $article->published_at }}
                                 </p>
                             </li>
                         @endforeach
