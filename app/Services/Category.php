@@ -71,7 +71,7 @@ class Category implements ICategory
     public function getCategoryArticle(CategoryModel $model, $perPage = 15, $columns = ['*'])
     {
         return app(IPaginateCache::class)->get("category.article.list.paginate.{$model->id}", function () use ($model, $perPage, $columns) {
-            return $model->article()->paginate($perPage, $columns, 'categoryArticlePage');
+            return $model->article()->published()->paginate($perPage, $columns, 'categoryArticlePage');
         });
     }
 
