@@ -27,6 +27,5 @@ jQuery(document).ready(function ($) {
     });
     $(document).on('pjax:end', function () {
         NProgress.done();
-        self.siteBootUp();
     });
 });
