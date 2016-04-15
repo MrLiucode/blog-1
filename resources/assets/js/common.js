@@ -7,7 +7,7 @@ jQuery(document).ready(function ($) {
         $(this).geopattern($(this).data('pattern-id'));
     });
 
-    $("#open").mouseover(function () {
+    $(document).on('mouseover', '#open', function () {
         $("#search_input").fadeIn(1).animate({width: '300px', opacity: '10'});
         $("#search_input")[0].focus();
         $("#open").fadeOut(10);
